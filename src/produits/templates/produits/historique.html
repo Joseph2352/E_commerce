@@ -4,6 +4,7 @@
 <link rel="stylesheet" href=" {% static 'produits/css/recher_histori.css' %}?v={{ static_version }} " />
 {% endblock link %}
 {% block content %}
+<section class="section_produit">
 <div class="container_histo">
     <h2>Historique de vos recherches</h2>
     <ul>
@@ -14,4 +15,5 @@
         {% endfor %}
     </ul>
 </div>
+</section>
 {% endblock %}

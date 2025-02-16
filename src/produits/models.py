@@ -60,8 +60,8 @@ class Produits(models.Model):
     image = models.ImageField(upload_to='image_Produit')
     date = models.DateField(auto_now=True)
     prix = models.FloatField()
-    category = models.ForeignKey(Categorys,on_delete=models.CASCADE,related_name='main_categories')
-    sous_category = models.ForeignKey(Categorys,on_delete=models.CASCADE,null=True,blank=True,related_name='sub_categories')
+    category = models.ForeignKey(Categorys,on_delete=models.CASCADE)
+    sous_category = models.ForeignKey(SousCategorys,on_delete=models.CASCADE,null=True,blank=True)
 
     class Meta:
         verbose_name = 'Produit'

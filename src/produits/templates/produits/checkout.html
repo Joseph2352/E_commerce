@@ -1,51 +1,173 @@
 {% extends 'E_commerce/base.html' %}
+
 {% block content %}
-<h2>Mon Panier</h2>
-<ul id="liste_panier"></ul>
-<p>Total : <span id="total_price">0</span> €</p>
-<button id="validerCommande" onclick="validerCommande()">Valider la commande</button>
+<section class="section_produit">
+    <h2 class="titre-panier">Mon Panier</h2> 
+    <div id="panier-container">
+        <ul id="liste_panier"></ul>
+        <p><strong>Total :</strong> <span id="total_price">0</span> €</p>
+        <button id="validerCommande">Valider la commande</button>
+    </div>
+</section>
 {% endblock %}
+
 {% block script %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .section_produit{
+        padding: 0 clamp(100px, 4vw, 200px);
+        margin: 60px 0;
+       }
+
+    .titre-panier {
+        text-align: center;
+        color: rgb(236, 90, 19);
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    #panier-container {
+        width:100%;
+        min-height: 35.4vh;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .panier-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: white;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .produit-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-right: 10px;
+        border-radius: 5px;
+    }
+
+    .produit-details {
+        flex-grow: 1;
+        font-size: 16px;
+    }
+
+    .quantite-controls {
+        display: flex;
+        align-items: center;
+    }
+
+    .quantite {
+        margin: 0 10px;
+        font-weight: bold;
+    }
+
+    .btn-plus, .btn-moins {
+        background-color: rgb(236, 90, 19);
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .btn-plus:hover, .btn-moins:hover {
+        background-color: rgb(200, 75, 15);
+    }
+
+    #validerCommande {
+        background-color: rgb(236, 90, 19);
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    #validerCommande:hover {
+        background-color: rgb(200, 75, 15);
+    }
+</style>
+
 <script>
+    document.addEventListener("DOMContentLoaded", afficherPanier);
+
     function afficherPanier() {
         let panier = JSON.parse(localStorage.getItem("panier")) || [];
         let listePanier = document.getElementById("liste_panier");
         let totalPrice = 0;
-        listePanier.innerHTML = "";  // Réinitialiser la liste
-    
-        panier.forEach(produit => {
-            // Convertir le prix en nombre (en remplaçant la virgule par un point)
-            let prixProduit = parseFloat(produit.prix.replace(",", "."));
-    
-            // Additionner le prix au total
-            totalPrice += prixProduit;
-    
-            // Créer un élément de liste pour afficher le produit
+        listePanier.innerHTML = "";
+
+        panier.forEach((produit, index) => {
+            let prixProduit = parseFloat(produit.prix?.toString().replace(",", ".")) || 0;
+            let quantite = produit.quantite || 1;
+            let totalProduit = prixProduit * quantite;
+            totalPrice += totalProduit;
+
             let li = document.createElement("li");
-            li.textContent = `${produit.nom} - ${prixProduit.toFixed(2)} €`; // Afficher le prix avec 2 décimales
+            li.classList.add("panier-item");
+            li.dataset.index = index;
+            li.innerHTML = `
+                <img src="${produit.image}" alt="${produit.nom}" class="produit-image">
+                <span class="produit-details">
+                    <strong>${produit.nom || "Produit inconnu"}</strong> - 
+                    <span class="produit-prix">${prixProduit.toFixed(2)}</span> €  
+                </span>
+                (<span class="produit-sous-total">${totalProduit.toFixed(2)}</span> €)
+                <div class="quantite-controls">
+                    <button class="btn-moins" onclick="modifierQuantite(${index}, -1)">-</button>
+                    <span class="quantite">${quantite}</span>
+                    <button class="btn-plus" onclick="modifierQuantite(${index}, 1)">+</button>
+                </div>
+            `;
+
             listePanier.appendChild(li);
         });
-    
-        // Afficher le total avec 2 décimales
+
         document.getElementById("total_price").innerText = totalPrice.toFixed(2);
     }
-    
-    function getCSRFToken() {
-        return document.querySelector('[name=csrf-token]').getAttribute('content');
+
+    function modifierQuantite(index, delta) {
+        let panier = JSON.parse(localStorage.getItem("panier")) || [];
+
+        if (panier[index]) {
+            panier[index].quantite = (panier[index].quantite || 1) + delta;
+
+            if (panier[index].quantite <= 0) {
+                panier.splice(index, 1);
+            }
+
+            localStorage.setItem("panier", JSON.stringify(panier));
+            afficherPanier();
+        }
     }
-    
+
+    document.getElementById("validerCommande").addEventListener("click", function () {
+        validerCommande();
+    });
+
     function validerCommande() {
         let panier = JSON.parse(localStorage.getItem("panier")) || [];
         if (panier.length === 0) {
             alert("Votre panier est vide !");
             return;
         }
-    
+
         fetch("{% url 'confirm_order' %}", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-CSRFToken": getCSRFToken()  // Utiliser la fonction pour obtenir le token
+                "X-CSRFToken": getCSRFToken()
             },
             body: JSON.stringify({ cart: panier })
         })
@@ -61,9 +183,10 @@
         })
         .catch(error => console.error("Erreur :", error));
     }
-    
-    // Afficher le panier au chargement de la page
-    document.addEventListener("DOMContentLoaded", afficherPanier);
-    
+
+    function getCSRFToken() {
+        let tokenElement = document.querySelector('[name=csrf-token]');
+        return tokenElement ? tokenElement.getAttribute('content') : "";
+    }
 </script>
 {% endblock %}

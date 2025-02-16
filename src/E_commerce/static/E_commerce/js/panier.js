@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Vérifie si "panier" existe dans le localStorage et est un tableau valide
-    let panier = JSON.parse(localStorage.getItem("panier@2247763763"));
+    let panier = JSON.parse(localStorage.getItem("panier"));
     if (!Array.isArray(panier)) {
         panier = [];  // Si ce n'est pas un tableau, initialise-le comme un tableau vide
     }
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let existe = panier.find(item => item.id === id);
         if (!existe) {
             panier.push(produit);
-            localStorage.setItem("panier@2247763763", JSON.stringify(panier));
+            localStorage.setItem("panier", JSON.stringify(panier));
             updatePanierCount();
         } else {
             alert("Ce produit est déjà dans le panier !");

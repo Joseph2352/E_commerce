@@ -9,9 +9,7 @@ class HomeViews(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         categories = Categorys.objects.all()
-        Supercategories = SuperCategorys.objects.all()
         context['categories_produits'] = {categorie: Produits.objects.filter(category=categorie) for categorie in categories}
-        context['super_categorie'] = Supercategories
 
         context['static_version'] = now().timestamp()
         

@@ -35,4 +35,6 @@ class ProduitAdmin(admin.ModelAdmin):
         "category",
         "sous_category",
         "date",
+        "image",
+
     ]

@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function openMenu() {
         menuBox.classList.add("open");
         menuBtn.classList.add("active");
-        document.body.classList.add("no-scroll"); // Désactive le défilement
+        document.body.classList.add("scroll"); // Désactive le défilement
     }
 
     function closeMenu() {
@@ -68,3 +68,17 @@ if (window.innerWidth > 1200) {
         });
     });
 }
+
+function toggleDropdown() {
+    var dropdown = document.getElementById("profileDropdown");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+}
+
+// Fermer le menu si on clique ailleurs
+document.addEventListener("click", function(event) {
+    var dropdown = document.getElementById("profileDropdown");
+    var profile = document.querySelector(".profile-container");
+    if (!profile.contains(event.target)) {
+        dropdown.style.display = "none";
+    }
+});

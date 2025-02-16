@@ -6,7 +6,8 @@ from .models import CustomUser
 @admin.register(CustomUser)
 class CustomUser(admin.ModelAdmin):
     list_display=[
-        "fullname",
+        "first_name",
+        "last_name",
         "username",
         "email",
         "password",

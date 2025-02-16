@@ -203,6 +203,49 @@ body {
   width: 100%;
   left: 0;
 }
+.profile-container {
+  position: relative;
+  padding-top: 18px;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.profile-avatar {
+  width: 35px;
+  height: 35px;
+  background-color: rgb(236, 90, 19); /* Couleur de fond */
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-transform: uppercase;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  background: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  min-width: 150px;
+  overflow: hidden;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.dropdown-menu a:hover {
+  background: #f1f1f1;
+}
+
 
 .head-bottom .ul {
   display: flex;

@@ -1,13 +1,11 @@
-html,body{
-    height: 100%;
-    margin: 0;
-    border: 0;
-    display: flex;
-    flex-direction: column;
-  }
+
 .container_produit{
+  min-height: 35.4vh;
   display: flex;
   justify-content: center;
+}
+.container_histo{
+  min-height: 35.4vh;
 }
 .section_produit{
   padding: 0 clamp(100px, 4vw, 200px);
