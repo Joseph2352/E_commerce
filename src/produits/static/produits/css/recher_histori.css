@@ -1,0 +1,140 @@
+html,body{
+    height: 100%;
+    margin: 0;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+  }
+.container_produit{
+  display: flex;
+  justify-content: center;
+}
+.section_produit{
+  padding: 0 clamp(100px, 4vw, 200px);
+  margin: 60px 0;
+ }
+ .section_produit .title {
+  display: flex;
+  justify-content: center;
+ }
+ .section_produit .title h2{
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+ }
+
+.container_produit {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.container_produit ul {
+  flex: 1;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+
+}
+
+.container_produit li {
+  max-width: 250px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container_produit li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.container_produit img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 3px solid #ff6e14;
+}
+.container_produit li:hover .panier_plus{
+  opacity: 1;
+}
+.image_produit{
+  position: relative;
+}
+.panier_plus {
+  position: absolute;
+  top: 10px; /* Ajuste la position verticale */
+  right: 10px; /* Place le bouton en haut à droite */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px; /* Taille légèrement réduite pour un meilleur rendu */
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Ajoute une légère ombre */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+}
+
+/* Effet au survol */
+.panier_plus:hover {
+  transform: scale(1.1); /* Légère animation au hover */
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+  background: #000;
+}
+
+/* Ajustement pour les petits écrans */
+@media (max-width: 768px) {
+  .panier_plus {
+    width: 40px;
+    height: 40px;
+    top: 5px;
+    right: 5px;
+  }
+}
+
+.panier_plus:hover svg{
+  color: #fff;
+}
+.container_produit .containbox{
+  width: 100%;
+  height: 180px;
+}
+.container_produit h3 {
+  font-size: 2rem;
+  margin: 10px 0;
+  color: #333;
+}
+
+.container_produit p {
+  font-size: 1.4rem;
+  color: #666;
+  padding: 0 15px;
+}
+
+.container_produit .price {
+  position:relative;
+  bottom: -30px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ff6e14;
+  margin: 10px 0;
+}
+@media (max-width: 1422px) {
+  .section_produit{
+    padding:0 20px;
+   }
+}
+@media (max-width: 768px) {
+  .container_produit ul {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px; /* Réduit l'écartement pour éviter trop de vide */
+  }
+}

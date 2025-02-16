@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide Down</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .hover-container {
+            width: 200px;
+            background: lightblue;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .hidden-page {
+            width: 100%;
+            height: 0;
+            overflow: hidden;
+            background: white;
+            border: 1px solid #ccc;
+            transition: height 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+<div class="hover-container" id="hoverElement">
+    Survole-moi !
+</div>
+
+<div class="hidden-page" id="hiddenPage">
+    <iframe src="https://exemple.com" width="100%" height="300"></iframe>
+</div>
+<div class="hover-container" id="hoverElement">
+    Survole-moi !
+</div>
+
+<div class="hidden-page" id="hiddenPage">
+    <iframe src="https://exemple.com" width="100%" height="300"></iframe>
+</div>
+<div class="hover-container" id="hoverElement">
+    Survole-moi !
+</div>
+
+<div class="hidden-page" id="hiddenPage">
+    <iframe src="https://exemple.com" width="100%" height="300"></iframe>
+</div>
+
+    <script>
+        let hoverElement = document.getElementById("hoverElement");
+        let hiddenPage = document.getElementById("hiddenPage");
+
+        hoverElement.addEventListener("mouseover", function() {
+            hiddenPage.style.height = "300px"; // Ajuste selon la taille de l'iframe
+        });
+
+        hoverElement.addEventListener("mouseout", function() {
+            hiddenPage.style.height = "0";
+        });
+    </script>
+
+</body>
+</html>

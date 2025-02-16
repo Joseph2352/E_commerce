@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="164"
+   height="30"
+   viewBox="0 0 164 30"
+   fill="none"
+   version="1.1"
+   id="svg51"
+   sodipodi:docname="lebonlieu.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs55" />
+  <sodipodi:namedview
+     id="namedview53"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="9.7798874"
+     inkscape:cx="159.71554"
+     inkscape:cy="8.7424319"
+     inkscape:window-width="1920"
+     inkscape:window-height="1005"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg51" />
+  <path
+     fill-rule="evenodd"
+     clip-rule="evenodd"
+     d="m 39.980795,25.077 c 2.495507,-0.0042 4.036854,-2.0432 4.036854,-5.0725 0,-3.032 -1.537174,-5.0653 -4.029866,-5.0653 -2.492787,0 -4.02307,2.0261 -4.02307,5.0653 0,3.0364 1.527565,5.0683 4.016082,5.0725 z m 1.869592,-15.0534 c 4.75701,0 7.893668,4.2236 7.962869,9.9096 0,5.7788 -3.282049,10.0594 -8.094477,10.0594 -2.422034,0.0556 -4.696059,-1.1972 -5.996416,-3.3032 h -0.07619 v 2.9322 H 30.425334 V 3.88099 c 0,-1.96193 1.267163,-3.189033 2.769689,-3.189033 1.502525,0 2.76969,1.227103 2.76969,3.189033 v 9.17471 h 0.07619 c 1.342576,-1.9241 3.509936,-3.0549 5.809486,-3.0321 z M 61.072149,25.077 c 2.49968,0 4.023072,-2.0404 4.023072,-5.0725 0,-3.032 -1.523392,-5.0653 -4.023072,-5.0653 -2.499582,0 -4.022974,2.0261 -4.022974,5.0653 0,3.0393 1.523392,5.0725 4.022974,5.0725 z m 0,-15.0534 c 5.885675,0 9.694058,4.1451 9.694058,9.9881 0,5.843 -3.801492,9.988 -9.694058,9.988 -5.892565,0 -9.69396,-4.145 -9.69396,-9.988 0,-5.843 3.801395,-9.9881 9.69396,-9.9881 z M 135.05839,0 c -90.038928,0 -45.019465,0 0,0 z m 76.2477,24.514436 c -140.870728,-16.3429573 -70.43537,-8.171479 0,0 z M 84.628922,10.0239 c 3.877585,0 5.961184,2.8388 5.975645,7.1415 V 29.6219 H 85.01666 V 18.7777 c 0,-2.5327 -1.156326,-3.3745 -2.61042,-3.3745 -2.160371,0 -3.801394,1.8763 -3.801394,5.8715 v 8.3472 H 73.010047 V 13.0203 c 0,-1.8834 1.177096,-2.9821 2.596541,-2.9821 1.419542,0 2.610517,1.1129 2.610517,2.9964 v 0.7134 h 0.0761 c 1.324621,-2.3086 3.732874,-3.7241 6.335724,-3.7241 z M 15.226546,18.87 c 0.01659,0.7313 0.142576,1.4562 0.37386,2.1482 l 6.231874,-4.7593 c -0.563604,-1.0716 -1.67082,-1.7187 -2.85277,-1.6694 -1.765741,0 -3.752964,1.3697 -3.752964,4.2805 z m 5.414759,6.4209 c 2.019833,-0.1191 3.831191,-1.322 4.770791,-3.1669 l 3.676872,2.7389 c -1.405662,2.9464 -4.272311,5.1295 -9.119292,5.1295 -2.293337,-0.0042 -4.507769,-0.8661 -6.231873,-2.4256 -2.43737,1.6694 -4.5146608,2.3828 -6.5919424,2.3828 C 2.9566679,29.9496 0,27.0602 0,22.7226 V 3.83091 c 0,-1.9548 1.260215,-3.181902 2.7697184,-3.181902 1.5094939,0 2.7697088,1.227102 2.7697088,3.181902 V 22.2446 c 0,1.8549 0.7893667,2.8537 2.44427,2.8537 0.9001563,0 1.8765211,-0.5351 3.1435878,-1.2485 -0.605144,-1.4832 -0.911162,-3.0777 -0.900098,-4.6872 0,-4.0737 2.81812,-9.1384 8.738444,-9.1384 5.13087,0 7.886778,3.0742 9.036212,6.9338 l -9.880988,7.3063 c 0.677839,0.6685 1.582208,1.0373 2.52045,1.0266 z"
+     fill="#ff6e14"
+     id="path49"
+     sodipodi:nodetypes="csssccccccccssscccssssssssssccccscccsssccsssccsccccccccccsssssssccsccc"
+     style="stroke-width:0.98517" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:39.5688px;font-family:MathJax_SansSerif;-inkscape-font-specification:'MathJax_SansSerif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff6e14;fill-opacity:1;stroke-width:3.29738"
+     x="98.582352"
+     y="27.514587"
+     id="text365"
+     transform="scale(0.93457075,1.0700099)"><tspan
+       sodipodi:role="line"
+       id="tspan363"
+       x="98.582352"
+       y="27.514587"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:39.5688px;font-family:MathJax_SansSerif;-inkscape-font-specification:'MathJax_SansSerif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff6e14;fill-opacity:1;stroke-width:3.29738">lieu</tspan></text>
+</svg>

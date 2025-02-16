@@ -1,0 +1,17 @@
+{% extends "E_commerce/base.html" %}
+{% load static %}
+{% block link %}
+<link rel="stylesheet" href=" {% static 'produits/css/recher_histori.css' %}?v={{ static_version }} " />
+{% endblock link %}
+{% block content %}
+<div class="container_histo">
+    <h2>Historique de vos recherches</h2>
+    <ul>
+        {% for recherche in recherches %}
+            <li>{{ recherche.terme }} - {{ recherche.date_recherche }}</li>
+        {% empty %}
+            <li>Aucune recherche enregistrée.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

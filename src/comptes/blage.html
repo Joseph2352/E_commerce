@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survol Iframe</title>
+    <style>
+        #iframe-container {
+            display: none;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 600px;
+            height: 400px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="hover-element" style="width: 200px; height: 100px; background: lightblue; text-align: center; padding: 20px; cursor: pointer;">
+        Survole-moi !
+    </div>
+
+    <iframe id="iframe-container" src="https://exemple.com"></iframe>
+
+    <script>
+        document.getElementById("hover-element").addEventListener("mouseover", function() {
+            document.getElementById("iframe-container").style.display = "block";
+        });
+
+        document.getElementById("hover-element").addEventListener("mouseout", function() {
+            document.getElementById("iframe-container").style.display = "none";
+        });
+    </script>
+
+</body>
+</html>

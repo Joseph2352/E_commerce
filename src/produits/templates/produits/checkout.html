@@ -1,0 +1,69 @@
+{% extends 'E_commerce/base.html' %}
+{% block content %}
+<h2>Mon Panier</h2>
+<ul id="liste_panier"></ul>
+<p>Total : <span id="total_price">0</span> €</p>
+<button id="validerCommande" onclick="validerCommande()">Valider la commande</button>
+{% endblock %}
+{% block script %}
+<script>
+    function afficherPanier() {
+        let panier = JSON.parse(localStorage.getItem("panier")) || [];
+        let listePanier = document.getElementById("liste_panier");
+        let totalPrice = 0;
+        listePanier.innerHTML = "";  // Réinitialiser la liste
+    
+        panier.forEach(produit => {
+            // Convertir le prix en nombre (en remplaçant la virgule par un point)
+            let prixProduit = parseFloat(produit.prix.replace(",", "."));
+    
+            // Additionner le prix au total
+            totalPrice += prixProduit;
+    
+            // Créer un élément de liste pour afficher le produit
+            let li = document.createElement("li");
+            li.textContent = `${produit.nom} - ${prixProduit.toFixed(2)} €`; // Afficher le prix avec 2 décimales
+            listePanier.appendChild(li);
+        });
+    
+        // Afficher le total avec 2 décimales
+        document.getElementById("total_price").innerText = totalPrice.toFixed(2);
+    }
+    
+    function getCSRFToken() {
+        return document.querySelector('[name=csrf-token]').getAttribute('content');
+    }
+    
+    function validerCommande() {
+        let panier = JSON.parse(localStorage.getItem("panier")) || [];
+        if (panier.length === 0) {
+            alert("Votre panier est vide !");
+            return;
+        }
+    
+        fetch("{% url 'confirm_order' %}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": getCSRFToken()  // Utiliser la fonction pour obtenir le token
+            },
+            body: JSON.stringify({ cart: panier })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                alert(data.message);
+                localStorage.removeItem("panier");
+                window.location.href = data.redirect_url;
+            } else {
+                alert("Erreur lors de la commande !");
+            }
+        })
+        .catch(error => console.error("Erreur :", error));
+    }
+    
+    // Afficher le panier au chargement de la page
+    document.addEventListener("DOMContentLoaded", afficherPanier);
+    
+</script>
+{% endblock %}
