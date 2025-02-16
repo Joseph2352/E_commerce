@@ -24,15 +24,23 @@
         <button class="nav-button prev hidden" onclick="scrollItems('jewelry', -1)">&#10094;</button>
         <div class="item-category" id="jewelry" onscroll="checkScroll('jewelry')">
             <ul>
-                {% for category in categories_produits %}
-                    <li><img src="{{category.image.url}}" alt="{{category.nom}}"><p> {{category.nom}} </p></li>
-                {% endfor %}           
+                {% for category in super_categorie %}
+                <li>
+                  {% if category.image %}
+                      <img src="{{ category.image.url }}" alt="{{ category.nom }}">
+                  {% else %}
+                      <p>Pas d'image disponible</p>
+                  {% endif %}
+                  <p>{{ category.nom }}</p>
+              </li>              
+              {% endfor %}           
             </ul>
         </div> 
         <button class="nav-button next" onclick="scrollItems('jewelry', 1)">&#10095;</button>
     </div>
 
     {% for category, produits in categories_produits.items %}
+    {% if forloop.counter <= 4 %}
     <div class="section-title">{{ category.nom }}</div>
     <div class="slider-container">
         <button class="nav-button prev hidden" onclick="scrollItems('category-{{ forloop.counter }}', -1)">&#10094;</button>
@@ -77,6 +85,7 @@
         </div>
         <button class="nav-button next" onclick="scrollItems('category-{{ forloop.counter }}', 1)">&#10095;</button>
     </div>
+     {% endif %}
     {% endfor %}
 </section>
 

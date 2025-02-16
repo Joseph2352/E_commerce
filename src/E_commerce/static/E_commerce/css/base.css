@@ -209,17 +209,21 @@ body {
   justify-content: flex-start;
   width: 100%;
 }
+.head-bottom .min_ul{
+  display: none;
+}
 
-.head-bottom .ul .li {
+.head-bottom ul li{
   position: relative;
-  list-style: none;
+  cursor: pointer;
   padding: 18px 0;
   margin-right: 7rem;
 }
-.head-bottom .ul .li .a {
+.head-bottom ul li a {
   position: relative;
+  cursor: pointer;
 }
-.head-bottom .ul .li .a::after {
+.head-bottom ul li::after {
   content: "";
   position: absolute;
   top: 46px;
@@ -230,16 +234,18 @@ body {
   background-color: rgb(80, 77, 76);
   transition: width 0.3s ease, left 0.3s ease;
 }
-.head-bottom .ul .li .a:hover::after {
+.head-bottom ul li:hover::after {
   width: 100%;
   left: 0;
 }
 
-.head-bottom .ul .li .a:hover::after {
+.head-bottom ul li:hover::after {
   width: 100%;
 }
 
-.head-bottom .ul .li .a {
+.head-bottom ul li a {
+  display: inline;
+  width: 100%;
   color: black;
   font-size: 1.9rem;
 }
@@ -250,13 +256,15 @@ body {
 }
 
 .hidden-page {
-  position: absolute;
+  position: fixed;
   display: flex;
   width: 100%;
-  height: 0;
   justify-content: center;
-  transition:height 0.2s ease;
+  transition: opacity .4s ease, visibility .4s ease;
   overflow: hidden;
+  height: 0;
+  opacity: 0;
+  z-index: 12; 
   padding-bottom: 10px;
 }
 
@@ -266,7 +274,6 @@ body {
   background: #fff;
   width: 110rem;
   border-radius: 0 0 15px 15px;
-  z-index: 12; 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden; 
 }
@@ -285,7 +292,8 @@ body {
 .box_categorie .name svg{
   width: 24px;
   height: 24px;
-  border-left: 2px solid black;
+  padding-left: 3px;
+  border-left: 3px solid rgb(13, 47, 197);
 }
 .box_categorie .name span{
   position: relative;
@@ -307,13 +315,20 @@ body {
   list-style: none;
   font-size: 1.5rem;
   font-weight: 500;
-  line-height: 4rem;
+  line-height: 3rem;
 }
 .box_categorie a h3{
   font-size: 1.7rem;
+  font-weight: 730;
+}
+.box_categorie .box .categorie h3,.box_categorie .box .categorie1 h3{
+  line-height: 3rem;
+}
+.box_categorie a .title_categorie{
+  padding-bottom: 1.8rem;
   font-weight: 800;
 }
-.box_categorie a h3{
+.box_categorie a h3:hover,.box_categorie a li:hover{
   color: #ff6e14ff;
 }
 
@@ -419,6 +434,7 @@ body {
 
 
 @media (max-width: 1200px) {
+
   ::-webkit-scrollbar {
     position: absolute;
     height: 8px;
@@ -431,35 +447,35 @@ body {
     background-color: #bbb;
     border-radius: 100px;
   }
-  .head ul {
+  .head .min_ul {
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
     overflow-x: scroll;
     scroll-behavior: smooth;
     scrollbar-width: none;
-    transition: 0.3s linear;
+    padding-left: 2rem;
   }
-  .head ul:hover {
-    position: relative;
-  }
-  .head ul li:hover {
+  .head .min_ul li:hover {
     padding-bottom: 0px;
   }
-  .head ul li {
+  .head .min_ul li {
+    list-style: disc;
     margin-right: 7rem;
   }
-  .head ul li a:hover::after,
-  .head ul li a:hover::before {
+  .head .min_ul li a:hover::after,
+  .head .min_ul li a:hover::before {
     display: none;
   }
-  .head ul li a:hover {
+  .head .min_ul li a:hover {
     color: #ff6e14ff;
   }
 
-  .head ul #textlong {
-    display: block;
-    width: 200px;
+  .head .min_ul #textlong {
+    white-space: nowrap;  
+  }
+  .head-bottom .ul{
+    display: none;
   }
   .menu {
     display: block;
@@ -480,6 +496,10 @@ body {
     display: flex;
     width: 100%;
     justify-content: end;
+  }
+  .hidden-page:hover{
+    height: 0;
+    display: none;
   }
   body.no-scroll {
     overflow: hidden;

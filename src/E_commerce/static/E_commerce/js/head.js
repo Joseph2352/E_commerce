@@ -36,24 +36,35 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Acategorie hover
-let hoverElements = document.querySelectorAll('.hover-container');
-      
+
+// Vérifie si la taille de l'écran est supérieure à 1200px
+if (window.innerWidth > 1200) {
+    let hoverElements = document.querySelectorAll('.hover-container');
+
     // Boucle sur chaque élément pour ajouter des événements de survol
     hoverElements.forEach((hoverElement, index) => {
-        let hiddenPage = document.getElementById('hiddenPage' + (index + 1)); // Associer la page cachée à l'élément correspondant
+        let hiddenPage = document.getElementById('hiddenPage' + (index + 1)); 
         
         hoverElement.addEventListener("mouseover", function() {
-            hiddenPage.style.height = "400px"; // Ajuste selon la taille de l'iframe
+            hiddenPage.style.visibility = "visible"; 
+            hiddenPage.style.opacity = "1";
+            hiddenPage.style.height = "auto";
         });
         hiddenPage.addEventListener("mouseover", function() {
-            hiddenPage.style.height = "400px"; // Ajuste selon la taille de l'iframe
+            hiddenPage.style.visibility = "visible";
+            hiddenPage.style.opacity = "1"; 
+            hiddenPage.style.height = "auto";
         });
 
         hoverElement.addEventListener("mouseout", function() {
+            hiddenPage.style.visibility = "hidden"; 
+            hiddenPage.style.opacity = "0"; 
             hiddenPage.style.height = "0";
         });
         hiddenPage.addEventListener("mouseout", function() {
+            hiddenPage.style.visibility = "hidden"; 
+            hiddenPage.style.opacity = "0"; 
             hiddenPage.style.height = "0";
         });
     });
+}

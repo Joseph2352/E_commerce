@@ -4,13 +4,46 @@ from django.utils.text import  slugify
 from django.contrib.auth.models import User
 
 # Create your models here.
+class SuperCategorys(models.Model):
+    nom = models.CharField(max_length=40)
+    image = models.ImageField(upload_to='image_super_Category')
+    slug = models.SlugField(blank=True, null=True, unique=True)
+
+    class Meta:
+        verbose_name = '1-Super Categorie'
+    
+    def __str__(self):
+        return self.nom
+    
+    def save(self, *args,**kwargs):
+        if not self.slug:
+            self.slug= slugify(self.nom)  #permet de convertir une chaine de caractère en slug
+
+        super().save(*args, **kwargs)
+    
 class Categorys(models.Model):
     nom = models.CharField(max_length=40)
     description = models.TextField()
-    image = models.ImageField(upload_to='image_Category')
+    super_categorie = models.ForeignKey(SuperCategorys,on_delete=models.CASCADE)
     slug = models.SlugField(blank=True, null=True, unique=True)
     class Meta:
-        verbose_name = 'Category'
+        verbose_name = '2-Categorie'
+
+    def __str__(self):
+        return self.nom
+    
+    def save(self, *args,**kwargs):
+        if not self.slug:
+            self.slug= slugify(self.nom)  #permet de convertir une chaine de caractère en slug
+
+        super().save(*args, **kwargs)
+    
+class SousCategorys(models.Model):
+    nom = models.CharField(max_length=40)
+    categorie = models.ForeignKey(Categorys,on_delete=models.CASCADE)
+    slug = models.SlugField(blank=True, null=True, unique=True)
+    class Meta:
+        verbose_name = '3-Sous Categorie'
 
     def __str__(self):
         return self.nom
@@ -27,7 +60,8 @@ class Produits(models.Model):
     image = models.ImageField(upload_to='image_Produit')
     date = models.DateField(auto_now=True)
     prix = models.FloatField()
-    category = models.ForeignKey(Categorys,on_delete=models.CASCADE)
+    category = models.ForeignKey(Categorys,on_delete=models.CASCADE,related_name='main_categories')
+    sous_category = models.ForeignKey(Categorys,on_delete=models.CASCADE,null=True,blank=True,related_name='sub_categories')
 
     class Meta:
         verbose_name = 'Produit'
