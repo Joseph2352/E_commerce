@@ -101,8 +101,8 @@
         </div>
         <div class="category">
           <p>Catégorie</p>
-          {% for category in categories_produits %}
-            <a href="{% url 'produits' nom_category=category.nom %}"><button>{{ category.nom }}</button></a>
+          {% for category in super_categorie %}
+            <a href="{% url 'produits' slug=category.nom %}"><button>{{ category.nom }}</button></a>
           {% endfor %}
         </div>
         <div class="connexion">
@@ -262,7 +262,7 @@
             {% endfor %} {% endcomment %}
           <ul class="ul">
             {% for category in super_categorie %}
-            <li class=" li hover-container" id="hoverElemnt{{ forloop.counter }}">
+            <li class=" li hover-container" id="hoverElement{{ forloop.counter }}">
               <a >{{category.nom}}</a>
             </li>  
             {% endfor %}
@@ -315,14 +315,14 @@
           <div class="categorie">
             <a href="#"><h3 class="title_categorie" >Tout Électronique</h3></a>
               <ul>
-                  <a href="#"><h3>Ordinateurs</h3></a>
-                  <a href="#"><h3>Accessoires informatique</h3></a>
-                  <a href="#"><h3>Tablettes & Liseuses</h3></a>
-                  <a href="#"><h3>Photo, audio & vidéo</h3></a>
+                  <a href="{% url 'produits' slug='ordinateur' %}"><h3>Ordinateur</h3></a>
+                  <a href="{% url 'produits' slug='accessoires-informatique' %}"><h3>Accessoires informatique</h3></a>
+                  <a href="{% url 'produits' slug='tablettes-liseuses' %}"><h3>Tablettes & Liseuses</h3></a>
+                  <a href="{% url 'produits' slug='photo-audio-video' %}"><h3>Photo, audio & vidéo</h3></a>
               </ul>
           </div>
           <div class="categorie1">
-            <a href="#"><h3>Téléphones & Objets connectés</h3></a>
+            <a href="{% url 'produits' slug='telephones-objets-connectes' %}"><h3>Téléphones & Objets connectés</h3></a>
               <ul>
                 <a href="#"><li>Apple</li></a>
                 <a href="#"><li>Samsung</li></a>

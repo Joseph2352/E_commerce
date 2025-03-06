@@ -50,10 +50,12 @@ if (window.innerWidth > 1200) {
             hiddenPage.style.opacity = "1";
             hiddenPage.style.height = "auto";
         });
+        
         hiddenPage.addEventListener("mouseover", function() {
+            {
             hiddenPage.style.visibility = "visible";
             hiddenPage.style.opacity = "1"; 
-            hiddenPage.style.height = "auto";
+            hiddenPage.style.height = "auto";}
         });
 
         hoverElement.addEventListener("mouseout", function() {
@@ -61,6 +63,7 @@ if (window.innerWidth > 1200) {
             hiddenPage.style.opacity = "0"; 
             hiddenPage.style.height = "0";
         });
+        
         hiddenPage.addEventListener("mouseout", function() {
             hiddenPage.style.visibility = "hidden"; 
             hiddenPage.style.opacity = "0"; 
