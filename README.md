@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # E-Commerce
 E_commerce
 
@@ -81,3 +82,6 @@ Auteur
 Mamy Joseph
 
 
+=======
+ E-Commerce
+>>>>>>> d9e6bf6 (Troisieme commit: gestion du panier)
