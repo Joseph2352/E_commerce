@@ -1,5 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # E-Commerce
+=======
+>>>>>>> 275053d (Troisieme commit: gestion du panier)
 E_commerce
 
 Description
@@ -18,6 +21,7 @@ pip
 
 Cloner le dépôt
 
+<<<<<<< HEAD
 git clone <URL_DU_REPO>
 cd E_commerce
 
@@ -25,6 +29,13 @@ Créer et activer un environnement virtuel
 
 python3 -m venv .env
 source .env/bin/activate  # Sous Windows : venv\Scripts\activate
+=======
+git clone <URL_DU_REPO> cd E_commerce
+
+Créer et activer un environnement virtuel
+
+python3 -m venv .env source .env/bin/activate # Sous Windows : venv\Scripts\activate
+>>>>>>> 275053d (Troisieme commit: gestion du panier)
 
 Installer les dépendances
 
@@ -40,8 +51,12 @@ Lancer le serveur
 
 python manage.py runserver
 
+<<<<<<< HEAD
 Accéder à l'application
 Ouvrir un navigateur et aller sur http://127.0.0.1:8000/
+=======
+Accéder à l'application Ouvrir un navigateur et aller sur http://127.0.0.1:8000/
+>>>>>>> 275053d (Troisieme commit: gestion du panier)
 
 Fonctionnalités
 
@@ -80,8 +95,11 @@ Création d'une pull request
 Auteur
 
 Mamy Joseph
+<<<<<<< HEAD
 
 
 =======
  E-Commerce
 >>>>>>> d9e6bf6 (Troisieme commit: gestion du panier)
+=======
+>>>>>>> 275053d (Troisieme commit: gestion du panier)
