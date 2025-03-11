@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.querySelector('.box_recher').addEventListener('click', function (event) {
     // Éviter que le clic sur .box_recher déclenche la fermeture
+    const annonce = document.querySelector('.annonce');
     event.stopPropagation();
     this.classList.toggle('expanded');
   });
@@ -45,7 +46,6 @@ document.querySelector('.box_recher').addEventListener('click', function (event)
   // Écouter les clics sur le document pour fermer .box_recher si on clique en dehors
   document.addEventListener('click', function (event) {
     var boxRecher = document.querySelector('.box_recher');
-    
     // Vérifie si le clic est à l'extérieur de .box_recher
     if (!boxRecher.contains(event.target)) {
       boxRecher.classList.remove('expanded');

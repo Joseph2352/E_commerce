@@ -70,7 +70,11 @@ class ProduitViews(ListView):
         context["category"] = self.category  # Ajout de la catégorie actuelle
         context["static_version"] = now().timestamp()  # Version statique
         return context
-    
+
+def detail(request, id , nom):
+    produit = get_object_or_404(Produits, pk=id)
+    return render(request, 'produits/detail.html', {'produit': produit})
+
 class CheckoutView(TemplateView):
     template_name = "produits/checkout.html"
     def get_context_data(self, **kwargs):
@@ -155,3 +159,11 @@ class PaymentConfirmationView(LoginRequiredMixin, View):
             return JsonResponse({'message': 'Paiement validé !', 'order_id': order.id})
         except Order.DoesNotExist:
             return JsonResponse({'error': 'Commande introuvable !'}, status=404)
+
+
+def autocomplete(request):
+    if 'term' in request.GET:
+        qs = Produits.objects.filter(nom__icontains=request.GET.get('term'))
+        noms = list(qs.values_list('nom', flat=True))
+        return JsonResponse(noms, safe=False)
+    return JsonResponse([], safe=False)

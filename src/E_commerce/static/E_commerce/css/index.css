@@ -112,6 +112,10 @@
     font-size: 1.4rem;
     color: #666;
 }
+.item-category a{
+    text-decoration: none;
+    color: #000;
+}
 .item-category li {
     position: relative;
     width: 200px;
@@ -136,6 +140,7 @@
 }
 .items .containbox h2{
     font-size: 2rem;
+    color: black;
 }
 .item-category li p {
     font-size: 2rem;
@@ -199,29 +204,30 @@
   }
   .panierplus {
     position: absolute;
-    top: 10px; /* Ajuste la position verticale */
-    right: 10px; /* Place le bouton en haut à droite */
+    top: 10px; 
+    right: 10px; 
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px; /* Taille légèrement réduite pour un meilleur rendu */
+    width: 50px; 
     height: 50px;
     border-radius: 50%;
     background: #fff;
     cursor: pointer;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Ajoute une légère ombre */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     opacity: 0;
+    color: #000;
   }
   
-  /* Effet au survol */
+
   .panierplus:hover {
-    transform: scale(1.1); /* Légère animation au hover */
+    transform: scale(1.1);
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
     background: #000;
   }
   
-  /* Ajustement pour les petits écrans */
+
   @media (max-width: 768px) {
     .panierplus {
       width: 40px;

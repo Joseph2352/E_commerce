@@ -1,3 +1,4 @@
+<!-- filepath: /media/hacker/Black_Hack/entrainement/Projet/E_commerce/src/comptes/templates/comptes/singnup.html -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -22,31 +23,35 @@
               <i class="fas fa-user"></i>
               <input type="text" name="first_name" placeholder="Prenom" />
             </div>
+            {% if first_name_error %}
+            <div class="error">{{ first_name_error }}</div>
+            {% endif %}
             <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="text" name="last_name" placeholder="Nom" />
             </div>
+            {% if last_name_error %}
+            <div class="error">{{ last_name_error }}</div>
+            {% endif %}
             <div class="input-field">
               <i class="fas fa-envelope"></i>
               <input type="email" name="email" placeholder="Email" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" name="password1" placeholder="Password" />
+              <input id="password" type="password" name="password1" placeholder="Password" />
+              <i class="fa-solid fa-eye-slash password-icon" onclick="togglePassword('password', this)"></i>
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input
-                type="password"
-                name="password2"
-                placeholder="Confirm Password"
-              />
+              <input id="confirm_password" type="password" name="password2" placeholder="Confirm Password"/>
+              <i class="fa-solid fa-eye-slash password-icon" onclick="togglePassword('confirm_password', this)"></i>
             </div>
-            <input type="submit" class="btn" value="Sign up" />
             {% if error %}
             <div class="error">{{ error }}</div>
             <!-- Afficher l'erreur -->
             {% endif %}
+            <input type="submit" class="btn" value="Sign up" />
             <p class="social-text">
               Ou inscrivez-vous sur les plateformes sociales
             </p>
@@ -90,5 +95,19 @@
         </div>
       </div>
     </div>
+    <script>
+      function togglePassword(id, icon) {
+          let input = document.getElementById(id);
+          if (input.type === "password") {
+              input.type = "text";
+              icon.classList.remove("fa-eye-slash");
+              icon.classList.add("fa-eye");
+          } else {
+              input.type = "password";
+              icon.classList.remove("fa-eye");
+              icon.classList.add("fa-eye-slash");
+          }
+      }
+    </script>
   </body>
 </html>

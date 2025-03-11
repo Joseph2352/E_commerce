@@ -116,6 +116,7 @@ body {
   width: 60%;
   transition: width 0.5s ease-in-out;
 }
+
 .navbar .head-top .box_recher.expanded {
   width: 100%;
 }

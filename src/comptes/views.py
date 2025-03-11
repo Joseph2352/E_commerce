@@ -9,6 +9,7 @@ from django.contrib.auth import update_session_auth_hash
 import re
 from django.core.files.storage import FileSystemStorage
 from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 #-----------------------------------Vue  de connexion---------------------------------------------#
 def log_in(request):
@@ -22,7 +23,7 @@ def log_in(request):
             login(request, user)
             return redirect('home')
         else:
-            return render(request, 'comptes/login.html', {'error': 'Identifiants invalides'})
+            return render(request, 'comptes/login.html', {'error': 'Identifiants ou mot de passe incorrects'})
 
     return render(request, 'comptes/login.html', {'static_version': now().timestamp()})
 
@@ -36,25 +37,28 @@ def sign_up(request):
         password2 = request.POST.get('password2')
 
         if not first_name:
-            error = "Le champ Prenom complet est obligatoire."
-            return render(request, 'comptes/singnup.html', {'error': error})
+            error = "le champ nom est obligatoire."
+            return render(request, 'comptes/singnup.html', {'first_name_error': error})
         if not last_name:
-            error = "Le champ Nom complet est obligatoire."
-            return render(request, 'comptes/singnup.html', {'error': error})
+            error = "le champ prenom complet est obligatoire."
+            return render(request, 'comptes/singnup.html', {'last_name_error': error})
         if password1 != password2:
-            return render(request, 'comptes/singnup.html', {'error': 'Les mots de passe ne correspondent pas'})
-
-        # Password validation
-        if len(password1) < 8:
-            return render(request, 'comptes/singnup.html', {'error': 'Le mot de passe doit contenir au moins 8 caractères'})
-        if not re.search(r'[A-Z]', password1):
-            return render(request, 'comptes/singnup.html', {'error': 'Le mot de passe doit contenir au moins une lettre majuscule'})
-        if not re.search(r'[a-z]', password1):
-            return render(request, 'comptes/singnup.html', {'error': 'Le mot de passe doit contenir au moins une lettre minuscule'})
-        if not re.search(r'[0-9]', password1):
-            return render(request, 'comptes/singnup.html', {'error': 'Le mot de passe doit contenir au moins un chiffre'})
-        if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password1):
-            return render(request, 'comptes/singnup.html', {'error': 'Le mot de passe doit contenir au moins un caractère spécial'})
+            return render(request, 'comptes/singnup.html', {'error': 'les mots de passe ne correspondent pas.'})
+        if not password1 or not password2:
+            error = "le champ mot de passe est obligatoire."
+            return render(request, 'comptes/singnup.html', {'error': error})
+        else:
+            # Password validation
+            if len(password1) < 8:
+                return render(request, 'comptes/singnup.html', {'error': 'Le mot de passe doit contenir au moins 8 caractères'})
+            if not re.search(r'[A-Z]', password1):
+                return render(request, 'comptes/singnup.html', {'error': 'Le mot de passe doit contenir au moins une lettre majuscule'})
+            if not re.search(r'[a-z]', password1):
+                return render(request, 'comptes/singnup.html', {'error': 'Le mot de passe doit contenir au moins une lettre minuscule'})
+            if not re.search(r'[0-9]', password1):
+                return render(request, 'comptes/singnup.html', {'error': 'Le mot de passe doit contenir au moins un chiffre'})
+            if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password1):
+                return render(request, 'comptes/singnup.html', {'error': 'Le mot de passe doit contenir au moins un caractère spécial'})
 
         User = get_user_model()
         if User.objects.filter(email=email).exists():
@@ -68,10 +72,11 @@ def sign_up(request):
         )
         user.save()
         login(request, user)
-        return redirect('home')
+        return redirect('confirmation_creat_compte')
 
     return render(request, 'comptes/singnup.html', {'static_version': now().timestamp()})
 
+#-----------------------------------Vue de profil---------------------------------------------#
 @login_required
 def profil_view(request):
     return render(request, 'profil.html') 
@@ -111,12 +116,12 @@ def changePassword(request):
         request.user.set_password(new_pwd1)
         request.user.save()
         update_session_auth_hash(request, request.user)
-        return redirect('confirmation_change')
+        return redirect('confirm_password')
 
     return render(request, 'comptes/changePassword.html')
 
 #-----------------------------------------confirmation de changement de mot de passe---------------------------------------------#
-class ConfirmationChange(TemplateView):
+class ConfirmationChange(LoginRequiredMixin,TemplateView):
     template_name = 'comptes/confirm_change.html'
     title = ""
 
@@ -126,6 +131,16 @@ class ConfirmationChange(TemplateView):
         context['static_version'] = now().timestamp()
         return context
 
+#-----------------------------------------Vue de confirmation de la creation ---------------------------------------------#
+class ConfirmationCreat(TemplateView):
+    template_name = 'comptes/confirm_creat.html'
+    title = ""
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = self.title
+        context['static_version'] = now().timestamp()
+        return context
 #-----------------------------------------Vue de profil---------------------------------------------#
 @login_required
 def profil_view(request):
@@ -191,6 +206,6 @@ def change_email(request):
         request.user.save()
 
         messages.success(request, 'Email mis à jour avec succès.')
-        return redirect('change_email')
+        return redirect('confirm_email')
 
     return render(request, 'comptes/change_email.html',{'static_version': now().timestamp()})

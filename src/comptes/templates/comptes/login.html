@@ -24,20 +24,17 @@
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                required
-              />
+              <input id="password" type="password" name="password" placeholder="Password" required/>
+              <i class="fa-solid fa-eye-slash password-icon" onclick="togglePassword('password', this)"></i>
             </div>
-            <input type="submit" value="Login" class="btn solid" />
-
-            <!-- Affichage d'erreur s'il y en a -->
             {% if error %}
             <div class="error">{{ error }}</div>
             <!-- Afficher l'erreur -->
             {% endif %}
+            <input type="submit" value="Login" class="btn solid" />
+
+            <!-- Affichage d'erreur s'il y en a -->
+                
             <p class="social-text">
               Ou connectez-vous avec les plateformes sociales
             </p>
@@ -67,7 +64,7 @@
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
               ex ratione. Aliquid!
             </p>
-            <a href=" {% url "singnup" %} ">
+            <a href=" {% url 'singnup' %} ">
             <button class="btn transparent" id="sign-up-btn">S'INSCRIRE</button>
             </a>
           </div>
@@ -79,6 +76,19 @@
         </div>
       </div>
     </div>
-
+    <script>
+      function togglePassword(id, icon) {
+          let input = document.getElementById(id);
+          if (input.type === "password") {
+              input.type = "text";
+              icon.classList.remove("fa-eye-slash");
+              icon.classList.add("fa-eye");
+          } else {
+              input.type = "password";
+              icon.classList.remove("fa-eye");
+              icon.classList.add("fa-eye-slash");
+          }
+      }
+  </script>
   </body>
 </html>

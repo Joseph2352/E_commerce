@@ -95,6 +95,36 @@ form.sign-in-form {
   color: #aaa;
   font-weight: 500;
 }
+.password-icon {
+  position: absolute;
+  right: 9px;
+  top: 27px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #aaa;
+  transition: color 0.3s;
+}
+
+.error{
+  font-size: 1.2rem;
+  color: #ff3131;
+  font-weight: bold;
+  animation: fadeIn 0.7s;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+
+}.password-icon:hover {
+  color: rgb(255, 113, 25);
+}
 
 .social-text {
   padding: 0.7rem 0;
