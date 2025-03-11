@@ -8,7 +8,8 @@ class CustomUser(admin.ModelAdmin):
     list_display=[
         "first_name",
         "last_name",
-        "username",
         "email",
+        "tel",
         "password",
+        "image",
     ]

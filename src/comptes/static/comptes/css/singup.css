@@ -69,7 +69,6 @@ form.sign-in-form {
   border-radius: 55px;
   display: grid;
   grid-template-columns: 15% 85%;
-  padding: 0 0.4rem;
   position: relative;
 }
 
@@ -89,6 +88,7 @@ form.sign-in-form {
   font-weight: 600;
   font-size: 1.1rem;
   color: #333;
+  border-radius:0 55px 55px 0;
 }
 
 .input-field input::placeholder {
@@ -128,7 +128,7 @@ form.sign-in-form {
 
 .btn {
   width: 150px;
-  background-color:rgb(201, 105, 45);
+  background-color:rgb(255, 113, 25);
   border: none;
   outline: none;
   height: 49px;
@@ -142,7 +142,7 @@ form.sign-in-form {
 }
 
 .btn:hover {
-    background-color: rgb(255, 113, 25);
+    background-color: rgb(219, 94, 16);
 }
 .panels-container {
   position: absolute;
@@ -308,10 +308,11 @@ form.sign-in-form {
 
   .container:before {
     transform: translate(-50%, 100%);
-    bottom: 32%;
+    bottom: 25%;
     right: initial;
     top: initial;
     height: 1500px;
+    z-index: 1;
   }
 
 .right-panel .image,
@@ -323,6 +324,7 @@ form.sign-in-form {
 .signin-signup {
     top: 5%;
     transform: translate(-50%, 0);
+    z-index: 2;
   }
 }
 
@@ -345,5 +347,6 @@ form.sign-in-form {
   .container:before {
     bottom: 28%;
     left: 50%;
+    z-index: 1;
   }
 }

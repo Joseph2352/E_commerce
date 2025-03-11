@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changement d'email</title>
+    <link rel="stylesheet" href="{% static 'E_commerce/css/fontawesome/css/all.css' %}?v={{ static_version }}"/>
+    <link rel="stylesheet" href="{% static 'comptes/css/change_email.css' %}?v={{ static_version }}">
+
+</head>
+<body>
+    <div class="container">
+        <h2>Changement d'email</h2>
+        <form id="clientForm" method="post" action="">
+            {% csrf_token %}
+            <div class="form-group">
+                <label class="form-label">Nouveau Email</label>
+                <input id="email" name=",new_email" type="email" class="form-control" required>
+                <p> {{ message_email }} </p> 
+            </div>
+            <div class="form-group">
+                <label class="form-label">Votre mot de passe</label>
+                <input id="password" name="password" type="password" class="form-control"  required>
+                <i class="fa-solid fa-eye-slash password-icon" onclick="togglePassword('password', this)"></i>
+                <p> {{ message_pasword }} </p>  
+            </div>
+            <button type="submit" class="button">Valider</button>
+        </form>
+    </div>
+
+    <script>
+        function togglePassword(id, icon) {
+            let input = document.getElementById(id);
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            } else {
+                input.type = "password";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            }
+        }
+    </script>
+</body>
+</html>

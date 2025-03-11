@@ -1,0 +1,193 @@
+body{
+    margin: 0;
+    padding: 0;
+
+}
+.head-top {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    padding: 11px 0;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+    z-index: 2;
+  }
+  .head-top a {
+    display: block;
+  }
+  .head-top span {
+    color: black;
+    font-size: 1.5rem;
+  }
+
+  .head-top .panier svg{
+    width: 30px;
+    height: 25px;
+    margin: auto;
+    color: black;
+  }
+  .head-top .logout svg{
+    width: 35px;
+    height: 35px;
+    margin: auto;
+    cursor: pointer;
+  }
+  .head-top a:hover svg {
+    color: rgb(236, 90, 19);
+  }
+  .head-top a:hover .compteur_panier {
+    background: rgb(236, 90, 19);
+    color: white;
+  }
+  
+  .head-top .logout{
+    cursor: pointer;
+  }
+ 
+  .head-top .panier{
+    position: fixed;
+    right: 140px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .head-top .panier .compteur_panier {
+    background: rgb(43, 52, 65);
+    color: white;
+    font-size: 14px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    position: absolute;
+    top: -5px;
+    right: -10px;
+  }
+  
+  .head-top .icon {
+    margin-right: 30px;
+    position: relative;
+  }
+  .head-top .iconcon{
+    margin-right: 50px;
+  }
+  .head-top .logout button{
+    background-color: transparent;
+  }
+  .iconcon {
+    position: relative;
+  }
+  
+  .head-top .deconnect_confirm {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .head-top .deconnect_confirm .confirm_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    width: 400px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  .head-top .deconnect_confirm .confirm_box h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  .head-top .deconnect_confirm .confirm_box p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  .head-top .deconnect_confirm .confirm_box button {
+    background-color: rgb(236, 90, 19);
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .head-top .deconnect_confirm .confirm_box button:hover {
+    background-color: rgb(204, 92, 35);
+  }
+
+  .profile-container {
+    position: absolute;
+    padding-top: 18px;
+    justify-content: flex-end;
+    cursor: pointer;
+  }
+  
+  .profile-avatar {
+    position: relative;
+    top: 10px;
+    right: 20px;
+    text-align: center;
+
+  }
+  
+  .profile-avatar img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .profile-avatar {
+    position: fixed;
+    right: 20px;
+    color: white;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    right: 0;
+    top: 60px;
+    margin-right: 20px;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    min-width: 150px;
+    overflow: hidden;
+  }
+  
+  .dropdown-menu a ,.dropdown-menu button{
+    display: flex;
+    padding: 10px;
+    background: white;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    color: black;
+    font-size: 1.8rem;
+  }
+  
+  .dropdown-menu a:hover ,.dropdown-menu button:hover{
+    background: #f1f1f1;
+  }
+  .dropdown-menu a i ,.dropdown-menu button i{
+    margin-right: 10px;
+    width: auto;
+    height: 100%;
+  }
+  

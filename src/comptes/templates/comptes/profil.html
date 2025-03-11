@@ -1,0 +1,82 @@
+{% include "E_commerce/head.html" %}
+{% load static %}
+
+<div class="maxcontainer">
+    <div class="container">
+        <div class="header">
+            <div class="profile-picture">
+                {% if user.image %}
+                    <img src="{{ user.image.url }}" alt="Profile Picture">
+                {% else %}
+                    <img src="{% static 'comptes/image/default_profil.png' %}" alt="Default Profile Picture">
+                {% endif %}
+                <form method="post" enctype="multipart/form-data" action="{% url 'upload_profile_picture' %}">
+                    {% csrf_token %}
+                    <input type="file" id="profile_picture_input" name="profile_picture" accept="image/*" style="display: none;">
+                    <button type="button" class="upload-photo" onclick="document.getElementById('profile_picture_input').click();">Télécharger une photo</button>
+                </form>
+            </div>
+            <div class="profile-info">
+                <p>Votre identifiant membre : <strong>gn29001320828irmh</strong></p>
+                <p>E-mail : <strong class="email">{{ user.email|slice:":3" }}***@gmail.com</strong> <a href="#">Changer d'adresse e-mail</a></p>
+                <p>Numéro de téléphone lié : <a href="#" id="edit-phone-number">Saisir un numéro de téléphone</a></p>
+                <div class="phone-number-form-container" id="phone-number-form-container">
+                    <div class="phone-number-form-box">
+                        <h2>Saisir un numéro de téléphone</h2>
+                        <form id="phone-number-form" method="post" action="{% url 'update_phone_number' %}">
+                     
+                            {% csrf_token %}
+                            <input type="text" name="phone_number" placeholder="Entrez votre numéro de téléphone">
+                            <div class="box_button">
+                                <button type="submit">Enregistrer</button>
+                                <button type="button" id="cancel-phone-number">Annuler</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="section">
+                <h3>Informations personnelles</h3>
+                <ul>
+                    <li><a href="#">Profil membre</a></li>
+                    <li><a href="#">Télécharger ma photo</a></li>
+                    <li><a href="#">Paramètres de confidentialité</a></li>
+                    <li><a href="#">Préférences e-mail</a></li>
+                </ul>
+            </div>
+            <div class="section">
+                <h3>Sécurité du compte</h3>
+                <ul>
+                    <li><a href=" {% url 'change_email' %} ">Changer d'adresse e-mail</a></li>
+                    <li><a href="{% url 'changepwd' %}">Changer de mot de passe</a></li>
+                    <li><a href="#">Vérifier mon numéro de téléphone</a></li>
+                    <li><a href="#">Gérer mes comptes connectés</a></li>
+                </ul>
+            </div>
+            <div class="section">
+                <h3>Paiement</h3>
+                <ul>
+                    <li><a href="#">Mes transactions</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('edit-phone-number').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('phone-number-form-container').style.display = 'flex';
+    });
+
+    document.getElementById('cancel-phone-number').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('phone-number-form-container').style.display = 'none';
+    });
+
+    document.getElementById('profile_picture_input').addEventListener('change', function() {
+        this.form.submit();
+    });
+</script>

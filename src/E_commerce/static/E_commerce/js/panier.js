@@ -6,21 +6,30 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function updatePanierCount() {
-        let compteur = document.getElementById("compteur_panier");
-        if (compteur) {
-            compteur.innerText = panier.length > 0 ? panier.length : "0"; // Affiche un nombre ou rien si 0
+        let compteur = document.querySelectorAll(".compteur_panier");
+        if (compteur.length > 0) {
+            compteur.forEach(element => {
+                element.innerText = panier.length > 0 ? panier.length : "0"; // Affiche un nombre ou rien si 0
+            });
         }
     }
 
     function ajouterAuPanier(id, nom, prix, image) {
         let produit = { id, nom, prix, image };
+        const message = document.querySelector(".verifie_produit_exist");
         let existe = panier.find(item => item.id === id);
         if (!existe) {
             panier.push(produit);
             localStorage.setItem("panier", JSON.stringify(panier));
             updatePanierCount();
         } else {
-            alert("Ce produit est déjà dans le panier !");
+            message.style.display = "flex";
+            message.style.opacity = "0";
+            setTimeout(() => {
+                message.style.transition = "opacity 0.5s";
+                message.style.opacity = "1";
+            }, 10); // Petit délai pour permettre l'affichage initial
+            
         }
     }
 

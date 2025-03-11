@@ -36,52 +36,75 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.querySelector('.box_recher').addEventListener('click', function (event) {
+    // Éviter que le clic sur .box_recher déclenche la fermeture
+    event.stopPropagation();
+    this.classList.toggle('expanded');
+  });
+  
+  // Écouter les clics sur le document pour fermer .box_recher si on clique en dehors
+  document.addEventListener('click', function (event) {
+    var boxRecher = document.querySelector('.box_recher');
+    
+    // Vérifie si le clic est à l'extérieur de .box_recher
+    if (!boxRecher.contains(event.target)) {
+      boxRecher.classList.remove('expanded');
+    }
+  });
 
-// Vérifie si la taille de l'écran est supérieure à 1200px
-if (window.innerWidth > 1200) {
-    let hoverElements = document.querySelectorAll('.hover-container');
 
-    // Boucle sur chaque élément pour ajouter des événements de survol
-    hoverElements.forEach((hoverElement, index) => {
-        let hiddenPage = document.getElementById('hiddenPage' + (index + 1)); 
-        
-        hoverElement.addEventListener("mouseover", function() {
-            hiddenPage.style.visibility = "visible"; 
+document.addEventListener("DOMContentLoaded", function () {
+    if (window.innerWidth > 1200) { 
+        let hoverElements = document.querySelectorAll('.hover-container');
+
+        hoverElements.forEach((hoverElement, index) => {
+            let hiddenPage = document.getElementById('hiddenPage' + (index + 1));
+
+            hoverElement.addEventListener("mouseover", function() {
+                showHiddenPage(hiddenPage);
+            });
+
+            hoverElement.addEventListener("mouseout", function() {
+                hideHiddenPage(hiddenPage);
+            });
+
+            hiddenPage.addEventListener("mouseover", function() {
+                showHiddenPage(hiddenPage);
+            });
+
+            hiddenPage.addEventListener("mouseout", function() {
+                hideHiddenPage(hiddenPage);
+            });
+        });
+
+        function showHiddenPage(hiddenPage) {
+            hiddenPage.style.visibility = "visible";
             hiddenPage.style.opacity = "1";
             hiddenPage.style.height = "auto";
-        });
-        
-        hiddenPage.addEventListener("mouseover", function() {
-            {
-            hiddenPage.style.visibility = "visible";
-            hiddenPage.style.opacity = "1"; 
-            hiddenPage.style.height = "auto";}
-        });
+        }
 
-        hoverElement.addEventListener("mouseout", function() {
-            hiddenPage.style.visibility = "hidden"; 
-            hiddenPage.style.opacity = "0"; 
+        function hideHiddenPage(hiddenPage) {
+            hiddenPage.style.visibility = "hidden";
+            hiddenPage.style.opacity = "0";
             hiddenPage.style.height = "0";
-        });
-        
-        hiddenPage.addEventListener("mouseout", function() {
-            hiddenPage.style.visibility = "hidden"; 
-            hiddenPage.style.opacity = "0"; 
-            hiddenPage.style.height = "0";
-        });
-    });
-}
-
-function toggleDropdown() {
-    var dropdown = document.getElementById("profileDropdown");
-    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-}
-
-// Fermer le menu si on clique ailleurs
-document.addEventListener("click", function(event) {
-    var dropdown = document.getElementById("profileDropdown");
-    var profile = document.querySelector(".profile-container");
-    if (!profile.contains(event.target)) {
-        dropdown.style.display = "none";
+        }
     }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const dropdown = document.getElementById("profileDropdown");
+    const profile = document.querySelector(".profile-container");
+
+    // Fermer le menu si on clique ailleurs
+    document.addEventListener("click", function(event) {
+        if (!profile.contains(event.target)) {
+            dropdown.style.display = "none";
+        }
+    });
+
+    // Ouvrir le menu lorsque l'on clique sur le profil
+    profile.addEventListener("click", function(event) {
+        event.stopPropagation(); // Empêche la propagation de l'événement de clic
+        dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
+    });
 });
