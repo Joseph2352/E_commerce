@@ -30,12 +30,12 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
-y
 body {
+  zoom: 85%;
   font-size: 1.3em;
   line-height: 1.5;
 }
-.head {      
+.head {    
   display: flex;
   justify-content: center;
   background-color: #fff;
@@ -433,7 +433,7 @@ body {
 }
 
 .hidden-page {
-  position: absolute;
+  position: fixed;
   display: flex;
   width: 100%;
   justify-content: center;

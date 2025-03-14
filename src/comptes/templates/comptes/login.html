@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'comptes/css/login.css' %}?v={{ static_version }}" />
+    <link rel="stylesheet" href="{% static 'comptes/css/login.css' %}?v={{ static_version }}" />
     <link
       rel="stylesheet"
       href="{% static 'E_commerce/css/fontawesome/css/all.css' %}?v={{ static_version }}"
@@ -17,7 +18,7 @@
         <div class="signin-signup">
           <form action="{% url 'login' %}" method="POST" class="sign-in-form">
             {% csrf_token %}
-            <h2 class="title">Se connecter</h2>
+            <h2 class="title"><span id="animated-title">Se connecter</span></h2>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
               <input type="email" name="email" placeholder="Email" />
@@ -90,5 +91,6 @@
           }
       }
   </script>
+  <script src="{% static 'comptes/js/login.js' %}?v={{ static_version }}"></script>
   </body>
 </html>

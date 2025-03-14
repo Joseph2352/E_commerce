@@ -8,12 +8,12 @@
 {% block content %}
 <section class="section_produit">
   <div class="title">
-    <h2>Produits de la catégorie : {{ category.nom }}</h2>
+    <h2>Produits de la catégorie : {{ super_categorie.nom }}</h2>
   </div>
   <div class="container_produit">
-    {% if categorie %}
+    {% if produits %}
     <ul>
-      {% for produit in categorie %}
+      {% for produit in produits %}
       <li>
         <div
                 class="panierplus ajouter-panier"

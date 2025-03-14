@@ -47,10 +47,8 @@
         <div class="items" id="category-{{ forloop.counter }}" onscroll="checkScroll('category-{{ forloop.counter }}')">
             <ul>
                 {% for produit in produits %}
-                <a href="{% url 'produit_detail' id=produit.pk nom=produit.nom %}" color="black">
                   <li>
-                      <div class="image_produit">
-                          <div
+                    <div
                             class="panierplus ajouter-panier"
                             data-id="{{ produit.id }}"
                             data-nom="{{ produit.nom }}"
@@ -73,6 +71,8 @@
                               ></path>
                             </svg>
                           </div>
+                    <a href="{% url 'produit_detail' id=produit.pk nom=produit.nom %}" color="black">
+                      <div class="image_produit">
                           <img src="{{ produit.image.url }}" alt="{{ produit.nom }}" />
                         </div>
                           <div class="containbox">
@@ -80,8 +80,8 @@
                           <p class="description">{{ produit.description|truncatewords:10|striptags|safe }}</p>
                           <p class="price">{{ produit.prix }} €</p>
                       </div>
+                    </a>
                   </li>
-                </a>
                 {% endfor %}
             </ul>
         </div>

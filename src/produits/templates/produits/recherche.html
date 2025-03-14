@@ -8,10 +8,8 @@
   <div class="container_produit">
     <ul>
       {% for produit in produits %}
-      <a href="">
       <li>
-        <div class="image_produit">
-          <div class="panier_plus ajouter-panier"
+      <div class="panierplus ajouter-panier"
           data-id="{{ produit.id }}"
           data-nom="{{ produit.nom }}"
           data-prix="{{ produit.prix }}"
@@ -32,15 +30,17 @@
               ></path>
             </svg>
           </div>
+      <a href="{% url 'produit_detail' id=produit.pk nom=produit.nom %}">
+        <div class="image_produit">
           <img src="{{ produit.image.url }}" alt="{{ produit.nom }}" />
         </div>
         <div class="containbox">
-          <h3>{{ produit.nom }}</h3>
-          <p>{{ produit.description|truncatewords:10|striptags|safe }}</p>
+          <h2>{{ produit.nom }}</h2>
+          <p class="description">{{ produit.description|truncatewords:10|striptags|safe }}</p>
           <p class="price">{{ produit.prix }} €</p>
         </div>
-      </li>
     </a>
+  </li>
       {% empty %}
       <p>Aucun produit trouvé</p>
       {% endfor %}

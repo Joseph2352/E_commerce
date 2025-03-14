@@ -1,3 +1,9 @@
+if (navigator.userAgent.includes("Windows")) {
+    document.body.style.zoom = "85%";
+} else {
+    document.body.style.zoom = "100%"; // Remet à la normale sur Kali
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     const menuBtn = document.getElementById("menubtn");
     const menuBox = document.querySelector(".menbox");

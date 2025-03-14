@@ -161,9 +161,14 @@ class PaymentConfirmationView(LoginRequiredMixin, View):
             return JsonResponse({'error': 'Commande introuvable !'}, status=404)
 
 
-def autocomplete(request):
-    if 'term' in request.GET:
-        qs = Produits.objects.filter(nom__icontains=request.GET.get('term'))
-        noms = list(qs.values_list('nom', flat=True))
-        return JsonResponse(noms, safe=False)
-    return JsonResponse([], safe=False)
+
+#---------------------Tous les produits d'une super categorie ----------------------------------------
+def all_products(request, super_categorie_slug):
+    super_categorie = get_object_or_404(Categorys, slug=super_categorie_slug)
+    produits = Produits.objects.filter(category__super_categorie__slug=super_categorie_slug)
+    context = {
+        'produits': produits,
+        'super_categorie': super_categorie,
+        'static_version': now().timestamp(),
+    }
+    return render(request, 'produits/all_produit_super_categorie.html', context)

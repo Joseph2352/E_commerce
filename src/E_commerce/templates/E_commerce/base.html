@@ -3,7 +3,7 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token }}">
     <link rel="icon" type="image/x-icon" sizes="180x180" href="{% static 'E_commerce/Image/trending_topics_2.webp' %}">
     <link rel="stylesheet" href=" {% static 'E_commerce/css/base.css' %}?v={{ static_version }} " />
@@ -356,7 +356,7 @@
         </div>
         <div class="box">
           <div class="categorie">
-            <a href="#"><h3 class="title_categorie" >Tout Électronique</h3></a>
+            <a href="{% url 'all_products' super_categorie_slug='loisirs'%}"><h3 class="title_categorie" >Tout Électronique</h3></a>
               <ul>
                   <a href="{% url 'produits' slug='ordinateur' %}"><h3>Ordinateur</h3></a>
                   <a href="{% url 'produits' slug='accessoires-informatique' %}"><h3>Accessoires informatique</h3></a>
@@ -460,7 +460,7 @@
           <span>Mode</span>
         </div>
         <div class="box">
-          <div class="categorie">
+          <div class="categorie"> 
             <a href="#"><h3 class="title_categorie">Tout Mode</h3></a>
               <ul>
                   <a href="#"><h3>Vêtement</h3></a>

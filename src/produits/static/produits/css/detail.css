@@ -8,7 +8,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 48.3vh;
+    min-height: 48.3vh;
 }
 
 .container {

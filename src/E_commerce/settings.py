@@ -12,9 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
-from dotenv import load_dotenv
-
-load_dotenv() 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,15 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-!z@@t%#ec=!hjs_%6anj6h+ooyu&%7l$#d!5z-+fmyv5wtxb)^'
-SECRET_KEY = os.getenv('SECRET_KEY', 'remplace_par_une_clé_temporaire')
+SECRET_KEY = 'django-insecure-!z@@t%#ec=!hjs_%6anj6h+ooyu&%7l$#d!5z-+fmyv5wtxb)^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = True
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1").split(",")
-
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -57,7 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'livereload.middleware.LiveReloadScript',
 ]
 
 ROOT_URLCONF = 'E_commerce.urls'
@@ -85,16 +79,14 @@ WSGI_APPLICATION = 'E_commerce.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-import dj_database_url
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv("DATABASE_URL"),
-        conn_max_age=600,  # Connexion persistante pendant 600 secondes
-        ssl_require=True  # Requis pour certaines configurations de Render
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -135,8 +127,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "E_commerce/static"),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
 
 MEDIA_ROOT = BASE_DIR / 'Media'
 MEDIA_URL = '/Media/'

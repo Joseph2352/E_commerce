@@ -18,7 +18,7 @@
         <div class="signin-signup">
           <form action="{% url 'singnup' %}" method="POST" class="sign-up-form">
             {% csrf_token %}
-            <h2 class="title">S'inscrire</h2>
+            <h2 class="title"><span  id="animated-title">S'inscrire</span></h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="text" name="first_name" placeholder="Prenom" />
@@ -109,5 +109,6 @@
           }
       }
     </script>
+    <script src="{% static 'comptes/js/singnup.js' %}?v={{ static_version }}"></script>
   </body>
 </html>

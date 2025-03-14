@@ -1,5 +1,5 @@
 {% extends "E_commerce/base.html" %} {% load static %} {% block link %}
-<link rel="stylesheet" href="{% static 'produits/css/detail.css' %}" />
+<link rel="stylesheet" href="{% static 'produits/css/detail.css' %}?v={{ static_version }}" />
 {% endblock link %} 
 
 {% block content %}

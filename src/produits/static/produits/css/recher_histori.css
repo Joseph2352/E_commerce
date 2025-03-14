@@ -32,18 +32,21 @@
   list-style: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 50px;
+  justify-content: center;
 
 }
 
 .container_produit li {
-  max-width: 250px;
   background: white;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  text-align: left;
+  flex: 0 0 auto;
+  word-wrap: break-word;
   overflow: hidden;
-  text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -52,37 +55,64 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.container_produit img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-bottom: 3px solid #ff6e14;
-}
-.container_produit li:hover .panier_plus{
-  opacity: 1;
-}
-.image_produit{
+.image_produit {
   position: relative;
 }
-.panier_plus {
+
+.image_produit img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.containbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.containbox h2 {
+  font-size: 2rem;
+  color: black;
+}
+
+.description {
+  text-align: center;
+  font-size: 1.4rem;
+  color: #666;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.8rem;
+  color: #ff6600;
+}
+.panierplus {
   position: absolute;
-  top: 10px; /* Ajuste la position verticale */
-  right: 10px; /* Place le bouton en haut à droite */
+  top: 10px; 
+  right: 10px; 
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px; /* Taille légèrement réduite pour un meilleur rendu */
+  width: 50px; 
   height: 50px;
   border-radius: 50%;
   background: #fff;
   cursor: pointer;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Ajoute une légère ombre */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   opacity: 0;
+  color: #000;
+  z-index: 1;
+}
+.container_produit li:hover .panierplus{
+  opacity: 1;
 }
 
 /* Effet au survol */
-.panier_plus:hover {
+.panierplus:hover {
   transform: scale(1.1); /* Légère animation au hover */
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
   background: #000;
@@ -90,7 +120,7 @@
 
 /* Ajustement pour les petits écrans */
 @media (max-width: 768px) {
-  .panier_plus {
+  .panierplus {
     width: 40px;
     height: 40px;
     top: 5px;
@@ -98,7 +128,7 @@
   }
 }
 
-.panier_plus:hover svg{
+.panierplus:hover svg{
   color: #fff;
 }
 .container_produit .containbox{
@@ -123,7 +153,7 @@
   font-size: 1.8rem;
   font-weight: bold;
   color: #ff6e14;
-  margin: 10px 0;
+  margin-bottom: 15px;
 }
 @media (max-width: 1422px) {
   .section_produit{
@@ -132,7 +162,14 @@
 }
 @media (max-width: 768px) {
   .container_produit ul {
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      justify-content: center;
+      align-items: center;
+      grid-template-columns: repeat(10%, minmax(270px 1fr));
       gap: 15px; /* Réduit l'écartement pour éviter trop de vide */
+  }
+  .container_produit ul li{
+    width: 100%;
+    max-width: 280px;
+    margin: 0;
   }
 }
