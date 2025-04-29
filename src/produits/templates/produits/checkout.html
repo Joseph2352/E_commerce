@@ -1,28 +1,34 @@
 {% extends 'E_commerce/base.html' %}
 {% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'produits/css/checkout.css' %}?v={{ static_version }}">
+{% endblock link %}
+
 {% block content %}
 <section class="section_produit">
-    <h2 class="titre-panier">Mon Panier</h2>
-    <div id="panier-container">
-        <div class="panier-items">
-            <ul id="liste_panier"></ul>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div id="commande-box">
+            <div class="commande-container">
+                <ul id="liste_commande"></ul>
+            </div>
+            <div class="resume-commande">
+                <h2 class="titre-commande">Résumé de votre commande</h2>
+                <p><strong>Sous-total :</strong> <span id="sous_total_commande">0</span> $US</p>
+                <p><strong>Frais d'expédition :</strong> <span id="shipping_price">0</span> $US</p>
+                <p><strong>Total :</strong> <span id="prix_total_commande">0</span> $US</p>
+                <button type="submit" id="confirmerCommande">Confirmer ma commande</button>
+                <!-- Spinner caché -->
+                <div id="loadingSpinner" style="display:none; margin-top: 20px; text-align: center;">
+                    <div class="spinner"></div>
+                </div>
+            </div>
         </div>
-        <div class="recapitulatif">
-            <h3>Récapitulatif de la commande</h3>
-            <p><strong>Sous-total :</strong> <span id="total_price">0</span> $US</p>
-            <p><strong>Frais d'expédition :</strong> <span id="shipping_price">0</span> $US</p>
-            <p><strong>Remise :</strong> <span id="discount">0</span> $US</p>
-            <p><strong>Total :</strong> <span id="final_total">0</span> $US</p>
-            <button id="validerCommande">Continuer</button>
-        </div>
-    </div>
+        <div id="listinfo"></div> <!-- Ici on va ajouter tous les champs produits cachés -->
+    </form>
 </section>
 {% endblock %}
 
 {% block script %}
-<script>
-    var confirmOrderUrl = "{% url 'confirm_order' %}";
-</script>
 <script src="{% static 'produits/js/checkout.js' %}?v={{ static_version }}"></script>
-<link rel="stylesheet" href="{% static 'produits/css/checkout.css' %}?v={{ static_version }}">
 {% endblock %}

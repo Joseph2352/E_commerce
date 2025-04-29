@@ -1,3 +1,13 @@
+* {
+  font-family: "Nunito Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  text-decoration: none;
+  outline: none;
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -172,11 +182,13 @@ body{
   
   .dropdown-menu a ,.dropdown-menu button{
     display: flex;
-    padding: 10px;
+    align-items: center;
+    padding: 5px;
     background: white;
     text-decoration: none;
     text-align: center;
     width: 100%;
+    border: none;
     color: black;
     font-size: 1.8rem;
   }
@@ -189,4 +201,7 @@ body{
     width: auto;
     height: 100%;
   }
-  
+  .dropdown-menu p{
+    padding: 5px 0;
+    font-size: 1.2rem;
+  }

@@ -17,14 +17,23 @@
                 </form>
             </div>
             <div class="profile-info">
-                <p>Votre identifiant membre : <strong>gn29001320828irmh</strong></p>
-                <p>E-mail : <strong class="email">{{ user.email|slice:":3" }}***@gmail.com</strong> <a href="#">Changer d'adresse e-mail</a></p>
-                <p>Numéro de téléphone lié : <a href="#" id="edit-phone-number">Saisir un numéro de téléphone</a></p>
+                <div class="info">
+                    <p>Votre identifiant membre : <strong>gn29001320828irmh</strong></p>
+                    <p>E-mail : <strong class="email">{{ user.email|slice:":3" }}***@gmail.com</strong> 
+                        {% comment %} <a  href=" {% url 'change_email' %} " class="change_email">Changer d'adresse e-mail</a> {% endcomment %}
+                    </p>
+                    <p>Numéro de téléphone lié : 
+                    {% if user.tel %}
+                        <strong class="tel">{{ user.tel }}</strong>
+                        {% else %} 
+                            <a href="#" id="edit-phone-number">Saisir un numéro de téléphone</a>
+                        {% endif %} 
+                    </p> 
+                </div>
                 <div class="phone-number-form-container" id="phone-number-form-container">
                     <div class="phone-number-form-box">
                         <h2>Saisir un numéro de téléphone</h2>
                         <form id="phone-number-form" method="post" action="{% url 'update_phone_number' %}">
-                     
                             {% csrf_token %}
                             <input type="text" name="phone_number" placeholder="Entrez votre numéro de téléphone">
                             <div class="box_button">
@@ -66,16 +75,17 @@
 </div>
 
 <script>
-    document.getElementById('edit-phone-number').addEventListener('click', function(event) {
-        event.preventDefault();
-        document.getElementById('phone-number-form-container').style.display = 'flex';
-    });
+    {% if not user.tel %}
+        document.getElementById('edit-phone-number').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('phone-number-form-container').style.display = 'flex';
+        });
 
-    document.getElementById('cancel-phone-number').addEventListener('click', function(event) {
-        event.preventDefault();
-        document.getElementById('phone-number-form-container').style.display = 'none';
-    });
-
+        document.getElementById('cancel-phone-number').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('phone-number-form-container').style.display = 'none';
+        });
+    {% endif %}
     document.getElementById('profile_picture_input').addEventListener('change', function() {
         this.form.submit();
     });

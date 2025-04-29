@@ -40,6 +40,9 @@
     white-space: nowrap;
     scrollbar-width: none;
 }
+
+
+
 .item-category::-webkit-scrollbar ,.trending::-webkit-scrollbar,.items::-webkit-scrollbar {
     display: none;
 }
@@ -52,32 +55,58 @@
 .trending li{
     position: relative;
     background: white;
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     width: 200px;
-    text-align: left;
-    flex: 0 0 auto;
-    word-wrap: break-word;
+    height: 270px;
     overflow: hidden;
     margin-right: 2rem
 }
-.trending img {
+.trending .trending-item1{
+    background: linear-gradient(to bottom, #fff1d6, #fce2e1);
+}
+.trending .box1 {
+    position: relative;
+    width: 200px; 
+    height: 50%;
+    padding: 10px;
+    overflow: hidden;
+    white-space: normal; 
+}
+.trending .box1 h1 {
+    font-size: 2.4rem;
+    color: black;
+    margin: 0;
+    width: 50%;
+    white-space: normal; 
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    width: 100%; 
+}
+
+.trending .box1 svg{
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+}
+.trending img {    
+    height: 100%;
     width: 100%;
-    display: block;
-    border-radius: 12px;
     object-fit: cover;
 }
-.trending p {
+
+ .trending h2 {
     position: absolute;
-    font-size: 1.7rem;
-    top:50%;
+    font-size: 2rem;
+    bottom:0;
     width: 100%;
     color:white;
     margin: 0;
     padding: 10px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.5);
-}
+    background-color: #00000025;
+
+} 
 .items li {
     background: white;
     border-radius: 5px;
@@ -199,13 +228,14 @@
 .items li:hover .panierplus{
     opacity: 1;
   }
+
 .image_produit{
     position: relative;
   }
   .panierplus {
     position: absolute;
-    top: 10px; 
-    right: 10px; 
+    top: 3px; 
+    right: 3px; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -228,6 +258,28 @@
     background: #000;
   }
   
+  .favoriplus {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    color: #000;
+    z-index: 2;
+}
+.favoriplus svg {
+    width: 30px;
+    height: 30px;
+    color: #000; /* Couleur par défaut de l'icône */
+}
+
 
   @media (max-width: 768px) {
     .panierplus {

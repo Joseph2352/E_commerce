@@ -1,0 +1,26 @@
+{% extends 'E_commerce/base.html' %}
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'produits/css/succes.css' %}?v={{ static_version }}">
+{% endblock link %}
+
+{% block content %}
+<section class="success-section">
+    <div class="success-container">
+        <div class="checkmark-animation">
+            <svg viewBox="0 0 52 52">
+                <circle class="circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="check" fill="none" d="M14 27l7 7 16-16"/>
+            </svg>
+        </div>
+        <h1 class="success-title">Commande Confirmée !</h1>
+        <p class="success-message">Merci pour votre achat. Nous traitons votre commande avec soin !</p>
+        <a href="/" class="btn-retour">Retour à l'accueil</a>
+    </div>
+</section>
+{% endblock %}
+
+{% block script %}
+<!-- Pas besoin de script pour l'animation SVG simple -->
+{% endblock %}

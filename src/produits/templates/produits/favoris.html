@@ -1,0 +1,87 @@
+{% extends 'E_commerce/base.html' %}
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'produits/css/favori.css' %}?v={{ static_version }}">
+{% endblock link %}
+
+{% block content %}
+<section class="section_produit">
+    <h1>Mes Produits Favoris</h1>
+    <div class="container_produit">
+        <ul id="favoris-container">
+            {% if user.is_authenticated %}
+                {% for produit in produits_aimes %}
+                <li data-id="{{ produit.id }}" data-is-favori="true">
+                    <div class="panierplus ajouter-panier" 
+                         data-id="{{ produit.id }}"
+                         data-nom="{{ produit.nom }}"
+                         data-prix="{{ produit.prix }}"
+                         data-image="{{ produit.image.url }}"
+                         data-detail="{{ produit.description }}">
+                         <svg viewBox="0 0 1024 1024" width="3rem" height="4rem" fill="currentColor" aria-hidden="false" focusable="false">
+                            <path
+                            d="M256 960a64 64 0 1 0 0-128 64 64 0 0 0 0 128z m544 0a64 64 0 1 0 0-128 64 64 0 0 0 0 128zM31.424 92.736a48 48 0 0 1 67.84 2.688 186.208 186.208 0 0 1 46.976 96.32l1.28 9.024 50.496 444.64a48 48 0 0 0 43.168 42.368l4.512 0.224H812.16a48 48 0 0 0 46.72-37.152l0.832-4.384 44.256-326.24a48 48 0 0 1 95.52 8.32l-0.384 4.576-44.256 326.24a144 144 0 0 1-135.776 124.48l-6.912 0.16H245.696a144 144 0 0 1-142.144-120.96l-0.928-6.784L52.16 211.584a90.208 90.208 0 0 0-19.2-46.176l-4.16-4.832a48 48 0 0 1 2.656-67.84z"
+                            ></path>
+                            <path
+                            d="M528 128c24.96 0 45.44 16.512 47.776 37.6L576 169.6V288h118.4c22.976 0 41.6 21.504 41.6 48 0 24.96-16.512 45.44-37.6 47.776L694.4 384H576v118.4c0 22.976-21.504 41.6-48 41.6-24.96 0-45.44-16.512-47.776-37.6L480 502.4V384h-118.4c-22.976 0-41.6-21.504-41.6-48 0-24.96 16.512-45.44 37.6-47.776L361.6 288H480V169.6c0-22.976 21.504-41.6 48-41.6z"
+                            ></path>
+                        </svg>
+                    </div>
+                <div class="image_produit">                        
+                        <div class="favoriplus ajouter-favori" data-id="{{ produit.id }}">
+                            <svg class="heart-filled" viewBox="0 0 24 24" fill="#EC5A13" display="none">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.5 2.09C12.09 5.01 13.76 4 15.5 4 18 4 20 6 20 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                            </svg>
+                            <svg class="heart-outline" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="m16.28,3c-1.72,0-3.24.83-4.28,2.11-1.04-1.28-2.57-2.11-4.28-2.11-3.21,0-5.72,2.85-5.72,6.24,0,2.77,1.41,4.75,1.97,5.51,1.87,2.47,4.38,4.11,6.67,5.6h.02c.25.17.49.33.73.49.32.21.73.22,1.06.02.21-.13.43-.26.63-.39h.02c2.39-1.48,5.02-3.1,6.95-5.68.64-.86,1.95-2.83,1.95-5.54,0-3.4-2.51-6.23-5.72-6.23h0Zm-8.57,2.12c1.46,0,2.76.96,3.35,2.39.16.38.52.64.93.64s.77-.25.93-.64c.6-1.44,1.9-2.39,3.36-2.39,1.99,0,3.7,1.79,3.69,4.13,0,2-.98,3.5-1.52,4.24-1.67,2.25-3.98,3.67-6.43,5.19l-.07.04-.21-.13c-2.33-1.52-4.54-2.97-6.18-5.14-.51-.67-1.54-2.18-1.54-4.2,0-2.33,1.7-4.13,3.7-4.13h0Z"
+                            ></path>
+                            </svg>
+                        </div>
+                    <a href="{% url 'produit_detail' id=produit.pk nom=produit.nom %}" style="color: black;">
+                            <img src="{{ produit.image.url }}" alt="{{ produit.nom }}" />
+                        <div class="containbox">
+                            <h2>{{ produit.nom }}</h2>
+                            <p class="description">{{ produit.description|truncatewords:10|striptags|safe }}</p>
+                            <p class="price">{{ produit.prix }} €</p>
+                        </div>
+                    </a>
+                </div>
+                </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+    {% if not produit in produits_aimes %}
+        <div class="empty">
+            <p class="empty-message">Aucun produit dans vos favoris.</p>
+        </div>
+        {% endif %}
+</section>
+{% endblock %}
+
+{% block script %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const favoris = document.querySelectorAll(".ajouter-favori");
+    
+        favoris.forEach(btn => {
+            btn.addEventListener("click", function () {
+                const produitId = this.dataset.id;
+    
+                fetch(`/favoris/toggle/${produitId}/`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        "X-CSRFToken": "{{ csrf_token }}"
+                    }
+                }).finally(() => {
+                    location.reload();  // Recharge la page après l'envoi
+                });
+            });
+        });
+    });
+    </script>
+    
+    {% endblock script %}

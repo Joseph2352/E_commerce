@@ -45,19 +45,46 @@
 .upload-photo {
     display: block;
     margin-top: 10px;
-    color: #007bff;
-    text-decoration: none;
-    
+    color: #fff;
+    padding: 5px;
+    background-color: #ff6e14ff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .upload-photo:hover {
-    text-decoration: underline;
-    color:#ff6e14ff;
+    background-color: #e65c00;
+    text-decoration: none;
 }
 
-.profile-info p {
+.upload-photo:active {
+    background-color: #cc4f00;
+}
+.profile-info{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 7px 0;
+    margin: 15px 0;
+}
+.profile-info .info{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.profile-info .info p {
+    display: flex;
+    justify-content: flex-start;
+    width: 400px;
     color: #999;
     line-height: 20px;
+    white-space:nowrap;
 }
 
 .profile-info p strong {
@@ -67,9 +94,11 @@
 }
 .profile-info p .email{
     margin-left: 130px;
-    margin-right: 90px;
 }
 
+.profile-info p .change_email{
+    white-space: nowrap;
+}
 .profile-info a {
     color: #007bff;
     text-decoration: none;
@@ -203,5 +232,31 @@
 
     .profile-info {
         padding: 20px 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .profile-info p{
+        width: 100%;
+    }
+}
+@media (max-width: 500px) {
+    .content{
+        padding: 0;
+    }
+    .profile-picture{
+        padding-bottom: 0;
+    }
+    .profile-info{
+        padding-top:0 ;
+    }
+    .profile-info p {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+    .profile-info p .email{
+        padding: 0;
+        margin: 0;
     }
 }

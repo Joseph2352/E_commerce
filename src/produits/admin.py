@@ -1,13 +1,14 @@
 from django.contrib import admin
 
 # Register your models here.
-from produits.models import Categorys,Produits,SuperCategorys,SousCategorys
+from produits.models import Categorys, Commande, CommandeProduit, Panier, ProduitAime,Produits,SuperCategorys,SousCategorys
 
 @admin.register(SuperCategorys)
 class SuperCategoryAdmin(admin.ModelAdmin):
     list_display=[
         "nom",
         "slug",
+        "svg_icon",
     ]
 
 @admin.register(Categorys)
@@ -34,7 +35,43 @@ class ProduitAdmin(admin.ModelAdmin):
         "prix",
         "category",
         "sous_category",
+        "nombre_likes",
         "date",
-        "image",
 
+    ]
+
+@admin.register(ProduitAime)
+class ProduitAimeAdmin(admin.ModelAdmin):
+    list_display=[
+        "utilisateur",
+        "produit",
+        "date_ajout",
+    ]
+
+@admin.register(Panier)
+class PanierAdmin(admin.ModelAdmin):
+    list_display=[
+        "user",
+        "produit_id",
+        "nom",
+        "prix",
+        "quantite",
+        "date_ajout",
+    ]
+    
+@admin.register(Commande)
+class CommandeAdmin(admin.ModelAdmin):
+    list_display=[
+        "user",
+        "total",
+        "date_commande",
+    ]
+    
+@admin.register(CommandeProduit)
+class CommandeProduitAdmin(admin.ModelAdmin):
+    list_display=[
+        "commande",
+        "nom",
+        "prix",
+        "quantite",
     ]

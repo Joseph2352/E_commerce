@@ -26,6 +26,10 @@ urlpatterns = [
     path('',HomeViews.as_view(),name=('home')),
     path('produit/', include('produits.urls')),
     path('accounts/', include('comptes.urls')),
+    # path('accounts/', include('allauth.urls')),  # Inclure les URLs d'authentification d'Allauth
+    path('fournisseur/',include('fournisseurs.urls')),
+    path('chat/', include('chat.urls')),
+
 
 ]
 if settings.DEBUG:

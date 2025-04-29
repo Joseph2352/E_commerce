@@ -1,0 +1,35 @@
+{% extends 'E_commerce/base.html' %}
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'produits/css/panier.css' %}?v={{ static_version }}">
+{% endblock link %}
+{% block content %}
+<section class="section_produit">
+    <h2 class="titre-panier">Mon Panier</h2>
+    <div id="panier-container">
+        <div class="panier-items">
+            <ul id="liste_panier"></ul>
+        </div>
+        <div class="recapitulatif">
+            <h3>Récapitulatif de la commande</h3>
+            <p><strong>Sous-total :</strong> <span id="total_price">0</span> $US</p>
+            <p><strong>Frais d'expédition :</strong> <span id="shipping_price">0</span> $US</p>
+            <p><strong>Remise :</strong> <span id="discount">0</span> $US</p>
+            <p><strong>Total :</strong> <span id="final_total">0</span> $US</p>
+            <button id="validerCommande">Continuer</button>
+        </div>
+    </div>
+    <form action="" method="post">
+        <div id="listinfo">
+
+        </div>
+    </form>
+</section>
+{% endblock %}
+
+{% block script %}
+<script>
+    var CHECKOUT_URL = "{% url 'checkout' %}";
+</script>
+<script src="{% static 'produits/js/panier_pro.js' %}?v={{ static_version }}"></script>
+{% endblock %}

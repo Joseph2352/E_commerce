@@ -1,91 +1,79 @@
-document.addEventListener("DOMContentLoaded", afficherPanier);
+document.addEventListener("DOMContentLoaded", function () {
+    const produits = JSON.parse(localStorage.getItem("produits_a_commander")) || [];
+    const listeCommande = document.getElementById("liste_commande");
+    const listInfo = document.getElementById("listinfo");
+    let prixTotal = 0;
 
-function afficherPanier() {
-    let panier = JSON.parse(localStorage.getItem("panier")) || [];
-    let listePanier = document.getElementById("liste_panier");
-    let totalPrice = 0;
-    listePanier.innerHTML = "";
+    listeCommande.innerHTML = "";
 
-    panier.forEach((produit, index) => {
-        let prixProduit = parseFloat(produit.prix?.toString().replace(",", ".")) || 0;
-        let quantite = produit.quantite || 1;
-        let totalProduit = prixProduit * quantite;
-        totalPrice += totalProduit;
+    produits.forEach((produit, index) => {
+        const prixProduit = parseFloat((produit.prix || "0").toString().replace(",", ".")) || 0;
+        const quantite = produit.quantite || 1;
+        const totalProduit = prixProduit * quantite;
+        prixTotal += totalProduit;
 
-        let li = document.createElement("li");
-        li.classList.add("panier-item");
-        li.dataset.index = index;
+        // Ajout dans l'affichage de la liste
+        const li = document.createElement("li");
+        li.classList.add("commande-item");
         li.innerHTML = `
-            <img src="${produit.image}" alt="${produit.nom}" class="produit-image">
-            <span class="produit-details">
-                <strong>${produit.nom || "Produit inconnu"}</strong> - 
-                <span class="produit-prix">${prixProduit.toFixed(2)}</span> €  
-            </span>
-            <div class="quantite-controls">
-                <button class="btn-moins" onclick="modifierQuantite(${index}, -1)">-</button>
-                <span class="quantite">${quantite}</span>
-                <button class="btn-plus" onclick="modifierQuantite(${index}, 1)">+</button>
+            <img src="${produit.image || '#'}" alt="${produit.nom || 'Produit inconnu'}" class="commande-image">
+            <div class="box">
+                <div class="commande-details">
+                    <h4>${produit.nom || "Produit inconnu"}</h4>
+                    <p>Prix: ${prixProduit.toFixed(2)} $US</p>
+                    <p>Quantité: <span class="quantite">${quantite}</span></p>
+                    <p>Total: ${totalProduit.toFixed(2)} $US</p>
+                </div>
+                <div class="quantite-controls">
+                    <button class="btn-moins" data-index="${index}" data-action="-1">-</button>
+                    <button class="btn-plus" data-index="${index}" data-action="1">+</button>
+                </div>
             </div>
         `;
+        listeCommande.appendChild(li);
 
-        listePanier.appendChild(li);
+        // Ajout dans les inputs cachés du formulaire
+        listInfo.innerHTML += `
+            <input type="hidden" name="produits[${index}][nom]" value="${produit.nom}">
+            <input type="hidden" name="produits[${index}][prix]" value="${produit.prix}">
+            <input type="hidden" name="produits[${index}][quantite]" value="${produit.quantite}">
+        `;
     });
 
-    document.getElementById("total_price").innerText = totalPrice.toFixed(2);
-}
+    document.getElementById("prix_total_commande").innerText = prixTotal.toFixed(2);
+    document.getElementById("sous_total_commande").innerText = prixTotal.toFixed(2);
 
-function modifierQuantite(index, delta) {
-    let panier = JSON.parse(localStorage.getItem("panier")) || [];
-
-    if (panier[index]) {
-        panier[index].quantite = (panier[index].quantite || 1) + delta;
-
-        if (panier[index].quantite <= 0) {
-            panier.splice(index, 1);
+    listeCommande.addEventListener("click", function (e) {
+        if (e.target.matches(".btn-moins, .btn-plus")) {
+            const index = parseInt(e.target.getAttribute("data-index"));
+            const delta = parseInt(e.target.getAttribute("data-action"));
+            modifierQuantite(index, delta);
         }
+    });
 
-        localStorage.setItem("panier", JSON.stringify(panier));
-        afficherPanier();
-    }
-}
-
-document.getElementById("validerCommande").addEventListener("click", function () {
-    validerCommande();
+    document.getElementById("confirmerCommande").addEventListener("click", function () {
+        // Cache le bouton
+        this.style.display = "none";
+    
+        // Affiche le spinner
+        document.getElementById("loadingSpinner").style.display = "block";
+    
+        // Vide le panier dans le localStorage (important)
+        localStorage.removeItem("produits_a_commander");
+    });
 });
 
-function validerCommande() {
-    let panier = JSON.parse(localStorage.getItem("panier")) || [];
-    if (panier.length === 0) {
-        alert("Votre panier est vide !");
-        return;
-    }
+function modifierQuantite(index, delta) {
+    const produits = JSON.parse(localStorage.getItem("produits_a_commander")) || [];
 
-    fetch("/produit/confirm-order/", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRFToken": getCSRFToken()
-        },
-        body: JSON.stringify({ cart: panier })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.message) {
-            alert(data.message);
-            localStorage.removeItem("panier");
-            if (data.payment_url) {
-                window.location.href = data.payment_url;  // ✅ Redirection vers Paycard
-            } else {
-                alert("Erreur: URL de paiement invalide !");
-            }
-        } else {
-            alert("Erreur lors de la commande !");
+    if (produits[index]) {
+        produits[index].quantite = (produits[index].quantite || 1) + delta;
+
+        if (produits[index].quantite <= 0) {
+            produits.splice(index, 1);
         }
-    })
-    .catch(error => console.error("Erreur :", error));
-}
 
-function getCSRFToken() {
-    let tokenElement = document.querySelector('[name=csrf-token]');
-    return tokenElement ? tokenElement.getAttribute('content') : "";
+        localStorage.setItem("produits_a_commander", JSON.stringify(produits));
+        window.location.reload();
+    }
 }

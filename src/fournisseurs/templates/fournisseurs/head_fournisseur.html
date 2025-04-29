@@ -1,0 +1,63 @@
+{% load static %}
+<section class="selection_headprofil">
+    <div class="headprofil">
+      <div class="profil">
+        <div class="logo">
+          <img src="{{ fournisseur.logo.url }}" alt="Logo du fournisseur" />
+        </div>
+        <div class="nom">
+          <p>{{ fournisseur.nom }}</p>
+        </div>
+        <span class="badge-silver">🥈 Silver</span>
+      </div>
+  
+      <div class="actions">
+        <div class="badge-stat">
+          <span class="critique"> <span>{{ fournisseur.taux_critiques_positives }}%</span> Critique positive</span>
+          <span class="abonnes">|  <span>{{ fournisseur.nombre_abonnes }}</span> abonnés</span>
+        </div>
+        {% if est_abonne %}
+            <button type="submit" class="btn-follow abonne">✔ ABONNÉ</button>
+        {% else %}
+            <form method="post" action="{% url 'suivre_fournisseur' fournisseur.id %}">
+              {% csrf_token %}
+              
+              <button type="submit" class="btn-follow">+ SUIVRE</button>
+            </form>
+        {% endif %}
+        <a href="#" class="btn-contact">📩 Contact vendeur</a>
+        <form method="get" class="recherche-magasin-form">
+          <input 
+            type="text" 
+            name="search" 
+            class="recherche-magasin" 
+            placeholder="Rechercher dans ce magasin"
+            value="{{ search_query }}"
+          />
+          <button type="submit">🔍</button>
+        </form>
+      </div>
+    </div>
+</section>  
+<div class="carousselle">
+  <img src="{% static "fournisseurs/images/shopping.jpg" %}" alt="">
+</div>
+<!--------------------------  Nav secondaire ------------------>
+<div class="navbar-secondaire">
+  <ul class="nav-links">
+    <li class="{% if active == 'accueil' %}active{% endif %}">
+      <a href="{% url 'produits_par_fournisseur' fournisseur.id %}">Page d'accueil</a>
+    </li>
+    <li class="dropdown {% if active == 'categories' %}active{% endif %}">
+      <a href="#">Catégories ▾</a>
+      <ul class="dropdown-content">
+        {% for supercategorie in supercategories %}
+          <li  ><a href="{% url "Filter_Produit" fournisseur_id=fournisseur.id filtersuper_id=supercategorie.id %}">{{ supercategorie.nom }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+    <li class="{% if active == 'avis' %}active{% endif %}">
+      <a href="{% url 'avis_fournisseur' fournisseur.id %}">Avis</a>
+    </li>
+  </ul>
+</div>

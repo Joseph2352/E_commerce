@@ -23,7 +23,7 @@ def log_in(request):
             login(request, user)
             return redirect('home')
         else:
-            return render(request, 'comptes/login.html', {'error': 'Identifiants ou mot de passe incorrects'})
+            return render(request, 'comptes/login.html', {'error': 'Identifiants ou mot de passe incorrects','mot_pass_oublie': ' Mot de passe Oublié'})
 
     return render(request, 'comptes/login.html', {'static_version': now().timestamp()})
 
@@ -51,14 +51,10 @@ def sign_up(request):
             # Password validation
             if len(password1) < 8:
                 return render(request, 'comptes/singnup.html', {'error': 'Le mot de passe doit contenir au moins 8 caractères'})
-            if not re.search(r'[A-Z]', password1):
-                return render(request, 'comptes/singnup.html', {'error': 'Le mot de passe doit contenir au moins une lettre majuscule'})
             if not re.search(r'[a-z]', password1):
                 return render(request, 'comptes/singnup.html', {'error': 'Le mot de passe doit contenir au moins une lettre minuscule'})
             if not re.search(r'[0-9]', password1):
                 return render(request, 'comptes/singnup.html', {'error': 'Le mot de passe doit contenir au moins un chiffre'})
-            if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password1):
-                return render(request, 'comptes/singnup.html', {'error': 'Le mot de passe doit contenir au moins un caractère spécial'})
 
         User = get_user_model()
         if User.objects.filter(email=email).exists():
@@ -72,14 +68,10 @@ def sign_up(request):
         )
         user.save()
         login(request, user)
-        return redirect('confirmation_creat_compte')
+        return redirect('confirm_creat_compte')
 
     return render(request, 'comptes/singnup.html', {'static_version': now().timestamp()})
 
-#-----------------------------------Vue de profil---------------------------------------------#
-@login_required
-def profil_view(request):
-    return render(request, 'profil.html') 
 
 #-----------------------------------------changement de mot de passe---------------------------------------------#
 @login_required
@@ -104,14 +96,10 @@ def changePassword(request):
         # Password validation
         if len(new_pwd1) < 8:
             return render(request, 'comptes/changePassword.html', {'error': 'Le mot de passe doit contenir au moins 8 caractères'})
-        if not re.search(r'[A-Z]', new_pwd1):
-            return render(request, 'comptes/changePassword.html', {'error': 'Le mot de passe doit contenir au moins une lettre majuscule'})
         if not re.search(r'[a-z]', new_pwd1):
             return render(request, 'comptes/changePassword.html', {'error': 'Le mot de passe doit contenir au moins une lettre minuscule'})
         if not re.search(r'[0-9]', new_pwd1):
             return render(request, 'comptes/changePassword.html', {'error': 'Le mot de passe doit contenir au moins un chiffre'})
-        if not re.search(r'[!@#$%^&*(),.?":{}|<>]', new_pwd1):
-            return render(request, 'comptes/changePassword.html', {'error': 'Le mot de passe doit contenir au moins un caractère spécial'})
         
         request.user.set_password(new_pwd1)
         request.user.save()

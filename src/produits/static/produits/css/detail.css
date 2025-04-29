@@ -42,11 +42,48 @@ body {
     flex-direction: column;
     justify-content: space-between;
 }
+.fournisseur {
+    display: flex;
+    align-items: center;
+}
+
+.fournisseur-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: #3498db;
+    gap: 10px;
+    transition: color 0.3s ease;
+}
+
+.fournisseur-link:hover {
+    color: #1d6fa5;
+}
+
+.fournisseur-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #eee;
+}
+
+.fournisseur span{
+    color: #000;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
 
 .box_description h2 {
     color: rgb(255, 113, 25);
     font-size: 2.5em;
     margin-bottom: 10px;
+}
+.box_description .info .head_produit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .box_description p {

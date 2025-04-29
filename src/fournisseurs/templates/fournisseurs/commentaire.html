@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="{% static 'E_commerce/css/fontawesome/css/all.css' %}?v={{ static_version }}"
+    />
+    <title>Document</title>
+    <style>
+        .commentaire-container {
+          max-width: 600px;
+          margin: 50px auto;
+          padding: 30px;
+          background-color: #f8f9fa;
+          border-radius: 16px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          font-family: 'Segoe UI', sans-serif;
+        }
+      
+        .commentaire-container h2 {
+          margin-bottom: 20px;
+          color: #343a40;
+          text-align: center;
+        }
+      
+        .form-group {
+          margin-bottom: 20px;
+        }
+      
+        label {
+          display: block;
+          font-weight: 600;
+          margin-bottom: 8px;
+          color: #495057;
+        }
+      
+        .star-rating {
+          display: flex;
+          justify-content: center;
+          gap: 5px;
+          cursor: pointer;
+        }
+      
+        .star-rating input {
+          display: none;
+        }
+      
+        .star-rating {
+          display: flex;
+          flex-direction: row; /* ordre naturel gauche -> droite */
+          justify-content: center;
+          gap: 5px;
+        }
+        
+        .star-rating input {
+          display: none;
+        }
+        
+        .star-rating {
+          display: flex;
+          flex-direction: row-reverse; /* <- ASTUCE MAGIQUE */
+          justify-content: center;
+          gap: 5px;
+        }
+        
+        .star-rating input {
+          display: none;
+        }
+        
+        .star-rating label {
+          font-size: 30px;
+          color: #dcdcdc;
+          cursor: pointer;
+        }
+        
+        /* Survol : remplit les étoiles à gauche */
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+          color: #ffcc00;
+        }
+        
+        /* Remplissage après sélection */
+        .star-rating input:checked ~ label {
+          color: #ffcc00;
+        }
+        
+        
+      
+        textarea {
+          width: 100%;
+          padding: 10px 12px;
+          border: 1px solid #ced4da;
+          border-radius: 8px;
+          font-size: 16px;
+          background-color: white;
+          box-sizing: border-box;
+          resize: vertical;
+          min-height: 100px;
+        }
+      
+        button {
+          background-color: #007bff;
+          color: white;
+          padding: 12px 24px;
+          border: none;
+          border-radius: 10px;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background-color 0.2s ease-in-out;
+        }
+      
+        button:hover {
+          background-color: #0056b3;
+        }
+      
+        .produit-info {
+          text-align: center;
+          margin-bottom: 30px;
+          font-size: 16px;
+          color: #6c757d;
+        }
+      </style>
+      
+</head>
+<body>
+    <div class="commentaire-container">
+        <h2>Laisser un commentaire</h2>
+        <div class="produit-info">
+          Produit : <strong>{{ produit.nom }}</strong><br>
+          Fournisseur : <strong>{{ fournisseur.nom }}</strong>
+        </div>
+      
+        <form method="post" action="{% url 'laisser_commentaire' produit_id=produit.id %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label>Note :</label>
+            <div class="star-rating">
+              {% for i in "12345"|make_list %}
+                  <input type="radio" id="star{{ i }}" name="note" value="{{ i }}" required>
+                  <label for="star{{ i }}"><i class="fa-solid fa-star"></i></label>
+              {% endfor %}   
+            </div>
+          </div>
+      
+          <div class="form-group">
+            <label for="commentaire">Commentaire :</label>
+            <textarea name="commentaire" id="commentaire" placeholder="Partagez votre avis..." required></textarea>
+          </div>
+      
+          <div style="text-align: center;">
+            <button type="submit">Envoyer le commentaire</button>
+          </div>
+        </form>
+      </div>
+</body>
+</html>

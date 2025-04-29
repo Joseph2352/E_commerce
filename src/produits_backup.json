@@ -5,7 +5,8 @@
     "fields": {
       "nom": "Electronique",
       "image": "image_super_Category/Electronic.webp",
-      "slug": "electronique"
+      "slug": "electronique",
+      "svg_icon": "<svg viewBox=\"0 0 24 24\"data-title=\"SvgMobile\" fill=\"currentColor\" ><path d=\"M12.6663 18.9084C12.6663 19.2844 12.3679 19.5892 11.9998 19.5892C11.6317 19.5892 11.3332 19.2844 11.3332 18.9084C11.3332 18.5325 11.6317 18.2277 11.9998 18.2277C12.3679 18.2277 12.6663 18.5325 12.6663 18.9084Z\"></path><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M8.96436 2C7.32719 2 6 3.35545 6 5.02749V18.9725C6 20.6445 7.32719 22 8.96437 22H15.0356C16.6728 22 18 20.6445 18 18.9725V5.02749C18 3.35545 16.6728 2 15.0356 2H8.96436ZM7.97624 5.02749C7.97624 4.47014 8.41864 4.01833 8.96436 4.01833H9.96C9.95998 4.0213 9.95996 4.02428 9.95996 4.02727C9.95996 4.58461 10.4024 5.03643 10.9481 5.03643H13.0517C13.5974 5.03643 14.0398 4.58461 14.0398 4.02727C14.0398 4.02428 14.0398 4.0213 14.0398 4.01833H15.0356C15.5814 4.01833 16.0238 4.47014 16.0238 5.02749V15.8643H7.97624V5.02749ZM7.97624 17.8826V18.9725C7.97624 19.5299 8.41864 19.9817 8.96437 19.9817H15.0356C15.5814 19.9817 16.0238 19.5299 16.0238 18.9725V17.8826H7.97624Z\"></path></svg>"
     }
   },
   {
@@ -14,7 +15,8 @@
     "fields": {
       "nom": "Immobilier",
       "image": "image_super_Category/Immobilier.jpg",
-      "slug": "immobilier"
+      "slug": "immobilier",
+      "svg_icon": "<svg viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" data-title=\"SvgHouse\" fill=\"currentColor\" class=\"fill-current shrink-0 text-current u-current-font-size mr-md shrink-0 align-middle\" data-spark-component=\"icon\" aria-hidden=\"true\" focusable=\"false\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M6.03509 12.6364C5.94737 12.6364 5.85965 12.5455 5.68421 12.5455C5.24561 12.5455 4.80702 12.9091 4.7193 13.2727C4.7193 13.3636 4.7193 13.4545 4.7193 13.5455V18.3636C4.7193 20.3636 6.29825 22 8.22807 22H15.7719C17.7018 22 19.2807 20.3636 19.2807 18.3636V13.7273C19.2807 13.6364 19.2807 13.5455 19.2807 13.4545C19.193 13 18.7544 12.7273 18.3158 12.7273C18.2281 12.7273 18.0526 12.7273 17.9649 12.8182C17.614 13 17.2632 13.3636 17.2632 13.8182V18.3636C17.2632 19.1818 16.5614 19.9091 15.7719 19.9091H8.22807C7.4386 19.9091 6.73684 19.1818 6.73684 18.3636V13.7273C6.73684 13.1818 6.47368 12.8182 6.03509 12.6364ZM14.0175 17.8182C14.5439 17.3636 14.8947 16.6364 14.8947 15.8182V14.0909C14.8947 12.6364 13.7544 11.4545 12.4386 11.4545H11.6491C10.2456 11.4545 9.19298 12.6364 9.19298 14.0909V15.8182C9.19298 16.6364 9.54386 17.3636 10.0702 17.8182C10.5088 18.1818 11.0351 18.4545 11.6491 18.4545H12.4386C13.0526 18.3636 13.5789 18.1818 14.0175 17.8182ZM14.4561 3.09091C13.0526 1.63636 10.8596 1.63636 9.54386 3.09091L2.26316 10.7273C1.91228 11.0909 1.91228 11.8182 2.26316 12.1818C2.4386 12.3636 2.70175 12.4545 2.96491 12.4545C3.22807 12.4545 3.49123 12.3636 3.66667 12.1818L10.9474 4.54545C11.5614 3.90909 12.4386 3.90909 13.0526 4.54545L20.3333 12.1818C20.5088 12.3636 20.7719 12.4545 21.0351 12.4545C21.2982 12.4545 21.5614 12.3636 21.7368 12.1818C22.0877 11.8182 22.0877 11.0909 21.7368 10.7273L14.4561 3.09091ZM12.4386 13.5455H11.6491C11.386 13.5455 11.2105 13.7273 11.2105 14.0909V15.8182C11.2105 16.0909 11.386 16.3636 11.6491 16.3636H12.4386C12.7018 16.3636 12.8772 16.1818 12.8772 15.8182V14.0909C12.8772 13.8182 12.7018 13.5455 12.4386 13.5455Z\"></path></svg>"
     }
   },
   {
@@ -23,7 +25,8 @@
     "fields": {
       "nom": "Véhicule",
       "image": "image_super_Category/Véhicule.jpeg",
-      "slug": "vehicule"
+      "slug": "vehicule",
+      "svg_icon": "<svg viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" data-title=\"SvgCarOutline\" fill=\"currentColor\" class=\"fill-current shrink-0 text-current u-current-font-size mr-md shrink-0 align-middle\" data-spark-component=\"icon\" aria-hidden=\"true\" focusable=\"false\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M9.04615 5.98245C8.21532 5.98245 7.4911 6.54528 7.2896 7.34757L7.2896 7.34758L6.69792 9.7033H16.8345L16.2428 7.34759C16.0413 6.54525 15.3171 5.98245 14.4863 5.98245H9.04615ZM20.909 10.6324C21.5805 11.2592 22 12.1502 22 13.1388V17.2126C22 18.66 20.8212 19.8333 19.3671 19.8333H18.4974C17.4052 19.8333 16.4694 19.1672 16.0777 18.2208H7.92253C7.5308 19.1672 6.59499 19.8333 5.50287 19.8333H4.63316C3.17903 19.8333 2.00022 18.66 2.00022 17.2126V13.1388C2.00022 12.1487 2.421 11.2564 3.09427 10.6295L2.5507 10.359C2.05878 10.1142 1.85939 9.51875 2.10535 9.0291C2.35131 8.53946 2.94949 8.34099 3.44141 8.58581L4.76071 9.24241L5.35738 6.86677C5.35739 6.86677 5.35739 6.86676 5.35739 6.86676C5.78055 5.18193 7.30141 4 9.04615 4H14.4863C16.2311 4 17.7519 5.18197 18.175 6.86675L17.2089 7.10717L18.175 6.86675L18.7949 9.33469C18.8763 9.27144 18.969 9.2198 19.0714 9.18316L20.392 8.71075C20.9095 8.52559 21.4799 8.79313 21.6659 9.30831C21.8519 9.82348 21.5832 10.3912 21.0656 10.5764L20.909 10.6324ZM5.45171 11.6858C4.64548 11.6858 3.9919 12.3363 3.9919 13.1388V17.2126C3.9919 17.5651 4.279 17.8509 4.63316 17.8509H5.50287C5.84761 17.8509 6.12708 17.5727 6.12708 17.2296C6.12708 16.6821 6.57293 16.2383 7.12292 16.2383H16.8773C17.4273 16.2383 17.8731 16.6821 17.8731 17.2296C17.8731 17.5727 18.1526 17.8509 18.4974 17.8509H19.3671C19.7212 17.8509 20.0083 17.5651 20.0083 17.2126V13.1388C20.0083 12.3363 19.3547 11.6858 18.5485 11.6858H5.45171ZM5.39153 14.1863C5.39153 13.6389 5.83738 13.1951 6.38737 13.1951H7.79059C8.34058 13.1951 8.78643 13.6389 8.78643 14.1863C8.78643 14.7338 8.34058 15.1776 7.79059 15.1776H6.38737C5.83738 15.1776 5.39153 14.7338 5.39153 14.1863ZM15.2141 14.1863C15.2141 13.6389 15.66 13.1951 16.21 13.1951H17.6132C18.1632 13.1951 18.609 13.6389 18.609 14.1863C18.609 14.7338 18.1632 15.1776 17.6132 15.1776H16.21C15.66 15.1776 15.2141 14.7338 15.2141 14.1863Z\"></path></svg>"
     }
   },
   {
@@ -32,7 +35,8 @@
     "fields": {
       "nom": "Mode",
       "image": "image_super_Category/mode.png",
-      "slug": "mode"
+      "slug": "mode",
+      "svg_icon": "<svg viewBox=\"0 0 24 24\" ><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M7.14977 3C6.88656 3 6.63413 3.10924 6.44802 3.30369L2.29067 7.64722C2.10456 7.84167 2 8.1054 2 8.38039C2 8.65539 2.10456 8.91912 2.29067 9.11357L5.06224 12.0093C5.35831 12.3186 5.79492 12.3916 6.15734 12.2283V18.5153C6.15734 19.1743 6.4079 19.8063 6.8539 20.2722C7.2999 20.7382 7.90481 21 8.53555 21H15.4645C16.0952 21 16.7001 20.7382 17.1461 20.2722C17.5921 19.8063 17.8427 19.1743 17.8427 18.5153V12.2283C18.2051 12.3916 18.6417 12.3186 18.9378 12.0093L21.7093 9.11357C21.8954 8.91912 22 8.65539 22 8.38039C22 8.1054 21.8954 7.84167 21.7093 7.64722L17.552 3.30369C17.3659 3.10924 17.1134 3 16.8502 3H7.14977ZM4.39592 8.38039L7.56084 5.07373H16.4392L19.6041 8.38039L18.236 9.80973L17.552 9.09506C17.2682 8.79852 16.8413 8.70981 16.4705 8.8703C16.0996 9.03078 15.8578 9.40886 15.8578 9.82824V18.5153C15.8578 18.6243 15.8164 18.7288 15.7426 18.8059C15.6688 18.883 15.5688 18.9263 15.4645 18.9263H8.53555C8.43122 18.9263 8.33117 18.883 8.2574 18.8059C8.18363 18.7288 8.14219 18.6243 8.14219 18.5153V9.82824C8.14219 9.40886 7.90039 9.03078 7.52955 8.8703C7.15871 8.70981 6.73185 8.79852 6.44802 9.09506L5.76398 9.80973L4.39592 8.38039Z\"></path></svg>"
     }
   },
   {
@@ -41,7 +45,8 @@
     "fields": {
       "nom": "Maison & Jardin",
       "image": "image_super_Category/Maison__Jardin.jpg",
-      "slug": "maison-jardin"
+      "slug": "maison-jardin",
+      "svg_icon": "<svg viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" data-title=\"SvgCouch\" fill=\"currentColor\" ><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M21.3006 7.59741C20.8593 7.16203 20.2598 6.91559 19.627 6.91559H18.5196V4.33299C18.5196 3.04327 17.4621 2 16.1549 2H7.8368C6.52956 2 5.47211 3.04327 5.47211 4.33299V6.91559H4.3647C3.74022 6.91559 3.14072 7.16203 2.69109 7.59741C2.24979 8.03279 2 8.62425 2 9.24858V15.4096C2 16.0257 2.24979 16.6172 2.69109 17.0608C3.13239 17.4962 3.73189 17.7426 4.3647 17.7426H6.64613L6.18818 20.8466C6.07993 21.3641 6.42132 21.8735 6.95421 21.9802C7.47877 22.087 7.995 21.7502 8.10325 21.2245L8.63614 17.7426H15.3639L15.8968 21.2245C16.005 21.742 16.5129 22.087 17.0458 21.9802C17.5704 21.8735 17.9201 21.3724 17.8118 20.8466L17.3539 17.7426H19.6353C20.2598 17.7426 20.8593 17.4962 21.3089 17.0608C21.7585 16.6254 22 16.034 22 15.4096V9.24858C22 8.63247 21.7502 8.04101 21.3089 7.59741H21.3006ZM7.42881 4.33299C7.42881 4.11119 7.61199 3.92225 7.84513 3.92225H16.1715C16.3963 3.92225 16.5878 4.10297 16.5878 4.33299V7.87671V11.9841C16.5878 12.2059 16.4047 12.3948 16.1715 12.3948H7.8368C7.61199 12.3948 7.42048 12.2141 7.42048 11.9841V4.33299H7.42881ZM20.0433 15.4096C20.0433 15.5164 20.0017 15.6232 19.9184 15.6971C19.8351 15.7711 19.7352 15.8204 19.627 15.8204H4.37302C4.26478 15.8204 4.15654 15.7793 4.0816 15.6971C4.00666 15.6232 3.9567 15.5164 3.9567 15.4096V9.24858C3.9567 9.14178 3.99833 9.03499 4.0816 8.96106C4.15654 8.88713 4.26478 8.83784 4.37302 8.83784H5.48043V11.9841C5.48043 13.2738 6.53789 14.3171 7.84513 14.3171H16.1715C17.4788 14.3171 18.5362 13.2738 18.5362 11.9841V8.83784H19.6436C19.7519 8.83784 19.8601 8.87891 19.9351 8.96106C20.01 9.04321 20.0599 9.14178 20.0599 9.24858V15.4096H20.0433Z\"></path></svg>"
     }
   },
   {
@@ -50,7 +55,8 @@
     "fields": {
       "nom": "Loisirs",
       "image": "image_super_Category/Loisir.jpg",
-      "slug": "loisirs"
+      "slug": "loisirs",
+      "svg_icon": "<svg viewBox=\"0 0 24 24\" ><path d=\"M21.9916 12C21.9916 9.33333 20.9536 6.81856 19.0633 4.92827C17.173 3.03797 14.6667 2 12 2C9.33333 2 6.81856 3.03797 4.92827 4.92827C4.58228 5.27426 4.27848 5.64557 3.99156 6.02532C3.98312 6.04219 3.95781 6.05907 3.94937 6.08439C2.69198 7.78903 2 9.83966 2 12C2 14.6667 3.03797 17.1814 4.92827 19.0717C6.81856 20.962 9.32489 22 12 22C14.481 22 16.8186 21.0886 18.6498 19.4515C18.6751 19.443 18.7089 19.4346 18.7342 19.4177C18.8945 19.3249 19.0127 19.1899 19.097 19.038C20.9705 17.1561 22 14.6582 22 12H21.9916ZM14.7257 14.7089C15.2743 15.4515 15.789 16.2194 16.2447 17.038L16.9283 18.2616C15.5612 19.3333 13.9325 19.8987 12.2785 19.9578C12.3291 19.443 12.4051 18.9283 12.5485 18.4304C12.9367 17.0295 13.6878 15.7468 14.7173 14.7173H14.7257V14.7089ZM18.0169 16.0422C17.5105 15.1392 16.9367 14.2869 16.3291 13.4599C16.9873 13.0633 17.6878 12.7511 18.4304 12.5401C18.9367 12.3966 19.4515 12.3122 19.9578 12.27C19.8987 13.8987 19.3586 15.4346 18.4051 16.7257L18.0253 16.0422H18.0169ZM19.7722 10.2616C19.1308 10.3207 18.4979 10.4219 17.8819 10.5907C16.8776 10.8692 15.9325 11.3165 15.0549 11.8819C14.1435 10.8439 13.1392 9.88186 12.0591 9.01266C12.6413 8.11814 13.1055 7.14768 13.4008 6.1097C13.5696 5.50211 13.6709 4.8692 13.73 4.21941C15.1646 4.53165 16.5232 5.24051 17.6371 6.35443C18.7257 7.44304 19.4515 8.79325 19.7806 10.2616H19.7722ZM5.47679 7.42616H5.51899C6.80169 7.95781 8.00844 8.62447 9.15612 9.38397C8.1519 10.3544 6.91139 11.0717 5.56962 11.443C5.06329 11.5865 4.54852 11.6624 4.04219 11.7131C4.09283 10.1519 4.59072 8.6751 5.47679 7.42616ZM6.93671 5.8481C8.32911 4.70042 10.0169 4.10127 11.7215 4.04219C11.6709 4.55696 11.5949 5.07173 11.4599 5.56962C11.2405 6.36287 10.8861 7.12236 10.4473 7.81435C9.34177 7.06329 8.16878 6.40506 6.94515 5.8481H6.93671ZM4.21941 13.73C4.86076 13.6709 5.49367 13.5781 6.1097 13.4008C7.83966 12.9114 9.4346 11.9831 10.7089 10.7089C10.7426 10.6751 10.7679 10.6329 10.8017 10.5992C11.7553 11.3671 12.6413 12.211 13.4515 13.1308C13.3924 13.1814 13.3333 13.2321 13.2827 13.2827C12.0084 14.557 11.0802 16.1435 10.5907 17.8819C10.4219 18.4895 10.3207 19.1224 10.2616 19.7722C8.827 19.4599 7.46835 18.7511 6.35443 17.6371C5.26582 16.5485 4.54008 15.1983 4.21097 13.73H4.21941Z\"></path></svg>"
     }
   },
   {
@@ -439,17 +445,13 @@
   {
     "model": "produits.souscategorys",
     "pk": 24,
-    "fields": {
-      "nom": "vetement Femme",
-      "categorie": 15,
-      "slug": "vetement-femme"
-    }
+    "fields": { "nom": "Femme", "categorie": 15, "slug": "vetement-femme" }
   },
   {
     "model": "produits.souscategorys",
     "pk": 25,
     "fields": {
-      "nom": "vetement Maternité",
+      "nom": "Maternité",
       "categorie": 15,
       "slug": "vetement-maternite"
     }
@@ -457,53 +459,33 @@
   {
     "model": "produits.souscategorys",
     "pk": 26,
-    "fields": {
-      "nom": "vetement Homme",
-      "categorie": 15,
-      "slug": "vetement-homme"
-    }
+    "fields": { "nom": "Homme", "categorie": 15, "slug": "vetement-homme" }
   },
   {
     "model": "produits.souscategorys",
     "pk": 27,
-    "fields": {
-      "nom": "vetement Enfant",
-      "categorie": 15,
-      "slug": "vetement-enfant"
-    }
+    "fields": { "nom": "Enfant", "categorie": 15, "slug": "vetement-enfant" }
   },
   {
     "model": "produits.souscategorys",
     "pk": 28,
-    "fields": {
-      "nom": "chaussures Femme",
-      "categorie": 16,
-      "slug": "chaussures-femme"
-    }
+    "fields": { "nom": "Femme", "categorie": 16, "slug": "chaussures-femme" }
   },
   {
     "model": "produits.souscategorys",
     "pk": 29,
-    "fields": {
-      "nom": "chaussures Homme",
-      "categorie": 16,
-      "slug": "chaussures-homme"
-    }
+    "fields": { "nom": "Homme", "categorie": 16, "slug": "chaussures-homme" }
   },
   {
     "model": "produits.souscategorys",
     "pk": 30,
-    "fields": {
-      "nom": "chaussures Enfant",
-      "categorie": 16,
-      "slug": "chaussures-enfant"
-    }
+    "fields": { "nom": "Enfant", "categorie": 16, "slug": "chaussures-enfant" }
   },
   {
     "model": "produits.souscategorys",
     "pk": 31,
     "fields": {
-      "nom": "montres-bijoux Femme",
+      "nom": "Femme",
       "categorie": 17,
       "slug": "montres-bijoux-femme"
     }
@@ -512,7 +494,7 @@
     "model": "produits.souscategorys",
     "pk": 32,
     "fields": {
-      "nom": "montres-bijoux Homme",
+      "nom": "Homme",
       "categorie": 17,
       "slug": "montres-bijoux-homme"
     }
@@ -521,7 +503,7 @@
     "model": "produits.souscategorys",
     "pk": 33,
     "fields": {
-      "nom": "montres-bijoux Enfant",
+      "nom": "Enfant",
       "categorie": 17,
       "slug": "montres-bijoux-enfant"
     }
@@ -539,7 +521,7 @@
     "model": "produits.souscategorys",
     "pk": 35,
     "fields": {
-      "nom": "accessoires-bagagerie Femme",
+      "nom": "Femme",
       "categorie": 18,
       "slug": "accessoires-bagagerie-femme"
     }
@@ -548,7 +530,7 @@
     "model": "produits.souscategorys",
     "pk": 36,
     "fields": {
-      "nom": "accessoires-bagagerie Homme",
+      "nom": "Homme",
       "categorie": 18,
       "slug": "accessoires-bagagerie-homme"
     }
@@ -557,7 +539,7 @@
     "model": "produits.souscategorys",
     "pk": 37,
     "fields": {
-      "nom": "accessoires-bagagerie Enfant",
+      "nom": "Enfant",
       "categorie": 18,
       "slug": "accessoires-bagagerie-enfant"
     }
@@ -1234,6 +1216,331 @@
       "date": "2025-02-17",
       "prix": 40000.0,
       "category": 2,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 35,
+    "fields": {
+      "nom": "Tablette",
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur laborum harum cupiditate fugit ad, repellat, illum earum atque ullam natus esse? Consequuntur ut sunt perspiciatis voluptas nisi vitae enim omnis?",
+      "image": "image_Produit/Tablette_1.png",
+      "date": "2025-03-06",
+      "prix": 4000000.0,
+      "category": 3,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 36,
+    "fields": {
+      "nom": "Tablette",
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur laborum harum cupiditate fugit ad, repellat, illum earum atque ullam natus esse? Consequuntur ut sunt perspiciatis voluptas nisi vitae enim omnis?",
+      "image": "image_Produit/Tablette_2.jpg",
+      "date": "2025-03-06",
+      "prix": 40000000.0,
+      "category": 3,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 37,
+    "fields": {
+      "nom": "Tablette",
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur laborum harum cupiditate fugit ad, repellat, illum earum atque ullam natus esse? Consequuntur ut sunt perspiciatis voluptas nisi vitae enim omnis?",
+      "image": "image_Produit/Tablette_3.jpg",
+      "date": "2025-03-06",
+      "prix": 500000.0,
+      "category": 3,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 38,
+    "fields": {
+      "nom": "Tablette",
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur laborum harum cupiditate fugit ad, repellat, illum earum atque ullam natus esse? Consequuntur ut sunt perspiciatis voluptas nisi vitae enim omnis?",
+      "image": "image_Produit/Tablette_4.jpg",
+      "date": "2025-03-06",
+      "prix": 800000.0,
+      "category": 3,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 39,
+    "fields": {
+      "nom": "Tablette",
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur laborum harum cupiditate fugit ad, repellat, illum earum atque ullam natus esse? Consequuntur ut sunt perspiciatis voluptas nisi vitae enim omnis?",
+      "image": "image_Produit/Tablette_6.jpg",
+      "date": "2025-03-06",
+      "prix": 500000.0,
+      "category": 3,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 40,
+    "fields": {
+      "nom": "Tablette",
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur laborum harum cupiditate fugit ad, repellat, illum earum atque ullam natus esse? Consequuntur ut sunt perspiciatis voluptas nisi vitae enim omnis?",
+      "image": "image_Produit/Tablette_8.jpg",
+      "date": "2025-03-06",
+      "prix": 498000.0,
+      "category": 3,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 41,
+    "fields": {
+      "nom": "Tablette",
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur laborum harum cupiditate fugit ad, repellat, illum earum atque ullam natus esse? Consequuntur ut sunt perspiciatis voluptas nisi vitae enim omnis?",
+      "image": "image_Produit/Tablette_14.jpg",
+      "date": "2025-03-06",
+      "prix": 500000.0,
+      "category": 3,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 42,
+    "fields": {
+      "nom": "Tablette",
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur laborum harum cupiditate fugit ad, repellat, illum earum atque ullam natus esse? Consequuntur ut sunt perspiciatis voluptas nisi vitae enim omnis?",
+      "image": "image_Produit/Tablette_16.jpg",
+      "date": "2025-03-06",
+      "prix": 500000.0,
+      "category": 3,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 43,
+    "fields": {
+      "nom": "Tablette",
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur laborum harum cupiditate fugit ad, repellat, illum earum atque ullam natus esse? Consequuntur ut sunt perspiciatis voluptas nisi vitae enim omnis?",
+      "image": "image_Produit/Tablette_10.jpg",
+      "date": "2025-03-06",
+      "prix": 40000.0,
+      "category": 3,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 44,
+    "fields": {
+      "nom": "Tablette",
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur laborum harum cupiditate fugit ad, repellat, illum earum atque ullam natus esse? Consequuntur ut sunt perspiciatis voluptas nisi vitae enim omnis?",
+      "image": "image_Produit/Tablette_8_widEEBR.jpg",
+      "date": "2025-03-06",
+      "prix": 50000.0,
+      "category": 3,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 45,
+    "fields": {
+      "nom": "Television",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos ipsa deleniti voluptatem id itaque praesentium delectus. Necessitatibus aliquid qui inventore, facilis eaque, rem quisquam, minus vitae sint repellendus numquam eveniet!",
+      "image": "image_Produit/Television_1.jpg",
+      "date": "2025-03-06",
+      "prix": 237000.0,
+      "category": 4,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 46,
+    "fields": {
+      "nom": "Television",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos ipsa deleniti voluptatem id itaque praesentium delectus. Necessitatibus aliquid qui inventore, facilis eaque, rem quisquam, minus vitae sint repellendus numquam eveniet!",
+      "image": "image_Produit/Television_2.jpg",
+      "date": "2025-03-06",
+      "prix": 400000.0,
+      "category": 4,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 47,
+    "fields": {
+      "nom": "Television",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos ipsa deleniti voluptatem id itaque praesentium delectus. Necessitatibus aliquid qui inventore, facilis eaque, rem quisquam, minus vitae sint repellendus numquam eveniet!",
+      "image": "image_Produit/Television_5.jpg",
+      "date": "2025-03-06",
+      "prix": 459000.0,
+      "category": 4,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 48,
+    "fields": {
+      "nom": "Television",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos ipsa deleniti voluptatem id itaque praesentium delectus. Necessitatibus aliquid qui inventore, facilis eaque, rem quisquam, minus vitae sint repellendus numquam eveniet!",
+      "image": "image_Produit/Television_6.jpg",
+      "date": "2025-03-06",
+      "prix": 400000.0,
+      "category": 4,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 49,
+    "fields": {
+      "nom": "Television",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos ipsa deleniti voluptatem id itaque praesentium delectus. Necessitatibus aliquid qui inventore, facilis eaque, rem quisquam, minus vitae sint repellendus numquam eveniet!",
+      "image": "image_Produit/Television_19.jpg",
+      "date": "2025-03-06",
+      "prix": 500000.0,
+      "category": 4,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 50,
+    "fields": {
+      "nom": "Television",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos ipsa deleniti voluptatem id itaque praesentium delectus. Necessitatibus aliquid qui inventore, facilis eaque, rem quisquam, minus vitae sint repellendus numquam eveniet!",
+      "image": "image_Produit/Television_12.jpg",
+      "date": "2025-03-06",
+      "prix": 600000.0,
+      "category": 4,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 51,
+    "fields": {
+      "nom": "Television",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos ipsa deleniti voluptatem id itaque praesentium delectus. Necessitatibus aliquid qui inventore, facilis eaque, rem quisquam, minus vitae sint repellendus numquam eveniet!",
+      "image": "image_Produit/Television_14.jpg",
+      "date": "2025-03-06",
+      "prix": 700000.0,
+      "category": 4,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 52,
+    "fields": {
+      "nom": "Casque",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum corrupti iusto quae quidem tenetur. Laboriosam pariatur vero hic error dolores expedita reiciendis sequi, asperiores animi, veniam, sunt quaerat vel ullam!",
+      "image": "image_Produit/Casque_1.jpg",
+      "date": "2025-03-06",
+      "prix": 60000.0,
+      "category": 4,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 53,
+    "fields": {
+      "nom": "Casque",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum corrupti iusto quae quidem tenetur. Laboriosam pariatur vero hic error dolores expedita reiciendis sequi, asperiores animi, veniam, sunt quaerat vel ullam!",
+      "image": "image_Produit/Casque_11.jpg",
+      "date": "2025-03-06",
+      "prix": 600000.0,
+      "category": 4,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 54,
+    "fields": {
+      "nom": "Casque",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum corrupti iusto quae quidem tenetur. Laboriosam pariatur vero hic error dolores expedita reiciendis sequi, asperiores animi, veniam, sunt quaerat vel ullam!",
+      "image": "image_Produit/Casque_23.png",
+      "date": "2025-03-06",
+      "prix": 500000.0,
+      "category": 4,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 55,
+    "fields": {
+      "nom": "Casque",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum corrupti iusto quae quidem tenetur. Laboriosam pariatur vero hic error dolores expedita reiciendis sequi, asperiores animi, veniam, sunt quaerat vel ullam!",
+      "image": "image_Produit/Casque_14.jpg",
+      "date": "2025-03-06",
+      "prix": 400000.0,
+      "category": 4,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 56,
+    "fields": {
+      "nom": "Tablette",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum corrupti iusto quae quidem tenetur. Laboriosam pariatur vero hic error dolores expedita reiciendis sequi, asperiores animi, veniam, sunt quaerat vel ullam!",
+      "image": "image_Produit/Casque_13.jpg",
+      "date": "2025-03-06",
+      "prix": 500000.0,
+      "category": 4,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 57,
+    "fields": {
+      "nom": "Casque",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum corrupti iusto quae quidem tenetur. Laboriosam pariatur vero hic error dolores expedita reiciendis sequi, asperiores animi, veniam, sunt quaerat vel ullam!",
+      "image": "image_Produit/Casque_3.jpg",
+      "date": "2025-03-06",
+      "prix": 500000.0,
+      "category": 4,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 58,
+    "fields": {
+      "nom": "Casque",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum corrupti iusto quae quidem tenetur. Laboriosam pariatur vero hic error dolores expedita reiciendis sequi, asperiores animi, veniam, sunt quaerat vel ullam!",
+      "image": "image_Produit/Casque_24.jpg",
+      "date": "2025-03-06",
+      "prix": 5000000.0,
+      "category": 4,
+      "sous_category": null
+    }
+  },
+  {
+    "model": "produits.produits",
+    "pk": 59,
+    "fields": {
+      "nom": "Casque",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum corrupti iusto quae quidem tenetur. Laboriosam pariatur vero hic error dolores expedita reiciendis sequi, asperiores animi, veniam, sunt quaerat vel ullam!",
+      "image": "image_Produit/Casque_27.jpg",
+      "date": "2025-03-06",
+      "prix": 400000.0,
+      "category": 4,
       "sous_category": null
     }
   }

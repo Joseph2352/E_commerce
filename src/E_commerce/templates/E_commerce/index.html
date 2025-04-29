@@ -11,10 +11,18 @@
         <button class="nav-button prev hidden" onclick="scrollItems('jewelry1', -1)">&#10094;</button>
         <div class="trending" id="jewelry1" onscroll="checkScroll('jewelry1')">
             <ul>
-                <li>
-                    <img src="{% static 'E_commerce/Image/18326ecc44f9661d5971a828e3cd9b131b854786.jpg' %}" alt="Équipements sportifs">
-                    <p>Équipements sportifs</p>
+                <li class="trending-item1">
+                    <div class="box1">
+                      <h1>Tendance en ce moment</h1>
+                      <svg viewBox="0 0 24 24" fill="currentColor" class="fill-current shrink-0 text-current w-sz-24 h-sz-24" data-spark-component="icon" aria-hidden="true" focusable="false"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.5356 2.00049C10.7802 2.00049 11.0248 2.08138 11.2694 2.16226C16.8957 4.75069 20.1572 10.1702 19.9942 14.7808C19.9126 16.7221 19.2603 18.5826 17.8741 19.8768C16.488 21.171 14.531 21.9799 12.0848 21.9799C11.1063 22.0608 10.1279 21.899 9.14939 21.5754C8.17092 21.2519 7.27398 20.6857 6.54013 20.0386C5.80627 19.3915 5.15395 18.5826 4.74626 17.6928C4.25702 16.7221 4.0124 15.7515 4.0124 14.7808C3.93086 13.6484 4.25702 12.516 4.8278 11.4644C5.39857 10.4129 6.21397 9.60398 7.27398 9.03776C7.5186 8.87599 7.76322 8.87599 8.08938 8.95687C8.41554 9.03776 8.57862 9.28043 8.66016 9.4422C8.98631 10.0893 9.31247 10.7364 9.80171 11.2217C10.2909 10.4129 10.5356 9.4422 10.5356 8.30977C10.5356 6.85378 10.1279 5.31691 9.31247 3.94181C9.14939 3.69914 9.06785 3.37559 9.14939 3.05203C9.23093 2.72848 9.39401 2.48582 9.63863 2.32404L9.72017 2.24315C9.96479 2.08138 10.2909 2.00049 10.5356 2.00049ZM15.4279 17.3692C14.6941 18.0972 13.7156 18.5017 12.7371 18.5017C12.1664 18.5017 11.7587 18.0972 11.7587 17.531C11.7587 16.9648 12.1664 16.5603 12.7371 16.5603C13.2264 16.5603 13.7156 16.3177 14.0418 15.9941C14.4495 15.6706 14.6126 15.1852 14.6126 14.6999C14.6126 14.1337 15.0203 13.7292 15.591 13.7292C16.1618 13.7292 16.5695 14.1337 16.5695 14.6999C16.5695 15.7515 16.1618 16.6412 15.4279 17.3692Z"></path></svg>
+                    </div>
                 </li>
+                {% for produit in top_5_produits %}
+                  <li>
+                      <img src="{{ produit.image.url }}" alt="Équipements sportifs">
+                      <h2> {{ produit.nom }} </h2>
+                  </li>
+                {% endfor %}
             </ul>
         </div>
         <button class="nav-button next" onclick="scrollItems('jewelry1', 1)">&#10095;</button>
@@ -46,43 +54,61 @@
         <button class="nav-button prev hidden" onclick="scrollItems('category-{{ forloop.counter }}', -1)">&#10094;</button>
         <div class="items" id="category-{{ forloop.counter }}" onscroll="checkScroll('category-{{ forloop.counter }}')">
             <ul>
-                {% for produit in produits %}
-                  <li>
-                    <div
-                            class="panierplus ajouter-panier"
-                            data-id="{{ produit.id }}"
-                            data-nom="{{ produit.nom }}"
-                            data-prix="{{ produit.prix }}"
-                            data-image="{{ produit.image.url }}"
-                          >
-                            <svg
-                              viewBox="0 0 1024 1024"
-                              width="3rem"
-                              height="4rem"
-                              fill="currentColor"
-                              aria-hidden="false"
-                              focusable="false"
-                            >
-                              <path
-                                d="M256 960a64 64 0 1 0 0-128 64 64 0 0 0 0 128z m544 0a64 64 0 1 0 0-128 64 64 0 0 0 0 128zM31.424 92.736a48 48 0 0 1 67.84 2.688 186.208 186.208 0 0 1 46.976 96.32l1.28 9.024 50.496 444.64a48 48 0 0 0 43.168 42.368l4.512 0.224H812.16a48 48 0 0 0 46.72-37.152l0.832-4.384 44.256-326.24a48 48 0 0 1 95.52 8.32l-0.384 4.576-44.256 326.24a144 144 0 0 1-135.776 124.48l-6.912 0.16H245.696a144 144 0 0 1-142.144-120.96l-0.928-6.784L52.16 211.584a90.208 90.208 0 0 0-19.2-46.176l-4.16-4.832a48 48 0 0 1 2.656-67.84z"
-                              ></path>
-                              <path
-                                d="M528 128c24.96 0 45.44 16.512 47.776 37.6L576 169.6V288h118.4c22.976 0 41.6 21.504 41.6 48 0 24.96-16.512 45.44-37.6 47.776L694.4 384H576v118.4c0 22.976-21.504 41.6-48 41.6-24.96 0-45.44-16.512-47.776-37.6L480 502.4V384h-118.4c-22.976 0-41.6-21.504-41.6-48 0-24.96 16.512-45.44 37.6-47.776L361.6 288H480V169.6c0-22.976 21.504-41.6 48-41.6z"
-                              ></path>
-                            </svg>
-                          </div>
-                    <a href="{% url 'produit_detail' id=produit.pk nom=produit.nom %}" color="black">
-                      <div class="image_produit">
-                          <img src="{{ produit.image.url }}" alt="{{ produit.nom }}" />
-                        </div>
-                          <div class="containbox">
-                          <h2>{{ produit.nom }}</h2>
-                          <p class="description">{{ produit.description|truncatewords:10|striptags|safe }}</p>
-                          <p class="price">{{ produit.prix }} €</p>
-                      </div>
-                    </a>
-                  </li>
-                {% endfor %}
+              {% for produit in produits %}
+              <li data-id="{{ produit.id }}" 
+              data-is-favori="{% if produit.id in produits_aimes_ids %}true{% else %}false{% endif %}">
+                <div
+                  class="panierplus ajouter-panier"
+                  data-id="{{ produit.id }}"
+                  data-nom="{{ produit.nom }}"
+                  data-prix="{{ produit.prix }}"
+                  data-image="{{ produit.image.url }}"
+                >
+                  <svg
+                    viewBox="0 0 1024 1024"
+                    width="3rem"
+                    height="4rem"
+                    fill="currentColor"
+                    aria-hidden="false"
+                    focusable="false"
+                  >
+                    <path
+                      d="M256 960a64 64 0 1 0 0-128 64 64 0 0 0 0 128z m544 0a64 64 0 1 0 0-128 64 64 0 0 0 0 128zM31.424 92.736a48 48 0 0 1 67.84 2.688 186.208 186.208 0 0 1 46.976 96.32l1.28 9.024 50.496 444.64a48 48 0 0 0 43.168 42.368l4.512 0.224H812.16a48 48 0 0 0 46.72-37.152l0.832-4.384 44.256-326.24a48 48 0 0 1 95.52 8.32l-0.384 4.576-44.256 326.24a144 144 0 0 1-135.776 124.48l-6.912 0.16H245.696a144 144 0 0 1-142.144-120.96l-0.928-6.784L52.16 211.584a90.208 90.208 0 0 0-19.2-46.176l-4.16-4.832a48 48 0 0 1 2.656-67.84z"
+                    ></path>
+                    <path
+                      d="M528 128c24.96 0 45.44 16.512 47.776 37.6L576 169.6V288h118.4c22.976 0 41.6 21.504 41.6 48 0 24.96-16.512 45.44-37.6 47.776L694.4 384H576v118.4c0 22.976-21.504 41.6-48 41.6-24.96 0-45.44-16.512-47.776-37.6L480 502.4V384h-118.4c-22.976 0-41.6-21.504-41.6-48 0-24.96 16.512-45.44 37.6-47.776L361.6 288H480V169.6c0-22.976 21.504-41.6 48-41.6z"
+                    ></path>
+                  </svg>
+                </div>
+            
+                <div class="image_produit">
+                  <div
+                    class="favoriplus ajouter-favori"
+                    data-id="{{ produit.id }}"
+                  >
+                    <svg class="heart-filled" viewBox="0 0 24 24" fill="#EC5A13" display="none">
+                      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 
+                      6 4 4 6.5 4c1.74 0 3.41 1.01 4.5 2.09C12.09 
+                      5.01 13.76 4 15.5 4 18 4 20 6 20 
+                      8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                    </svg>
+                    <svg class="heart-outline" viewBox="0 0 24 24" fill="currentColor">
+                      <path
+                        d="m16.28,3c-1.72,0-3.24.83-4.28,2.11-1.04-1.28-2.57-2.11-4.28-2.11-3.21,0-5.72,2.85-5.72,6.24,0,2.77,1.41,4.75,1.97,5.51,1.87,2.47,4.38,4.11,6.67,5.6h.02c.25.17.49.33.73.49.32.21.73.22,1.06.02.21-.13.43-.26.63-.39h.02c2.39-1.48,5.02-3.1,6.95-5.68.64-.86,1.95-2.83,1.95-5.54,0-3.4-2.51-6.23-5.72-6.23h0Zm-8.57,2.12c1.46,0,2.76.96,3.35,2.39.16.38.52.64.93.64s.77-.25.93-.64c.6-1.44,1.9-2.39,3.36-2.39,1.99,0,3.7,1.79,3.69,4.13,0,2-.98,3.5-1.52,4.24-1.67,2.25-3.98,3.67-6.43,5.19l-.07.04-.21-.13c-2.33-1.52-4.54-2.97-6.18-5.14-.51-.67-1.54-2.18-1.54-4.2,0-2.33,1.7-4.13,3.7-4.13h0Z"
+                      ></path>
+                    </svg>
+                  </div>           
+                  <a href="{% url 'produit_detail' id=produit.pk nom=produit.nom %}" style="color: black;">
+                    <img src="{{ produit.image.url }}" alt="{{ produit.nom }}" />
+                    <div class="containbox">
+                      <h2>{{ produit.nom }}</h2>
+                      <p class="description">{{ produit.description|truncatewords:10|striptags|safe }}</p>
+                      <p class="price">{{ produit.prix }} €</p>
+                    </div>
+                  </a>
+                </div>
+              </li>
+            {% endfor %}            
             </ul>
         </div>
         <button class="nav-button next" onclick="scrollItems('category-{{ forloop.counter }}', 1)">&#10095;</button>
@@ -90,6 +116,9 @@
      {% endif %}
     {% endfor %}
 </section>
-
-<script src="{% static 'E_commerce/js/index.js' %}?v={{ static_version }}"></script>
 {% endblock content %}
+
+{% block script %}
+  <script src="{% static 'E_commerce/js/index.js' %}?v={{ static_version }}"></script>
+  <script src="{% static 'E_commerce/js/ajout_favori.js' %}?v={{ static_version }}"></script>
+{% endblock script %}

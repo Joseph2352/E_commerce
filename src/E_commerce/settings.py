@@ -41,7 +41,26 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'produits',
     'comptes',
+    'fournisseurs',
+    'chat',
+    # 'django.contrib.sites',  # Assurez-vous que 'sites' est activé pour allauth
+    
+    # # Applications nécessaires pour django-allauth
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',  # Google pour l'authentification
+    
 ]
+
+# # Allauth settings
+# ACCOUNT_AUTHENTICATE_METHOD = 'email'
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# ACCOUNT_USERNAME_REQUIRED = False  # Désactive la demande de nom d'utilisateur
+# ACCOUNT_EMAIL_REQUIRED = False
+# ACCOUNT_LOGIN_METHODS = ['email']
+# ACCOUNT_SIGNUP_FIELDS = ['email', 'password1', 'password2']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -49,6 +68,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    # 'allauth.account.middleware.AccountMiddleware',  # <== ajoute cette ligne ici
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'livereload.middleware.LiveReloadScript',
@@ -130,10 +150,45 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_ROOT = BASE_DIR / 'Media'
 MEDIA_URL = '/Media/'
+# Paramètres pour gérer la taille des fichiers téléchargés
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10 MB
+FILE_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10 MB
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
+#--------------------configuration allauth-----------------
+# Paramètres pour la connexion avec Google
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '216115787949-loqfjaco2j9i93pehb4gt4899bf6sj06.apps.googleusercontent.com'
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+# AUTHENTICATION_BACKENDS = (
+#     'allauth.account.auth_backends.AuthenticationBackend',  # pour activer l'authentification via Allauth
+#     'django.contrib.auth.backends.ModelBackend',  # pour la connexion via Django standard
+# )
+
+# # Paramètre pour définir le domaine du site
+# SITE_ID = 1  # Assure-toi que tu as un site configuré dans l'admin Django
+
+#-------------------------------------------------
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'comptes.CustomUser' 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+
+#-------------donneer pour le changement de mot de passe
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'ajoseph.08754896@gmail.com'
+EMAIL_HOST_PASSWORD = 'King2348'     #c'est le mot de passe de mon compte email
+DEFAULT_FROM_EMAIL = 'ajoseph.08754896@gmail.com'
+
+#---------------configuration du site------------------------
+# SITE_NAME = "Joseph"
+# DOMAIN = "127.0.0.1:8000"
+
+
+CSRF_COOKIE_HTTPONLY = False

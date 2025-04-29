@@ -5,4 +5,4 @@ def categories_produits(request):
     return {'categories_produits': categories}
 
 def super_categories(request):
-    return {'super_categorie': SuperCategorys.objects.all()}
+    return {'super_categories': SuperCategorys.objects.all()}

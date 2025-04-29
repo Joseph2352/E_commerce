@@ -10,14 +10,32 @@
     </div>
     <div class="box_description">
       <div class="info">
-        <h2>{{ produit.nom }}</h2>
+        <div class="head_produit">
+          <h2>{{ produit.nom }}</h2>
+            <div class="fournisseur">
+              <a href="{% url 'produits_par_fournisseur' fournisseur_id=produit.fournisseur.id %}" class="fournisseur-link">
+                  <img src="{{ produit.fournisseur.logo.url }}" alt="Image du fournisseur" class="fournisseur-img">
+                  <span>{{ produit.fournisseur.nom }}</span>
+              </a>
+            </div>
+        </div>
         <p class="prix">Prix: {{ produit.prix }} €</p>
         <p>{{ produit.description }}</p>
+      <p class="stock">
+        Stock disponible : {{ produit.stock }}
+      </p>
       </div>
-        <form method="POST" action="">
-          {% csrf_token %}
-          <button type="submit" class="btn-ajouter">Ajouter</button>
-        </form>
+        <div 
+  >
+          <button 
+          class="btn-ajouter ajouter-panier"
+          data-id="{{ produit.id }}"
+          data-nom="{{ produit.nom }}"
+          data-prix="{{ produit.prix }}"
+          data-image="{{ produit.image.url }}"
+          >Ajouter</button>
+        </div>
+        <a href="{% url "laisser_commentaire" produit_id=produit.id  %}">commentaire</a>
     </div>
   </div>
 </section>

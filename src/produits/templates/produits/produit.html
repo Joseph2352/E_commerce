@@ -6,7 +6,20 @@
 />
 {% endblock link %} 
 {% block content %}
-<section class="section_produit">
+<section class="section_produit container_section">
+  <aside class="sidebar">
+    <h3>Réductions</h3>
+    <label><input type="checkbox"> Promo</label>
+
+    <h3>Livraison</h3>
+    <label><input type="checkbox"> Livraison rapide</label>
+
+    <h3>Prix</h3>
+    <input type="number" placeholder="Min"> - 
+    <input type="number" placeholder="Max">   
+    <button>OK</button>
+  </aside>
+  <div class="prod">
   <div class="title">
     <h2>Produits de la catégorie : {{ category.nom }}</h2>
   </div>
@@ -55,6 +68,21 @@
     <p class="no-product">Aucun produit trouvé pour cette catégorie.</p>
     {% endif %}
   </div>
+</div>
 </section>
 {% endblock content %}
+{% block dasbord %}
+  <div class="floating-cart">
+    <p class="prix"><span id="total_price"></span>€</p>
+    <div class="paiment">Payer</div>
+    <a class="link_panier">Aller au panier</a>
+    <div id="panier-container">
+        <div class="panier-items">
+            <ul id="liste_panier"></ul>
+        </div>
+    </div>
+    
+  <script src="{% static 'produits/js/dasbord_produit.js' %}?v={{ static_version }}"></script>
+  </div>
+{% endblock dasbord %}
 

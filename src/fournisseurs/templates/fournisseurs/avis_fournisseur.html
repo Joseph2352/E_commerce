@@ -1,0 +1,80 @@
+{% extends "E_commerce/base.html" %}
+{% load static %}
+{% block link  %}
+  <link rel="stylesheet" href="{% static 'fournisseurs/css/spacefournisseur.css' %}?v={{ static_version }} ">
+    <link rel="stylesheet" href="{% static 'fournisseurs/css/avis_fournisseur.css' %}?v={{ static_version }} ">
+  <title>Avis - {{ fournisseur.nom }}</title>
+{% endblock link %}
+{% block content %}
+{% include "fournisseurs/head_fournisseur.html" %}
+
+<div class="avis-container">
+    <div class="dashboard">
+        <h2>Avis des clients ({{ stats.total }})</h2>
+        <div class="progress-wrapper">
+          <div class="progress-row">
+            <span>Positif</span>
+            <div class="progress-bar">
+              <div class="bar positif" style="width: {{ stats.taux_positif }}%"></div>
+            </div>
+            <span>{{ stats.positif }}</span>
+          </div>
+          <div class="progress-row">
+            <span>Neutre</span>
+            <div class="progress-bar">
+              <div class="bar neutre" style="width: {{ stats.taux_neutre }}%"></div>
+            </div>
+            <span>{{ stats.neutre }}</span>
+          </div>
+          <div class="progress-row">
+            <span>Négatif</span>
+            <div class="progress-bar">
+              <div class="bar negatif" style="width: {{ stats.taux_negatif }}%"></div>
+            </div>
+            <span>{{ stats.negatif }}</span>
+          </div>
+        </div>
+        <div class="taux">
+          <strong>{{ stats.taux_positif }}%</strong>
+          <span>Critique positive</span>
+        </div>
+      </div>
+      
+  <!-- ZONE AVIS CLIENT -->
+  <section class="avis-section">
+    <div class="avis-header">
+      <h3>Avis des clients ({{ commentaires.count }})</h3>
+    </div>
+
+    {% for avis in commentaires %}
+    <div class="avis-card">
+      <div class="avis-top">
+        <div class="avis-user">
+          <strong>{{ avis.utilisateur.first_name }}</strong>
+          <span class="stars">
+            {% for i in "12345" %}
+              {% if avis.note|add:"0" >= i|add:"0" %}
+                <i class="fas fa-star"></i>
+              {% else %}
+                <i class="far fa-star"></i>
+              {% endif %}
+            {% endfor %}
+          </span>
+        </div>
+        <div class="avis-date">
+          <i class="fas fa-clock"></i> {{ avis.date|date:"d/m/Y à H:i" }}
+        </div>
+      </div>
+
+      <p class="avis-text">{{ avis.commentaire }}</p>
+
+      <div class="avis-img">
+        <img src="{{ avis.produit.image.url }}" alt="{{ avis.produit.nom }}" class="image-produit">
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+</div>
+
+{% endblock content %}
+
