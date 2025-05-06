@@ -33,6 +33,7 @@ def sign_up(request):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         email = request.POST.get('email')
+        tel = request.POST.get('tel')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
 

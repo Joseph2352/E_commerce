@@ -5,9 +5,12 @@ from .models import Fournisseur,Commentaire
 @admin.register(Fournisseur)
 class FornisseurAdmin(admin.ModelAdmin):
     list_display=[
+        "user",
+        "email",
         "nom",
         "telephone",
         "adresse",
+        'logo',
     ]
 
 @admin.register(Commentaire)

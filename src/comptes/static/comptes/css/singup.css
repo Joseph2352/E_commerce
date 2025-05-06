@@ -91,6 +91,58 @@ form.sign-in-form {
   border-radius:0 55px 55px 0;
 }
 
+.input-field .iti {
+  width: 100%;
+  height: 100%;
+}
+
+.input-field input[type="tel"] {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+  padding-left: 58px; /* pour laisser de l’espace au drapeau */
+  border-radius: 0 55px 55px 0;
+}
+
+.input-field .iti__flag-container {
+  position: absolute;
+  left: 40px; /* ajuste selon ta préférence */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+.iti__country{
+  width: 300px;
+} 
+
+.input-field .iti__flag-container {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.iti__country-list {
+  max-height: 250px;        
+  overflow-y: auto;         
+  overflow-x: hidden;       
+  white-space: nowrap;      
+  width: max-content;       
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  z-index: 9999;            
+}
+
+.input-field .iti__selected-flag {
+  padding: 0 6px;
+}
+
 .input-field input::placeholder {
   color: #aaa;
   font-weight: 500;

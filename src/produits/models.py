@@ -63,6 +63,7 @@ class Produits(models.Model):
     image = models.ImageField(upload_to='image_Produit')
     date = models.DateField(auto_now=True)
     prix = models.FloatField()
+    devise = models.CharField(max_length=3, default='USD') 
     category = models.ForeignKey(Categorys,on_delete=models.CASCADE)
     sous_category = models.ForeignKey(SousCategorys,on_delete=models.CASCADE,null=True,blank=True)
     stock = models.PositiveIntegerField(null=True, blank=True)
@@ -73,9 +74,18 @@ class Produits(models.Model):
         verbose_name = 'Produit'
         ordering = ['-date']
     
+    def save(self, *args, **kwargs):
+        # Nettoyage du prix en cas de virgule comme séparateur décimal
+        if isinstance(self.prix, str) and ',' in self.prix:
+            try:
+                self.prix = float(self.prix.replace(',', '.'))
+            except ValueError:
+                raise ValueError(f"Valeur de prix invalide : {self.prix}")
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.nom
-
+    
 class ProduitAime(models.Model):
     utilisateur = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     produit = models.ForeignKey(Produits, on_delete=models.CASCADE)

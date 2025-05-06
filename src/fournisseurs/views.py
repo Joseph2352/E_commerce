@@ -1,10 +1,13 @@
 from django.shortcuts import get_object_or_404, render,redirect
 from django.utils.timezone import now
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
 
 from fournisseurs.models import Fournisseur,Commentaire
 from produits.models import Produits,Categorys,SuperCategorys
-
+from django.shortcuts import render, redirect
+from .forms import FournisseurSignupForm
 
 def EspaceFournisseur(request):
     return render(request ,"fournisseurs/spacefournisseur.html",{'static_version': now().timestamp()})
@@ -152,6 +155,20 @@ def avis_fournisseur(request, fournisseur_id):
     
     return render(request, 'fournisseurs/avis_fournisseur.html',context )
 
+
+def inscription_fournisseur(request):
+    if request.method == 'POST':
+        form = FournisseurSignupForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Votre compte fournisseur a été créé avec succès !")
+            return redirect('login')  # Ou vers une autre page
+    else:
+        form = FournisseurSignupForm()
+
+    return render(request, 'fournisseurs/inscription_fournisseur.html', {'form': form})
+
+
 def produits_par_categorie(request, id):
     categorie = Categorys.objects.get(id=id)
     produits = Produits.objects.filter(categorie=categorie)
@@ -162,3 +179,4 @@ def produits_par_categorie(request, id):
         'categories': categories,
         'active': 'categories'
     })
+

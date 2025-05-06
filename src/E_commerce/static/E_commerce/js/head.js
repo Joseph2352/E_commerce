@@ -359,3 +359,65 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    const prices = document.querySelectorAll(".price");
+  
+    // Table de correspondance pour la devise
+    const currencyMap = {
+      "FG": "GNF"
+    };
+  
+    fetch("https://ipapi.co/json/")
+      .then(res => res.json())
+      .then(data => {
+        const userCurrency = data.currency || "USD"; // Devise de l'utilisateur
+        const userLocale = data.languages?.split(",")[0] || "en-US"; // Locale de l'utilisateur
+        const userCountry = data.country_name || ""; // Pays de l'utilisateur
+  
+        prices.forEach(el => {
+          const amount = parseFloat(el.dataset.price); // Le prix brut
+          let originCurrency = el.dataset.currency?.toUpperCase() || "USD"; // Devise d'origine de la donnée
+  
+          originCurrency = currencyMap[originCurrency] || originCurrency;
+  
+          // Formater le prix selon la devise et la locale
+          const formatPrice = (value, currency) => {
+            try {
+              return new Intl.NumberFormat(userLocale, {
+                style: "currency",
+                currency: currency
+              }).format(value);
+            } catch {
+              return `${value} ${currency}`;
+            }
+          };
+  
+          // Si la devise d'origine est celle de l'utilisateur
+          if (originCurrency === userCurrency) {
+            el.textContent = `${formatPrice(amount, originCurrency)}`;
+            // Si l'utilisateur est en Guinée, remplacer FG par GNF après la conversion
+            if (userCountry === "Guinea") {
+              el.textContent = el.textContent.replace(/\bFG\b/g, "GNF");
+            }
+            return;
+          }
+  
+          // Si la devise est différente, procéder à la conversion
+          fetch(`https://api.exchangerate-api.com/v4/latest/${originCurrency}`)
+            .then(res => res.json())
+            .then(rateData => {
+              const rate = rateData.rates[userCurrency];
+              if (!rate) return;
+  
+              const converted = amount * rate;
+              el.textContent = `${formatPrice(converted, userCurrency)}`;
+  
+              // Si l'utilisateur est en Guinée, remplacer FG par GNF après la conversion
+              if (userCountry === "Guinea") {
+                el.textContent = el.textContent.replace(/\bFG\b/g, "GNF");
+              }
+            });
+        });
+      });
+  });
+  

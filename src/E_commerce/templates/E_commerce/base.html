@@ -7,10 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token }}">
     <link rel="icon" type="image/x-icon" sizes="180x180" href="{% static 'E_commerce/Image/trending_topics_2.webp' %}">
     <link rel="stylesheet" href=" {% static 'E_commerce/css/base.css' %}?v={{ static_version }} " />
-    <link
-      rel="stylesheet"
-      href="{% static 'E_commerce/css/fontawesome/css/all.css' %}?v={{ static_version }}"
-    />
+    <link rel="stylesheet" href="{% static 'E_commerce/css/fontawesome/css/all.css' %}?v={{ static_version }}"/>
+
     
      
     {% block link %}{% endblock link %}
@@ -262,6 +260,7 @@
             <img src="{% static 'E_commerce/Image/lebonlieu.svg' %}" alt="" />
           </a>
           <div class="ar">
+            {% if request.user.is_authenticated and request.user.fournisseur %}
             <button class="annonce" id="annonce">
               <a href="{% url "ajouter_produit" %}">
                 <div class="box-annonce">
@@ -278,6 +277,7 @@
                 </div>
               </a>
             </button>
+            {% endif %}
             <div class="box_recher">
               <form id="recher" class="recher" method="GET" action="{% url 'recherche' %}">
                   <input id="search-input" name="recherche" type="text" placeholder="Rechercher sur Lebonlieu" autocomplete="off" />
@@ -540,7 +540,9 @@
   <script>
     const TOGGLE_FAVORI_URL = "{% url 'toggle_favori' 0 %}".replace('/0', '');
     const SYNC_FAVORIS_URL = "{% url 'sync_favoris' %}";
-  </script>  
+  </script> 
+  
+   
     {% block script %}{% endblock script %}
   </body>
 </html>

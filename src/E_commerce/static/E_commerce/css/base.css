@@ -8,6 +8,7 @@
   text-decoration: none;
   outline: none;
 }
+.menbox_super_categorie
 
 .order-zoom {
   transform: scale(1);
@@ -109,6 +110,7 @@ body {
   color: #fff;
   width: 30px;
   margin: auto;
+  z-index: 3;
 }
 .navbar .head-top .boxrecher .recher2 {
   display: none;
@@ -188,13 +190,6 @@ body {
   height: 35px;
   margin: auto;
   cursor: pointer;
-}
-.head .navbar .head-top a:hover svg {
-  color: rgb(236, 90, 19);
-}
-.head .navbar .head-top a:hover .compteur_panier {
-  background: rgb(236, 90, 19);
-  color: white;
 }
 
 .navbar .head-top .logout{
@@ -793,7 +788,6 @@ body {
     width: 455px;
     min-height: 100vh;
     overflow-y: auto;
-    height: 100vh;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   }
   #menuhead .iconcon{
@@ -1118,6 +1112,7 @@ body {
   .lg {
     transition: translate 0.3s ease-in-out;
   }
+
 }
 
 @media (max-width: 560px) {

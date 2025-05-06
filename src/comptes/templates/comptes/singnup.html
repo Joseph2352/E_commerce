@@ -10,6 +10,8 @@
       rel="stylesheet"
       href="{% static 'E_commerce/css/fontawesome/css/all.css' %}?v={{ static_version }}"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"/>
+
     <title>Document</title>
   </head>
   <body>
@@ -36,6 +38,10 @@
             <div class="input-field">
               <i class="fas fa-envelope"></i>
               <input type="email" name="email" placeholder="Email" />
+            </div>
+            <div class="input-field">
+              <i class="fa-solid fa-phone"></i>
+              <input id="phone" type="tel" name="tel" placeholder="telephone" class="phone-input" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
@@ -110,5 +116,26 @@
       }
     </script>
     <script src="{% static 'comptes/js/singnup.js' %}?v={{ static_version }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+    <script>
+      const input = document.querySelector("#phone");
+    
+      const iti = window.intlTelInput(input, {
+        initialCountry: "auto",
+        nationalMode: false, // Affiche l'indicatif dans l'input
+        formatOnDisplay: true,
+        autoHideDialCode: false, // Garde l'indicatif visible
+        separateDialCode: false, // Intègre l'indicatif dans le champ
+        geoIpLookup: callback => {
+          fetch("https://ipapi.co/json")
+            .then(res => res.json())
+            .then(data => callback(data.country_code))
+            .catch(() => callback("fr")); // France en fallback
+        },
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+      });
+    </script>
+    
+  
   </body>
 </html>

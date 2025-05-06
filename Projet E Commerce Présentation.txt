@@ -1,0 +1,14 @@
+Projet E-Commerce
+Présentation Générale
+Ce projet est une plateforme e-commerce full-stack développée avec Django (Python) côté backend et HTML/CSS/JavaScript côté frontend. L’objectif principal est de reproduire une expérience utilisateur, tant sur le plan visuel que fonctionnel. L’ensemble du site est conçu pour être responsive, intuitif, et orienté performance et fluidité de navigation.
+
+Objectifs du Projet:
+Créer une application e-commerce moderne, facile à maintenir et évolutive.
+Fonctionnalités Détaillées:
+Page Produit avancé
+système d'avis clients
+panier Dynamique
+Authentifications & Gestion des Utilisateur et Fornisseurs
+Gestion des Produits et Commandes
+recherche des Produits
+Gestion des Produits Favoris

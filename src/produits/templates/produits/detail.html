@@ -19,7 +19,7 @@
               </a>
             </div>
         </div>
-        <p class="prix">Prix: {{ produit.prix }} €</p>
+        <p class="prix price" data-price="{{ produit.prix }}"  data-currency="{{ produit.devise }}">Prix: {{ produit.prix }} $</p>
         <p>{{ produit.description }}</p>
       <p class="stock">
         Stock disponible : {{ produit.stock }}

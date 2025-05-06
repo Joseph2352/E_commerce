@@ -58,7 +58,7 @@
               <div class="containbox">
               <h2>{{ produit.nom }}</h2>
               <p class="description">{{ produit.description|truncatewords:10|striptags|safe }}</p>
-              <p class="price">{{ produit.prix }} €</p>
+              <p class="price" data-price="{{ produit.prix|stringformat:".2f" }}" data-currency="{{ produit.devise }}">{{ produit.prix }} {{ produit.devise|upper }}</p>
           </div>
         </a>
       </li>
