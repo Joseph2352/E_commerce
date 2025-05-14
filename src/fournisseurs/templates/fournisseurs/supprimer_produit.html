@@ -1,0 +1,90 @@
+{% extends "fournisseurs/base_fournisseur.html" %}
+{% load static %}
+{% block content %}
+<div class="form-container">
+  <div class="warning-icon">
+    <i class="fas fa-exclamation-triangle"></i>
+  </div>
+  <h2>Suppression du produit</h2>
+  <div class="warning-message">
+    <p>Vous êtes sur le point de supprimer le produit&nbsp;:</p>
+    <p class="product-name">«&nbsp;<strong>{{ produit.nom }}</strong>&nbsp;»</p>
+    <p class="danger-text">Cette action est <strong>irréversible</strong>.<br>Voulez-vous vraiment continuer&nbsp;?</p>
+  </div>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-delete">Oui, supprimer</button>
+    <a href="{% url 'fournisseurs:mes_produits' %}" class="btn btn-cancel">Annuler</a>
+  </form>
+</div>
+{% endblock content %}
+<style>
+.form-container {
+    max-width: 420px;
+    margin: 60px auto;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 0 24px rgba(0,0,0,0.10);
+    padding: 36px 30px 30px 30px;
+    text-align: center;
+    position: relative;
+}
+.warning-icon {
+    font-size: 3rem;
+    color: #dc2626;
+    margin-bottom: 10px;
+}
+.warning-message {
+    margin-bottom: 22px;
+}
+.product-name {
+    font-size: 1.15rem;
+    color: #333;
+    margin: 8px 0 0 0;
+}
+.danger-text {
+    color: #dc2626;
+    font-weight: 500;
+    margin-top: 10px;
+}
+.form-container h2 {
+    color: #dc2626;
+    margin-bottom: 12px;
+    font-size: 1.4rem;
+}
+.btn {
+    padding: 10px 22px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background 0.2s, color 0.2s;
+    display: inline-block;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+    background: #f3f3f3;
+    color: #333;
+}
+.btn-delete {
+    background: #dc2626;
+    color: #fff;
+}
+.btn-cancel {
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+}
+.btn:hover {
+    opacity: 0.90;
+}
+@media (max-width: 600px) {
+  .form-container {
+    padding: 18px 6px 18px 6px;
+  }
+  .btn {
+    width: 100%;
+    margin: 10px 0 0 0;
+  }
+}
+</style> 

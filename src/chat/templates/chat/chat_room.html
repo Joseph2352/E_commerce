@@ -1,0 +1,184 @@
+{% extends template %}
+{% load static %}
+
+{% block title %}Chat - {{ other_user.username }}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'chat/css/chat.css' %}?v={{ static_version }}">
+<style>
+body, .chat-main-container, .chat-content {
+    background: #f6f7fb !important;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="chat-main-container {% if show_list %}show-list{% else %}show-conversation{% endif %}">
+    <!-- Sidebar (conversations) -->
+    <div class="chat-sidebar">
+        <div class="chat-header">
+            <h2>Messages</h2>
+        </div>
+        <div class="conversation-list"></div>
+    </div>
+    <!-- Zone de chat -->
+    <div class="chat-content">
+        {% if conversation %}
+        <div class="chat-header">
+            <div class="chat-user-info">
+                {% if user.is_fournisseur %}
+                  <div class="user-top" style="display: flex; width: max-content;">
+                    <h2>{{ conversation.client.get_full_name|default:conversation.client.email }}</h2>
+                    <span class="online-indicator {% if conversation.client.is_online %}online{% else %}offline{% endif %}" style="margin-left:8px;"></span>
+                    <span class="last-seen" style="margin-left:8px;">
+                        {% if conversation.client.last_seen %}
+                            {% if conversation.client.is_online %}
+                                <span style="color:#000;font-weight:500;">En ligne</span>
+                            {% else %}
+                                <span style="color:#888;">il y a {{ conversation.client.last_seen|timesince }}</span>
+                            {% endif %}
+                        {% endif %}
+                    </span>
+                </div>
+                {% else %}
+                <div class="user-top" style="display: flex; width: max-content;">
+                    <h2>{{ conversation.fournisseur.nom }}</h2>
+                    <span class="online-indicator {% if conversation.fournisseur.user.is_online %}online{% else %}offline{% endif %}" style="margin-left:8px;"></span>
+                    <span class="last-seen" style="margin-left:8px;">
+                        {% if conversation.fournisseur.user.last_seen %}
+                            {% if conversation.fournisseur.user.is_online %}
+                                <span style="color:#4CAF50;font-weight:500;">En ligne</span>
+                            {% else %}
+                                <span style="color:#888;">il y a {{ conversation.fournisseur.user.last_seen|timesince }}</span>
+                            {% endif %}
+                        {% endif %}
+                    </span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="messages-container" id="messages">
+            {% if messages %}
+                {% for message in messages %}
+                <div class="message {% if message.sender == user %}sent{% else %}received{% endif %}" data-message-id="{{ message.id }}">
+                    {% if message.sender == user %}
+                        {% if user.is_fournisseur %}
+                            {% if user.fournisseur.logo %}
+                                <span class="message-avatar"><img src="{{ user.fournisseur.logo.url }}" style="width:100%;height:100%;border-radius:50%"></span>
+                            {% else %}
+                                <span class="message-avatar" style="background:#ff6600">{{ user.first_name|first|upper }}</span>
+                            {% endif %}
+                        {% else %}
+                            {% if user.image %}
+                                <span class="message-avatar"><img src="{{ user.image.url }}" style="width:100%;height:100%;border-radius:50%"></span>
+                            {% else %}
+                                <span class="message-avatar" style="background:#2563eb">{{ user.first_name|first|upper }}</span>
+                            {% endif %}
+                        {% endif %}
+                        <div class="message-actions">
+                            <button class="edit-message" title="Modifier"><i class="fas fa-pen"></i></button>
+                            <button class="delete-message" data-id="{{ message.id }}" title="Supprimer"><i class="fas fa-trash"></i></button>
+                        </div>
+                    {% else %}
+                        {% if conversation.client == message.sender %}
+                            {% if conversation.client.image %}
+                                <span class="message-avatar"><img src="{{ conversation.client.image.url }}" style="width:100%;height:100%;border-radius:50%"></span>
+                            {% else %}
+                                <span class="message-avatar" style="background:#2563eb">{{ conversation.client.first_name|first|upper }}</span>
+                            {% endif %}
+                        {% else %}
+                            {% if conversation.fournisseur.logo %}
+                                <span class="message-avatar"><img src="{{ conversation.fournisseur.logo.url }}" style="width:100%;height:100%;border-radius:50%"></span>
+                            {% else %}
+                                <span class="message-avatar" style="background:#ff6600">{{ conversation.fournisseur.nom|first|upper }}</span>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                    <div class="message-content">
+                        {% if message.attachment %}
+                        <div class="attachments">
+                            <div class="attachment">
+                                {% if message.attachment.is_image %}
+                                    <img src="{{ message.attachment.file.url }}" 
+                                         alt="Image" 
+                                         class="attachment-image"
+                                         onclick="showFullImage('{{ message.attachment.file.url }}', '{{ message.attachment.description|escapejs }}')"
+                                         style="cursor: pointer;">
+                                {% else %}
+                                    <a href="{{ message.attachment.file.url }}" class="attachment-file" target="_blank">
+                                        <i class="fas fa-file"></i>
+                                        <span>Voir le fichier</span>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        {{ message.content }}
+                    </div>
+                    <span class="message-time">{{ message.timestamp|date:"H:i" }}</span>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-conversation">
+                    <h2>Commencez la discussion en envoyant un message !</h2>
+                </div>
+            {% endif %}
+        </div>
+        <!-- ZONE D'INPUT TOUJOURS AFFICHÉE -->
+        <div class="chat-input-container">
+            <form id="message-form">
+                <input type="hidden" name="conversation_id" value="{{ conversation.id }}">
+                <!-- Aperçu de l'image à envoyer (sera affiché par JS si besoin) -->
+                <div id="image-preview-container" style="display:none; align-items:center; gap:8px;">
+                    <img id="preview-image" src="#" alt="Aperçu" style="max-width:80px; max-height:80px; border-radius:8px;">
+                    <button type="button" id="remove-image-btn" >&times;</button>
+                </div>
+                <div class="input-wrapper">
+                    <input type="file" id="file-input" style="display: none" accept="image/*,application/pdf,.doc,.docx,.xls,.xlsx">
+                    <button type="button" id="attachment-btn" class="attachment-button" title="Joindre un fichier">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                    <textarea id="message-input" placeholder="Écrivez votre message..." rows="1"></textarea>
+                    <button type="button" id="emoji-btn" class="emoji-button" title="Ajouter un emoji">
+                        <i class="far fa-smile"></i>
+                    </button>
+                    <button type="button" id="send-btn" class="send-button" disabled>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        {% else %}
+        <div class="no-conversation-selected">
+            <div class="illustration">
+                <img src="{% static 'chat/images/chat-illustration.svg' %}" alt="Chat Illustration">
+            </div>
+            <h2>Start chatting now</h2>
+            <p>Sélectionnez une conversation ou commencez-en une nouvelle</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Pour la vue en plein écran des images -->
+<div id="image-viewer" class="image-viewer" style="display: none;">
+    <div class="image-viewer-content">
+        <img id="full-image" src="" alt="Image en plein écran">
+        <div class="image-viewer-description"></div>
+        <button class="image-viewer-close">&times;</button>
+    </div>
+</div>
+
+<script>
+    const conversationId = "{{ conversation.id|default:'' }}";
+    const userId = "{{ request.user.id }}";
+    const otherUserId = "{{ other_user.id|default:'' }}";
+    const userName = "{{ request.user.username }}";
+    window.isFournisseur = "{{ user.is_fournisseur|yesno:'true,false' }}";
+</script>
+<!-- Charge EmojiButton d'abord -->
+<script src="https://cdn.jsdelivr.net/npm/emoji-button@4.6.4/dist/index.min.js"></script>
+
+<!-- Ensuite le script général -->
+<script src="{% static 'chat/js/chat.js' %}?v={{ static_version }}"></script>
+{% endblock %} 

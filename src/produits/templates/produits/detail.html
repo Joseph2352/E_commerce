@@ -13,7 +13,7 @@
         <div class="head_produit">
           <h2>{{ produit.nom }}</h2>
             <div class="fournisseur">
-              <a href="{% url 'produits_par_fournisseur' fournisseur_id=produit.fournisseur.id %}" class="fournisseur-link">
+              <a href="{% url 'fournisseurs:boutique_fournisseur' fournisseur_id=produit.fournisseur.id %}" class="fournisseur-link">
                   <img src="{{ produit.fournisseur.logo.url }}" alt="Image du fournisseur" class="fournisseur-img">
                   <span>{{ produit.fournisseur.nom }}</span>
               </a>
@@ -35,7 +35,7 @@
           data-image="{{ produit.image.url }}"
           >Ajouter</button>
         </div>
-        <a href="{% url "laisser_commentaire" produit_id=produit.id  %}">commentaire</a>
+        <a href="{% url "fournisseurs:laisser_commentaire" produit_id=produit.id  %}">commentaire</a>
     </div>
   </div>
 </section>

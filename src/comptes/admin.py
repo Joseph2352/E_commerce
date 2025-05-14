@@ -10,6 +10,5 @@ class CustomUser(admin.ModelAdmin):
         "last_name",
         "email",
         "tel",
-        "password",
-        "image",
+        "is_fournisseur",
     ]

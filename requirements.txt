@@ -21,3 +21,6 @@ tornado==6.4.2
 typing_extensions==4.12.2
 urllib3==2.3.0
 whitenoise==6.9.0
+firebase-admin==6.4.0
+channels==4.0.0
+channels-redis==4.2.0

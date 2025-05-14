@@ -11,6 +11,8 @@
       href="{% static 'E_commerce/css/fontawesome/css/all.css' %}?v={{ static_version }}"
     />
     <title>Document</title>
+    {% block head %}
+    {% endblock %}
 </head>
 <body>
     <div class="head-top" id="head-top">
@@ -69,5 +71,7 @@
 });
       </script>
 
+      {% block content %}
+      {% endblock %}
 </body>
 </html>

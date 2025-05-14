@@ -1,0 +1,79 @@
+/* produits/css/succes.css */
+
+.success-section {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fefefe;
+    padding: 2rem;
+}
+
+.success-section .success-container {
+    text-align: center;
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.success-section .checkmark-animation {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+}
+
+.success-section svg {
+    width: 100px;
+    height: 100px;
+}
+
+.success-section .circle {
+    stroke: #C84B0F;
+    stroke-width: 2;
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    animation: stroke 0.6s ease-out forwards;
+}
+
+.success-section .check {
+    stroke: #C84B0F;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.4s 0.6s ease forwards;
+}
+
+@keyframes stroke {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.success-section .success-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.success-section .success-message {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.success-section .btn-retour {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #EC5A13;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.success-section .btn-retour:hover {
+    background-color: #cf4c0b;
+}

@@ -29,8 +29,7 @@ def get_top_products_by_categories(category_slug):
                 # Prend un au hasard s'il y a égalité
                 selected_product = random.choice(list(top_in_category))
                 top_products.append(selected_product)
-            for k in top_products:
-                print(k)
+            
         except Categorys.DoesNotExist:
             continue
     return top_products

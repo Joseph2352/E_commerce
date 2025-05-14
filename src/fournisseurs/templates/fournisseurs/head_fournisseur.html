@@ -19,13 +19,21 @@
         {% if est_abonne %}
             <button type="submit" class="btn-follow abonne">✔ ABONNÉ</button>
         {% else %}
-            <form method="post" action="{% url 'suivre_fournisseur' fournisseur.id %}">
+            <form method="post" action="{% url 'fournisseurs:suivre_fournisseur' fournisseur.id %}">
               {% csrf_token %}
               
               <button type="submit" class="btn-follow">+ SUIVRE</button>
             </form>
         {% endif %}
-        <a href="#" class="btn-contact">📩 Contact vendeur</a>
+        {% if user.is_authenticated %}
+            {% if user.is_fournisseur and user.id == fournisseur.user.id %}
+                <a href="{% url 'chat:chat_room' %}" class="btn-contact">💬 Messages</a>
+            {% else %}
+                <a href="{% url 'chat:chat_room' fournisseur.id %}" class="btn-contact">📩 Contacter le vendeur</a>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'login' %}?next={{ request.path }}" class="btn-contact">📩 Contacter le vendeur</a>
+        {% endif %}
         <form method="get" class="recherche-magasin-form">
           <input 
             type="text" 
@@ -46,18 +54,18 @@
 <div class="navbar-secondaire">
   <ul class="nav-links">
     <li class="{% if active == 'accueil' %}active{% endif %}">
-      <a href="{% url 'produits_par_fournisseur' fournisseur.id %}">Page d'accueil</a>
+      <a href="{% url 'fournisseurs:boutique_fournisseur' fournisseur.id %}">Page d'accueil</a>
     </li>
     <li class="dropdown {% if active == 'categories' %}active{% endif %}">
       <a href="#">Catégories ▾</a>
       <ul class="dropdown-content">
         {% for supercategorie in supercategories %}
-          <li  ><a href="{% url "Filter_Produit" fournisseur_id=fournisseur.id filtersuper_id=supercategorie.id %}">{{ supercategorie.nom }}</a></li>
+          <li  ><a href="{% url "fournisseurs:Filter_Produit" fournisseur_id=fournisseur.id filtersuper_id=supercategorie.id %}">{{ supercategorie.nom }}</a></li>
         {% endfor %}
       </ul>
     </li>
     <li class="{% if active == 'avis' %}active{% endif %}">
-      <a href="{% url 'avis_fournisseur' fournisseur.id %}">Avis</a>
+      <a href="{% url 'fournisseurs:avis_fournisseur' fournisseur.id %}">Avis</a>
     </li>
   </ul>
 </div>

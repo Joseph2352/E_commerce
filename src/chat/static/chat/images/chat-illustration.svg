@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Fond du chat -->
+    <rect x="50" y="50" width="300" height="200" rx="20" fill="#F3F4F6"/>
+    
+    <!-- Bulle de message 1 -->
+    <path d="M100 120 L180 120 L200 100 L220 120 L300 120 L300 180 L100 180 Z" fill="#E5E7EB"/>
+    <circle cx="150" cy="150" r="10" fill="#9CA3AF"/>
+    <circle cx="250" cy="150" r="10" fill="#9CA3AF"/>
+    
+    <!-- Bulle de message 2 -->
+    <path d="M80 200 L320 200 L320 240 L80 240 Z" fill="#E5E7EB"/>
+    <circle cx="120" cy="220" r="8" fill="#9CA3AF"/>
+    <circle cx="160" cy="220" r="8" fill="#9CA3AF"/>
+    <circle cx="200" cy="220" r="8" fill="#9CA3AF"/>
+    
+    <!-- Icône de message -->
+    <path d="M180 80 L220 80 L220 100 L200 120 L180 100 Z" fill="#4B5563"/>
+</svg> 

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'comptes',
     'fournisseurs',
     'chat',
+    'channels',
     # 'django.contrib.sites',  # Assurez-vous que 'sites' est activé pour allauth
     
     # # Applications nécessaires pour django-allauth
@@ -71,7 +72,7 @@ MIDDLEWARE = [
     # 'allauth.account.middleware.AccountMiddleware',  # <== ajoute cette ligne ici
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'livereload.middleware.LiveReloadScript',
+    'comptes.middleware.UpdateLastSeenMiddleware',
 ]
 
 ROOT_URLCONF = 'E_commerce.urls'
@@ -142,7 +143,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "E_commerce/static"),
 ]
@@ -192,3 +193,11 @@ DEFAULT_FROM_EMAIL = 'ajoseph.08754896@gmail.com'
 
 
 CSRF_COOKIE_HTTPONLY = False
+
+ASGI_APPLICATION = 'E_commerce.routing.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    }
+}

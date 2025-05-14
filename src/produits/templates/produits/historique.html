@@ -1,19 +1,65 @@
 {% extends "E_commerce/base.html" %}
 {% load static %}
 {% block link %}
-<link rel="stylesheet" href=" {% static 'produits/css/recher_histori.css' %}?v={{ static_version }} " />
+<link rel="stylesheet" href="{% static 'produits/css/recher_histori.css' %}?v={{ static_version }}" />
+<style>
+  .historique-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .historique-item {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: box-shadow 0.2s, transform 0.2s;
+    cursor: pointer;
+    border-left: 6px solid #ff6600;
+  }
+  .historique-item:hover {
+    box-shadow: 0 4px 16px rgba(255,102,0,0.13);
+    transform: translateY(-2px) scale(1.01);
+    background: #fff7f0;
+  }
+  .historique-terme {
+    font-size: 1.2rem;
+    color: #ff6600;
+    font-weight: 600;
+  }
+  .historique-date {
+    font-size: 1rem;
+    color: #888;
+    margin-left: 20px;
+  }
+  .no-historique {
+    text-align: center;
+    color: #aaa;
+    font-size: 1.1rem;
+    margin-top: 30px;
+  }
+</style>
 {% endblock link %}
 {% block content %}
 <section class="section_produit">
-<div class="container_histo">
-    <h2>Historique de vos recherches</h2>
-    <ul>
-        {% for recherche in recherches %}
-            <li>{{ recherche.terme }} - {{ recherche.date_recherche }}</li>
-        {% empty %}
-            <li>Aucune recherche enregistrée.</li>
-        {% endfor %}
+  <div class="container_histo">
+    <h2 style="color:#ff6600;text-align:center;margin-bottom:30px;">Historique de vos recherches</h2>
+    <ul class="historique-list">
+      {% for recherche in recherches %}
+        <li class="historique-item" onclick="window.location.href='{% url 'recherche' %}?recherche={{ recherche.terme|urlencode }}'">
+          <span class="historique-terme">{{ recherche.terme }}</span>
+          <span class="historique-date">{{ recherche.date_recherche|date:'d/m/Y H:i' }}</span>
+        </li>
+      {% empty %}
+        <li class="no-historique">Aucune recherche enregistrée.</li>
+      {% endfor %}
     </ul>
-</div>
+  </div>
 </section>
 {% endblock %}

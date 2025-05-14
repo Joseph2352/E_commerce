@@ -2,12 +2,17 @@ from django.shortcuts import get_object_or_404, render,redirect
 from django.utils.timezone import now
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+from django.urls import reverse_lazy
+from django.urls import reverse
+from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator
 
 from fournisseurs.models import Fournisseur,Commentaire
 from produits.models import Produits,Categorys,SuperCategorys
 from django.shortcuts import render, redirect
-from .forms import FournisseurSignupForm
+from .forms import FournisseurSignupForm, FournisseurLoginForm
 
 def EspaceFournisseur(request):
     return render(request ,"fournisseurs/spacefournisseur.html",{'static_version': now().timestamp()})
@@ -44,13 +49,34 @@ def boutique_fournisseur(request, fournisseur_id):
 
 @login_required
 def mes_produits(request):
-    try:
-        fournisseur = Fournisseur.objects.get(user=request.user)
-        produits = Produits.objects.filter(fournisseur=fournisseur)
-    except Fournisseur.DoesNotExist:
-        produits = []  # L'utilisateur n'est pas un fournisseur
+    print(f"Utilisateur connecté : {request.user}")
+    fournisseur = get_object_or_404(Fournisseur, user=request.user)
+    print(f"Fournisseur trouvé : {fournisseur}")
+    produits_list = Produits.objects.filter(fournisseur=fournisseur)
+    print(f"Nombre de produits trouvés : {produits_list.count()}")
+    categories = Categorys.objects.all()
+    supercategories = SuperCategorys.objects.all()
+    search_query = request.GET.get('search', '')
 
-    return render(request, 'fournisseurs/mes_produits.html', {'produits': produits})
+    if search_query:
+        produits_list = produits_list.filter(nom__icontains=search_query) | produits_list.filter(description__icontains=search_query)
+        print(f"Nombre de produits après recherche : {produits_list.count()}")
+
+    paginator = Paginator(produits_list, 8)  # 8 produits par page
+    page_number = request.GET.get('page')
+    produits = paginator.get_page(page_number)
+    print(f"Page actuelle : {produits.number}, Nombre total de pages : {produits.paginator.num_pages}")
+
+    context = {
+        'fournisseur': fournisseur,
+        'produits': produits,
+        'search_query': search_query,
+        'categories': categories,
+        'supercategories': supercategories,
+        'active': 'mes_produits',
+        'static_version': now().timestamp(),
+    }
+    return render(request, 'fournisseurs/mes_produits.html', context)
 
 @login_required
 def suivre_fournisseur(request, fournisseur_id):
@@ -179,4 +205,96 @@ def produits_par_categorie(request, id):
         'categories': categories,
         'active': 'categories'
     })
+
+def login_fournisseur(request):
+    if request.method == 'POST':
+        form = FournisseurLoginForm(request.POST)
+        if form.is_valid():
+            user = form.cleaned_data['user']
+            login(request, user)
+            if not form.cleaned_data.get('remember_me'):
+                request.session.set_expiry(0)
+            messages.success(request, 'Connexion réussie !')
+            return redirect('fournisseurs:dashboard')
+        # Les erreurs sont déjà gérées par le formulaire
+    else:
+        form = FournisseurLoginForm()
+    return render(request, 'fournisseurs/login_fournisseur.html', {'form': form})
+
+@login_required
+def dashboard(request):
+    if not request.user.is_fournisseur:
+        messages.error(request, 'Accès non autorisé.')
+        return redirect('home')
+    
+    fournisseur = request.user.fournisseur
+    context = {
+        'fournisseur': fournisseur,
+    }
+    return render(request, 'fournisseurs/dashboard.html', context)
+
+class CustomPasswordResetView(PasswordResetView):
+    template_name = 'fournisseurs/password_reset_form.html'
+    email_template_name = 'fournisseurs/password_reset_email.html'
+    subject_template_name = 'fournisseurs/password_reset_subject.txt'
+    success_url = reverse_lazy('fournisseurs:password_reset_done')
+
+class CustomPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'fournisseurs/password_reset_done.html'
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = 'fournisseurs/password_reset_confirm.html'
+    success_url = reverse_lazy('fournisseurs:password_reset_complete')
+
+class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = 'fournisseurs/password_reset_complete.html'
+
+@login_required
+def ajouter_produit(request):
+    from produits.models import Produits
+    from produits.forms import ProduitForm  # À créer si non existant
+    fournisseur = get_object_or_404(Fournisseur, user=request.user)
+    if request.method == 'POST':
+        form = ProduitForm(request.POST, request.FILES)
+        if form.is_valid():
+            produit = form.save(commit=False)
+            produit.fournisseur = fournisseur
+            produit.save()
+            messages.success(request, 'Produit ajouté avec succès !')
+            return redirect('fournisseurs:mes_produits')
+    else:
+        form = ProduitForm()
+    return render(request, 'fournisseurs/ajouter_produit.html', {'form': form})
+
+@login_required
+def editer_produit(request, produit_id):
+    from produits.models import Produits
+    from produits.forms import ProduitForm
+    fournisseur = get_object_or_404(Fournisseur, user=request.user)
+    produit = get_object_or_404(Produits, id=produit_id, fournisseur=fournisseur)
+    if request.method == 'POST':
+        form = ProduitForm(request.POST, request.FILES, instance=produit)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Produit modifié avec succès !')
+            return redirect('fournisseurs:mes_produits')
+    else:
+        form = ProduitForm(instance=produit)
+    return render(request, 'fournisseurs/editer_produit.html', {'form': form, 'produit': produit})
+
+@login_required
+def supprimer_produit(request, produit_id):
+    from produits.models import Produits
+    fournisseur = get_object_or_404(Fournisseur, user=request.user)
+    produit = get_object_or_404(Produits, id=produit_id, fournisseur=fournisseur)
+    if request.method == 'POST':
+        produit.delete()
+        messages.success(request, 'Produit supprimé avec succès !')
+        return redirect('fournisseurs:mes_produits')
+    return render(request, 'fournisseurs/supprimer_produit.html', {'produit': produit})
+
+def logout_fournisseur(request):
+    logout(request)
+    messages.success(request, "Vous avez été déconnecté avec succès.")
+    return redirect('fournisseurs:login')
 

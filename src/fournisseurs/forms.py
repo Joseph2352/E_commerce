@@ -1,7 +1,8 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Fournisseur
 from comptes.models import CustomUser
+from django.contrib.auth import authenticate
 
 
 class FournisseurSignupForm(UserCreationForm):
@@ -37,3 +38,27 @@ class FournisseurSignupForm(UserCreationForm):
         )
 
         return user
+
+class FournisseurLoginForm(forms.Form):
+    email = forms.EmailField(
+        label="Email",
+        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Votre email'})
+    )
+    password = forms.CharField(
+        label="Mot de passe",
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Votre mot de passe'})
+    )
+    remember_me = forms.BooleanField(required=False, label="Se souvenir de moi")
+
+    def clean(self):
+        cleaned_data = super().clean()
+        email = cleaned_data.get('email')
+        password = cleaned_data.get('password')
+        if email and password:
+            user = authenticate(email=email, password=password)
+            if not user:
+                raise forms.ValidationError("Email ou mot de passe incorrect.")
+            if not user.is_fournisseur:
+                raise forms.ValidationError("Ce compte n'est pas un compte fournisseur.")
+            cleaned_data['user'] = user
+        return cleaned_data

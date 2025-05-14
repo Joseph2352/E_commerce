@@ -33,11 +33,10 @@ class ProduitAdmin(admin.ModelAdmin):
     list_display=[
         "nom",
         "prix",
+        "fournisseur",
         "category",
-        "sous_category",
         "nombre_likes",
         "date",
-
     ]
 
 @admin.register(ProduitAime)

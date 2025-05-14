@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lebonlieu Business - Espace Fournisseur</title>
+    <link rel="stylesheet" href="{% static 'E_commerce/css/fontawesome/css/all.css' %}?v={{ static_version }}"/>
+    <link rel="stylesheet" href="{% static 'fournisseurs/css/base_fournisseur.css' %}?v={{ static_version }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <header class="header">
+        <div class="header-main-content">
+            <a href="{% url 'fournisseurs:dashboard' %}" class="logo">
+                <div class="brand-logo">
+                    Lebonlieu <span class="business">Business</span>
+                </div>
+            </a>
+            <button class="burger" id="burgerBtn" aria-label="Menu principal">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="mainNav">
+                <ul class="nav-menu">
+                    <li><a href="{% url 'fournisseurs:dashboard' %}"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="{% url 'fournisseurs:mes_produits' %}"><i class="fas fa-box"></i> Mes Produits</a></li>
+                    <li id="ajouterLink" class="hide-at-870"><a href="{% url 'fournisseurs:ajouter_produit' %}"><i class="fas fa-plus-circle"></i> Ajouter un produit</a></li>
+                    <li id="statsLink" class="hide-at-1018"><a href="#"><i class="fas fa-chart-line"></i> Statistiques</a></li>
+                    <li id="messagesLink" class="hide-at-1138"><a href="{% url 'chat:chat_room' %}"><i class="fas fa-bell"></i> Messages</a></li>
+                    <li id="logoutLink" class="hide-at-1242"><a href="{% url 'fournisseurs:logout' %}" class="btn-primary"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+                </ul>                
+            </nav>
+            <div id="logoutArrow" class="arrow-toggle">
+                <img src="https://ae-pic-a1.aliexpress-media.com/kf/S9f1c171078d84a239a6611f0befbf96dw/32x32.png"
+                    alt="Déplier"
+                    style="cursor:pointer; width: 20px; height: 20px; margin-left: 6px;">
+            </div>
+            <div id="dropdownMenu" class="dropdown-menu">
+                <ul>
+                    <li data-link-id="logoutLink"><a href="{% url 'fournisseurs:logout' %}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+                    <li data-link-id="messagesLink"><a href="{% url 'chat:chat_room' %}"><i class="fas fa-bell"></i> Messages</a></li>
+                    <li data-link-id="statsLink"><a href="#"><i class="fas fa-chart-line"></i> Statistiques</a></li>
+                    <li data-link-id="ajouterLink"><a href="{% url 'fournisseurs:ajouter_produit' %}"><i class="fas fa-plus-circle"></i> Ajouter un produit</a></li>
+                </ul>
+            </div>            
+        </div>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+      <!----------------------------Section footer ------------------------------>
+      <footer class="footer">
+        <div class="footer-container">
+            <!-- Section 1: Logo et slogan -->
+            <div class="footer-section logo-section">
+                <h2 class="footer-logo">Lebonlieu</h2>
+                <p>Le meilleur endroit pour trouver ce dont vous avez besoin.</p>
+            </div>
+    
+            <!-- Section 2: Liens de navigation -->
+            <div class="footer-section">
+                <h3>Catégories</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Immobilier</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Mode</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Véhicules</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Électronique</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Emploi</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Loisirs</a></li>
+                </ul>
+            </div>
+    
+            <!-- Section 3: Infos légales -->
+            <div class="footer-section">
+                <h3>Informations</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> À propos</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> FAQ</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Conditions d'utilisation</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Politique de confidentialité</a></li>
+                </ul>
+            </div>
+    
+            <!-- Section 4: Réseaux Sociaux -->
+            <div class="footer-section">
+                <h3>Suivez-nous</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 Lebonlieu - Tous droits réservés.</p>
+        </div>
+    </footer>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const burger = document.getElementById('burgerBtn');
+        const nav = document.getElementById('mainNav');
+        const overlay = document.getElementById('menuOverlay');
+        const arrow = document.getElementById('logoutArrow');
+        const dropdown = document.getElementById('dropdownMenu');
+
+        // Toggle menu mobile
+        burger.addEventListener('click', function () {
+            nav.classList.toggle('open');
+            overlay.classList.toggle('active');
+        });
+        overlay.addEventListener('click', function () {
+            nav.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+
+        // Marquer le lien actif
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
+
+        navLinks.forEach(link => {
+            if (currentPath.startsWith(link.getAttribute('href'))) {
+                link.classList.add('active');
+            }
+        });
+        dropdownLinks.forEach(link => {
+            if (currentPath.startsWith(link.getAttribute('href'))) {
+                link.classList.add('active');
+            }
+        });
+
+
+        // Gestion du dropdown menu
+        arrow.addEventListener('click', function (e) {
+            arrow.classList.toggle('rotated');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            e.stopPropagation();
+        });
+
+        document.addEventListener('click', function () {
+            dropdown.style.display = 'none';
+            arrow.classList.remove('rotated');
+        });
+
+        dropdown.addEventListener('click', function (e) {
+            e.stopPropagation();
+        });
+
+        function updateDropdownVisibility() {
+    const dropdownItems = document.querySelectorAll('#dropdownMenu li[data-link-id]');
+    dropdownItems.forEach(item => {
+        const linkId = item.getAttribute('data-link-id');
+        const mainLink = document.getElementById(linkId);
+        if (!mainLink) return;
+
+        // Vérifie si l'élément est visible via son style calculé
+        const style = window.getComputedStyle(mainLink);
+        const isHidden = style.display === 'none' || style.visibility === 'hidden';
+
+        item.style.display = isHidden ? 'block' : 'none';
+    });
+}
+        updateDropdownVisibility();
+        window.addEventListener('resize', updateDropdownVisibility);
+    });
+</script>
+
+</body>
+</html> 

@@ -1,0 +1,39 @@
+{% extends template %}
+{% load static %}
+
+{% block title %}Chat{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'chat/css/chat_home.css' %}?v={{ static_version }}">
+{% endblock %}
+
+{% block content %}
+<div class="chat-home-main-container">
+    <!-- Sidebar (conversations) -->
+    <div class="chat-sidebar">
+        <div class="chat-header">
+            <h2>Messages</h2>
+        </div>
+        <div class="conversation-list"></div>
+    </div>
+    <!-- Zone d'accueil -->
+     <div class="haed" style="width: 100%;">
+    <div class="chat-header" style="width: 100%; padding: 0;"></div>
+    <div class="chat-home-content">
+        <div class="no-conversation-selected">
+            <div class="illustration">
+                <img src="{% static 'chat/images/chat-illustration.svg' %}" alt="Chat Illustration">
+            </div>
+            <h2>Start chatting now</h2>
+            <p>Sélectionnez une conversation ou commencez-en une nouvelle</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    const conversationId = "";
+    window.isFournisseur = "{{ user.is_fournisseur|yesno:'true,false' }}";
+</script>
+<script src="{% static 'chat/js/chat.js' %}?v={{ static_version }}"></script>
+{% endblock %} 

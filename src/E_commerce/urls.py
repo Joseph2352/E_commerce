@@ -15,22 +15,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
+from django.conf import settings
 from django.conf.urls.static import static
-from E_commerce import settings
 from E_commerce.views import HomeViews
-from produits.views import RechercheProduitView,HistoriqueRechercheView
+from produits.views import RechercheProduitView, HistoriqueRechercheView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',HomeViews.as_view(),name=('home')),
+    path('', HomeViews.as_view(), name=('home')),
     path('produit/', include('produits.urls')),
     path('accounts/', include('comptes.urls')),
     # path('accounts/', include('allauth.urls')),  # Inclure les URLs d'authentification d'Allauth
-    path('fournisseur/',include('fournisseurs.urls')),
+    path('fournisseur/', include('fournisseurs.urls')),
     path('chat/', include('chat.urls')),
-
-
 ]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Ajout pour servir les fichiers statiques et médias en dev
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

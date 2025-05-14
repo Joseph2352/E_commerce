@@ -1,0 +1,67 @@
+@media (max-width: 1256px) {
+    .menu-deconnexion { display: none !important; }
+}
+@media (max-width: 1094px) {
+    .menu-messages { display: none !important; }
+}
+@media (max-width: 976px) {
+    .menu-stats { display: none !important; }
+}
+@media (max-width: 812px) {
+    .menu-ajout { display: none !important; }
+}
+@media (max-width: 700px) {
+    #burgerBtn, #burgerDropdown { display: none !important; }
+    .user-menu-mobile { display: block !important; }
+}
+
+#burgerBtn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    margin-left: 12px;
+}
+#burgerBtn span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background: #222;
+    margin: 4px 0;
+    border-radius: 2px;
+    transition: all 0.2s;
+}
+@media (max-width: 1256px) {
+    #burgerBtn { display: flex; }
+}
+
+.burger-dropdown {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 24px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    min-width: 180px;
+    z-index: 1000;
+    flex-direction: column;
+    padding: 8px 0;
+}
+.burger-dropdown a {
+    display: block;
+    padding: 10px 20px;
+    color: #222;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.15s;
+}
+.burger-dropdown a:hover {
+    background: #f3f4f6;
+} 

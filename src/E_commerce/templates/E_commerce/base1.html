@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'E_commerce/css/base1.css' %}?v={{ static_version }}">
+    <link
+      rel="stylesheet"
+      href="{% static 'E_commerce/css/fontawesome/css/all.css' %}?v={{ static_version }}"
+    />
+    <title>Document</title>
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    <div class="head-top" id="head-top">
+        <a href="{% url 'home' %}" id="menlogo">
+          <img src="{% static 'E_commerce/Image/lebonlieu.svg' %}" alt="" />
+        </a>
+        <div class="option">
+          <a href="{% url 'checkout' %}" class="iconcon icon">
+            <div class="panier ">
+              <svg  viewBox="0 0 576 512" fill="currentColor">
+                <path d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/>
+              </svg>
+            </div>
+          </a>
+          {% if user.is_authenticated %}
+            <div class="profile-container">
+                <div class="profile-avatar">
+                      {% if user.image %}
+                      <img src="{{ user.image.url }}" alt="Profile Picture">
+                  {% else %}
+                      <img src="{% static 'comptes/image/default_profil.png' %}" alt="Default Profile Picture">
+                  {% endif %}        
+                </div>
+                <div class="dropdown-menu" id="profileDropdown">
+                      <a href="{% url 'profil' %}">
+                        <i class="fas fa-user"></i>
+                        <p>Compte</p>
+                      </a>
+                    <form id="logout-form" method="post" action="{% url 'logout' %}">
+                      {% csrf_token %}
+                      <button type="submit">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <p>Déconnexion</p>
+                      </button>
+                    </form>
+                </div>
+            </div>
+          {% endif %}
+      </div>
+    </div>
+ <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const dropdown = document.getElementById("profileDropdown");
+    const profile = document.querySelector(".profile-container");
+
+    document.addEventListener("click", function(event) {
+        if (!profile.contains(event.target)) {
+            dropdown.style.display = "none";
+        }
+    });
+
+    profile.addEventListener("click", function(event) {
+        event.stopPropagation(); 
+        dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
+    });
+});
+      </script>
+
+      {% block content %}
+      {% endblock %}
+<footer class="footer">
+        <div class="footer-container">
+            <!-- Section 1: Logo et slogan -->
+            <div class="footer-section logo-section">
+                <h2 class="footer-logo">Lebonlieu</h2>
+                <p>Le meilleur endroit pour trouver ce dont vous avez besoin.</p>
+            </div>
+    
+            <!-- Section 2: Liens de navigation -->
+            <div class="footer-section">
+                <h3>Catégories</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Immobilier</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Mode</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Véhicules</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Électronique</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Emploi</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Loisirs</a></li>
+                </ul>
+            </div>
+    
+            <!-- Section 3: Infos légales -->
+            <div class="footer-section">
+                <h3>Informations</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> À propos</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> FAQ</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Conditions d'utilisation</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Politique de confidentialité</a></li>
+                </ul>
+            </div>
+    
+            <!-- Section 4: Réseaux Sociaux -->
+            <div class="footer-section">
+                <h3>Suivez-nous</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 Lebonlieu - Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,61 @@
+{% extends "fournisseurs/base_fournisseur.html" %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'fournisseurs/css/ajouter_produit.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock head %}
+
+{% block content %}
+<div class="form-container">
+  <div class="form-header">
+    <i class="fas fa-plus-circle"></i>
+    <h2>Ajouter un produit</h2>
+  </div>
+
+  <form method="post" enctype="multipart/form-data" class="product-form">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    {% for field in form %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+
+        {% if field.name == 'image' %}
+          <!-- SVG + Texte cliquables -->
+          <label for="customFileInput" class="custom-file-label" style="cursor:pointer; display:inline-flex; align-items:center; gap: 8px; padding: 8px 12px; border: 1px solid #ff6600; border-radius: 6px; margin-bottom: 8px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M20.453 3.5a2.5 2.5 0 0 1 1.414 4.5v10a2.5 2.5 0 0 1-2.5 2.5H3.453a2.5 2.5 0 0 1-2.5-2.5v-10a2.5 2.5 0 0 1 1.414-4.5h18.086Zm-12.953 8.06-4.47 4.47v2.403h17V16.53l-5.382-4.038-2.04 2.04a1 1 0 0 1-1.414 0l-4.694-4.695Zm-4.047-6.56h17l.059.004a.5.5 0 0 1 .441.496v11.154l-4.657-3.493a1.5 1.5 0 0 0-1.634.063L13 14.94l-4.616-4.617a1.5 1.5 0 0 0-1.703-.26L3.453 13.986V5.5a.5.5 0 0 1 .5-.5Zm13.5 1.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm0 1.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"
+                    fill="#191919" />
+            </svg>
+            <span>Choisir une image</span>
+          </label>
+
+          <!-- Champ réellement masqué -->
+          {{ field.as_widget|add_class:"d-none" }}
+
+        {% else %}
+          {{ field }}
+        {% endif %}
+
+        {% if field.errors %}
+          <div class="error-message">
+            <i class="fas fa-exclamation-circle"></i>
+            {{ field.errors|striptags }}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Ajouter
+      </button>
+      <a href="{% url 'fournisseurs:mes_produits' %}" class="btn btn-secondary">
+        <i class="fas fa-times"></i> Annuler
+      </a>
+    </div>
+  </form>
+</div>
+{% endblock content %}
